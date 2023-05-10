@@ -1,7 +1,8 @@
 <?php
-use Illuminate\Http\Request;
+
+use App\Http\Controllers\api\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+
 #################################Start Auth###################################
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('/login', [AuthController::class, 'login']);

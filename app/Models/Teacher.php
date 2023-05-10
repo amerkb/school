@@ -2,46 +2,33 @@
 namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+
 class Teacher extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    use HasFactory;
+    protected $guarded=[];
+    // علاقة بين المعلمين والتخصصات لجلب اسم التخصص
+    public function specializations()
+    {
+        return $this->belongsTo('App\Models\Specialization', 'Specialization_id');
+    }
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
+    // علاقة بين المعلمين والانواع لجلب جنس المعلم
+    public function genders()
+    {
+        return $this->belongsTo('App\Models\Gender', 'Gender_id');
+    }
+
+// علاقة المعلمين مع الاقسام
+    public function Sections()
+    {
+        return $this->belongsToMany('App\Models\Section','teacher_section');
+    }
     public function getJWTIdentifier() {
         return $this->getKey();
     }

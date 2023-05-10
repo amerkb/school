@@ -27,7 +27,7 @@ return [
         ],
         'parent' => [
             'driver' => 'jwt',
-            'provider' => 'parents',
+            'provider' => 'my_parents',
             'hash' => false,
         ],
     ],
@@ -62,9 +62,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Student::class,
         ],
-        'parents' => [
+        'my_parents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Parant::class,
+            'model' => App\Models\MyParent::class,
         ],
 
         // 'users' => [

@@ -10,3 +10,4 @@ use Illuminate\Support\Facades\Route;
 //    Route::post('/logout', [AuthController::class, 'logout'])->middleware('check_user');
 //});
 //#################################End Auth####################################
+##sssss

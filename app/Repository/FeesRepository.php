@@ -38,15 +38,16 @@ class FeesRepository implements FeesRepositoryInterface
         try {
 
             $fees = new Fee();
-            $fees->title = ['en' => $request->title_en, 'ar' => $request->title_ar];
+            $fees->title = $request->title_en;
             $fees->amount  =$request->amount;
             $fees->Grade_id  =$request->Grade_id;
             $fees->Classroom_id  =$request->Classroom_id;
             $fees->description  =$request->description;
             $fees->year  =$request->year;
+            $fees->Fee_type  =$request->Fee_type;
             $fees->save();
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('Fees.create');
+            toastr()->success(('success'));
+            return redirect()->back();
 
         }
 
@@ -59,15 +60,16 @@ class FeesRepository implements FeesRepositoryInterface
     {
         try {
             $fees = Fee::findorfail($request->id);
-            $fees->title = ['en' => $request->title_en, 'ar' => $request->title_ar];
+            $fees->title = $request->title_an;
             $fees->amount  =$request->amount;
             $fees->Grade_id  =$request->Grade_id;
             $fees->Classroom_id  =$request->Classroom_id;
             $fees->description  =$request->description;
             $fees->year  =$request->year;
+            $fees->Fee_type  =$request->Fee_type;
             $fees->save();
-            toastr()->success(trans('messages.Update'));
-            return redirect()->route('Fees.index');
+            toastr()->success(('Update'));
+            return redirect()->back();
         }
 
         catch (\Exception $e) {

@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-    اضافة رسوم جديدة
+{{('Add new fees')}}
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    اضافة رسوم جديدة
+   {{('Add new fees')}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -29,22 +29,22 @@
                     </div>
                 @endif
 
-                <form method="post" action="{{ route('Fees.store') }}" autocomplete="off">
+                <form method="" action="{{route('storefee')}}" autocomplete="off">
                     @csrf
                     <div class="form-row">
-                        <div class="form-group col">
+                        {{-- <div class="form-group col">
                             <label for="inputEmail4">الاسم باللغة العربية</label>
                             <input type="text" value="{{ old('title_ar') }}" name="title_ar" class="form-control">
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col">
-                            <label for="inputEmail4">الاسم باللغة الانجليزية</label>
+                            <label for="inputEmail4">Name</label>
                             <input type="text" value="{{ old('title_en') }}" name="title_en" class="form-control">
                         </div>
 
 
                         <div class="form-group col">
-                            <label for="inputEmail4">المبلغ</label>
+                            <label for="inputEmail4">The Amount</label>
                             <input type="number" value="{{ old('amount') }}" name="amount" class="form-control">
                         </div>
                     </div>
@@ -53,9 +53,9 @@
                     <div class="form-row">
 
                         <div class="form-group col">
-                            <label for="inputState">المرحلة الدراسية</label>
+                            <label for="inputState">The Grade</label>
                             <select class="custom-select mr-sm-2" name="Grade_id">
-                                <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
+                                <option selected disabled>{{('Choose') }}...</option>
                                 @foreach ($Grades as $Grade)
                                     <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
                                 @endforeach
@@ -63,15 +63,15 @@
                         </div>
 
                         <div class="form-group col">
-                            <label for="inputZip">الصف الدراسي</label>
+                            <label for="inputZip">The Class</label>
                             <select class="custom-select mr-sm-2" name="Classroom_id">
 
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label for="inputZip">السنة الدراسية</label>
+                            <label for="inputZip">Academic year</label>
                             <select class="custom-select mr-sm-2" name="year">
-                                <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
+                                <option selected disabled>{{('Choose') }}...</option>
                                 @php
                                     $current_year = date('Y');
                                 @endphp
@@ -82,21 +82,21 @@
                         </div>
 
                         <div class="form-group col">
-                            <label for="inputZip">نوع الرسوم</label>
+                            <label for="inputZip">Fee type</label>
                             <select class="custom-select mr-sm-2" name="Fee_type">
-                                <option value="1">رسوم دراسية</option>
-                                <option value="2">رسوم باص</option>
+                                <option value="1">Tuition fees</option>
+                                <option value="2">Bus fees</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputAddress">ملاحظات</label>
+                        <label for="inputAddress">Notes</label>
                         <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="4"></textarea>
                     </div>
                     <br>
 
-                    <button type="submit" class="btn btn-primary">تاكيد</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
                 </form>
 

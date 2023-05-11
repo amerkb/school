@@ -29,19 +29,19 @@
                         </div>
                     @endif
 
-                    <form action="{{route('Fees.update','test')}}" method="post" autocomplete="off">
+                    <form action="{{route('updatefee','test')}}" method="" autocomplete="off">
                         @method('PUT')
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col">
+                            {{-- <div class="form-group col">
                                 <label for="inputEmail4">الاسم باللغة العربية</label>
                                 <input type="text" value="{{$fee->getTranslation('title','ar')}}" name="title_ar" class="form-control">
                                 <input type="hidden" value="{{$fee->id}}" name="id" class="form-control">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group col">
                                 <label for="inputEmail4">الاسم باللغة الانجليزية</label>
-                                <input type="text" value="{{$fee->getTranslation('title','en')}}" name="title_en" class="form-control">
+                                <input type="text" value="" name="title_en" class="form-control">
                             </div>
 
 

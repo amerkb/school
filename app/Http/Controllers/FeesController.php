@@ -38,7 +38,7 @@ class FeesController extends Controller
     }
 
 
-    public function update(StoreFeesRequest $request)
+    public function update(StoreFeesRequest $request,$id)
     {
         return $this->Fees->update($request);
     }

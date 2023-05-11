@@ -184,3 +184,27 @@ Route::get('indexfee', [App\Http\Controllers\FeesController::class, 'index'])
 
 Route::get('createfee', [App\Http\Controllers\FeesController::class, 'create'])
 ->name('createfee');
+
+Route::get('storefee', [App\Http\Controllers\FeesController::class, 'store'])
+->name('storefee');
+
+Route::get('editfee{id}', [App\Http\Controllers\FeesController::class, 'edit'])
+->name('editfee');
+
+Route::get('updatefee', [App\Http\Controllers\FeesController::class, 'update'])
+->name('updatefee');
+
+Route::get('destroyfee', [App\Http\Controllers\FeesController::class, 'destroy'])
+->name('destroyfee');
+
+
+//////////// Fees Invoices
+
+Route::get('Invoices_index', [App\Http\Controllers\FeesInvoicesController::class, 'index'])
+->name('Invoices_index');
+
+Route::get('Invoices_store', [App\Http\Controllers\FeesInvoicesController::class, 'store'])
+->name('Invoices_store');
+
+Route::get('Invoices_show{id}', [App\Http\Controllers\FeesInvoicesController::class, 'show'])
+->name('Invoices_show');

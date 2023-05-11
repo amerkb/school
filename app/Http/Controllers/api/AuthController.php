@@ -9,6 +9,7 @@ use Validator;
 class AuthController extends Controller
 {
     public function login(Request $request){
+
       $result=check_type($request->type);
       if ($result){
           return $result;

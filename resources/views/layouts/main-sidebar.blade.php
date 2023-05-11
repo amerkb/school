@@ -145,7 +145,7 @@
                         </a>
                         <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('createfee')}}">{{'Study Fees'}}</a> </li>
-                            {{-- <li> <a href="{{route('indexfee')}}">{{'List Fees'}}</a> </li> --}}
+                            <li> <a href="{{route('indexfee')}}">{{'List Fees'}}</a> </li>
                         </ul>
                     </li>
 

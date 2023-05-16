@@ -60,7 +60,7 @@ class FeesRepository implements FeesRepositoryInterface
     {
         try {
             $fees = Fee::findorfail($request->id);
-            $fees->title = $request->title_an;
+            $fees->title = $request->title_en;
             $fees->amount  =$request->amount;
             $fees->Grade_id  =$request->Grade_id;
             $fees->Classroom_id  =$request->Classroom_id;
@@ -69,7 +69,7 @@ class FeesRepository implements FeesRepositoryInterface
             $fees->Fee_type  =$request->Fee_type;
             $fees->save();
             toastr()->success(('Update'));
-            return redirect()->back();
+            return redirect()->route('indexfee');
         }
 
         catch (\Exception $e) {
@@ -81,7 +81,7 @@ class FeesRepository implements FeesRepositoryInterface
     {
         try {
             Fee::destroy($request->id);
-            toastr()->error(trans('messages.Delete'));
+            toastr()->error(('Delete'));
             return redirect()->back();
         }
 

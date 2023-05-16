@@ -16,8 +16,8 @@ class GCSSeeder extends Seeder
     public function run(): void
     {
        $garde1= Grade::create([
-            "Name"=>"first_garde",
-            "Notes"=>"first_garde",
+            "Name"=>"First Garde",
+            "Notes"=>"From 1 to 6",
         ]);
 
         $classroom1= Classroom::create([
@@ -55,9 +55,15 @@ class GCSSeeder extends Seeder
             "Grade_id"=>$garde1->id,
             "Class_id"=>$classroom2->id,
         ]);
+
         $garde2= Grade::create([
-            "Name"=>"second_garde",
-            "Notes"=>"second_garde",
+            "Name"=>"Second Garde",
+            "Notes"=>"From 7 to 9",
+        ]);
+
+        $garde3= Grade::create([
+            "Name"=>"Third Garde",
+            "Notes"=>"From 10 to 12",
         ]);
 
         $classroom1= Classroom::create([

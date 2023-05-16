@@ -55,7 +55,7 @@ class StudentRepository implements StudentRepositoryInterface
             $Edit_Students->academic_year = $request->academic_year;
             $Edit_Students->save();
             toastr()->success(('Update'));
-            return redirect()->back();
+            return redirect()->route('index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

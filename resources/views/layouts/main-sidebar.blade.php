@@ -146,6 +146,8 @@
                         <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('createfee')}}">{{'Study Fees'}}</a> </li>
                             <li> <a href="{{route('indexfee')}}">{{'List Fees'}}</a> </li>
+                            <li> <a href="{{route('Receipt_index')}}">{{'Receipt'}}</a> </li>
+
                         </ul>
                     </li>
 

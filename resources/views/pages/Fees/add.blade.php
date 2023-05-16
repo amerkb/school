@@ -38,7 +38,7 @@
                         </div> --}}
 
                         <div class="form-group col">
-                            <label for="inputEmail4">Name</label>
+                            <label for="inputEmail4">Title</label>
                             <input type="text" value="{{ old('title_en') }}" name="title_en" class="form-control">
                         </div>
 

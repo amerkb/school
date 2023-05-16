@@ -208,3 +208,19 @@ Route::get('Invoices_store', [App\Http\Controllers\FeesInvoicesController::class
 
 Route::get('Invoices_show{id}', [App\Http\Controllers\FeesInvoicesController::class, 'show'])
 ->name('Invoices_show');
+
+Route::get('Invoices_edit', [App\Http\Controllers\FeesInvoicesController::class, 'edit'])
+->name('Invoices_edit');
+
+Route::get('Invoices_update', [App\Http\Controllers\FeesInvoicesController::class, 'update'])
+->name('Invoices_update');
+
+Route::get('Invoices_destroy', [App\Http\Controllers\FeesInvoicesController::class, 'destroy'])
+->name('Invoices_destroy');
+
+
+
+/////////////////   Receipt 
+
+Route::get('Receipt_index', [App\Http\Controllers\ReceiptStudentController::class, 'index'])
+->name('Receipt_index');

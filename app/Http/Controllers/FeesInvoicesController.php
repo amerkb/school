@@ -8,27 +8,44 @@ use Illuminate\Http\Request;
 
 class FeesInvoicesController extends Controller
 {
-
-    protected $Fees_Invoices;
-    public function __construct(FeeInvoicesRepositoryInterface $Fees_Invoices)
+    protected $FeesInvoices;
+    public function __construct(FeeInvoicesRepositoryInterface $FeesInvoices)
     {
-        $this->Fees_Invoices = $Fees_Invoices;
+        $this->FeesInvoices = $FeesInvoices;
     }
 
     public function index()
     {
-        return $this->Fees_Invoices->index();
+        return $this->FeesInvoices->index();
     }
 
 
     public function store(Request $request)
     {
-        return $this->Fees_Invoices->store($request);
+        return $this->FeesInvoices->store($request);
     }
 
 
     public function show($id)
     {
-        return $this->Fees_Invoices->show($id);
+        return $this->FeesInvoices->show($id);
+    }
+
+
+    public function edit($id)
+    {
+        return $this->FeesInvoices->edit($id);
+    }
+
+
+    public function update(Request $request)
+    {
+        return $this->FeesInvoices->update($request);
+    }
+
+
+    public function destroy(Request $request)
+    {
+        return $this->FeesInvoices->destroy($request);
     }
 }

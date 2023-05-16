@@ -9,7 +9,8 @@ class Fee extends Model
 {
     use HasFactory;
     
-    protected $fillable=['title','amount','Grade_id','Classroom_id','year','description','Fee_type'];
+    protected $fillable=['title','amount','Grade_id',
+    'Classroom_id','year','description','Fee_type'];
 
 
     // علاقة بين الرسوم الدراسية والمراحل الدراسية لجب اسم المرحلة

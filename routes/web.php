@@ -224,3 +224,41 @@ Route::get('Invoices_destroy', [App\Http\Controllers\FeesInvoicesController::cla
 
 Route::get('Receipt_index', [App\Http\Controllers\ReceiptStudentController::class, 'index'])
 ->name('Receipt_index');
+
+Route::get('Receipt_store', [App\Http\Controllers\ReceiptStudentController::class, 'store'])
+->name('Receipt_store');
+
+Route::get('Receipt_show{id}', [App\Http\Controllers\ReceiptStudentController::class, 'show'])
+->name('Receipt_show');
+
+Route::get('Receipt_edit', [App\Http\Controllers\ReceiptStudentController::class, 'edit'])
+->name('Receipt_edit');
+
+Route::get('Receipt_update', [App\Http\Controllers\ReceiptStudentController::class, 'update'])
+->name('Receipt_update');
+
+Route::get('Receipt_destroy', [App\Http\Controllers\ReceiptStudentController::class, 'destroy'])
+->name('Receipt_destroy');
+
+
+
+//////////////////   Processing Fees
+
+
+Route::get('Process_index', [App\Http\Controllers\ProcessingFeeController::class, 'index'])
+->name('Process_index');
+
+Route::get('Process_store', [App\Http\Controllers\ProcessingFeeController::class, 'store'])
+->name('Process_store');
+
+Route::get('Process_show{id}', [App\Http\Controllers\ProcessingFeeController::class, 'show'])
+->name('Process_show');
+
+Route::get('Process_edit', [App\Http\Controllers\ProcessingFeeController::class, 'edit'])
+->name('Process_edit');
+
+Route::get('Process_update', [App\Http\Controllers\ProcessingFeeController::class, 'update'])
+->name('Process_update');
+
+Route::get('Process_destroy', [App\Http\Controllers\ProcessingFeeController::class, 'destroy'])
+->name('Process_destroy');

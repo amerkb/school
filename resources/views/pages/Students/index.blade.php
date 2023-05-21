@@ -71,13 +71,13 @@
                                                                 رسوم&nbsp;</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ route('Receipt_show', $student->id) }}"><i
-                                                                    style="color: #9dc8e2"
+                                                                    style="color: #0e4e76"
                                                                     class="fas fa-money-bill-alt"></i>&nbsp; &nbsp;سند
                                                                 قبض</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ route('Process_show', $student->id) }}"><i
-                                                                    style="color: #9dc8e2"
-                                                                    class="fas fa-money-bill-alt"></i>&nbsp; &nbsp;
+                                                                    style="color: #83ae26"
+                                                                    class="fa fa-edit"></i>&nbsp; &nbsp;
                                                                 استبعاد رسوم</a>
                                                             <a class="dropdown-item"
                                                                 data-target="#Delete_Student{{ $student->id }}"

@@ -87,6 +87,10 @@ class Student  extends Authenticatable implements JWTSubject
 
         }
 
+        public function amerloveali() {
+            return 'khra';
+        }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -104,3 +108,5 @@ class Student  extends Authenticatable implements JWTSubject
         return [];
     }
 }
+
+//// amer donky

@@ -141,7 +141,7 @@ class StudentRepository implements StudentRepositoryInterface
     {
 
         Student::destroy($request->id);
-        toastr()->error(trans('messages.Delete'));
+        toastr()->error(('Delete'));
         return redirect()->back();
     }
 

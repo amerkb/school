@@ -58,8 +58,8 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
 
 
             DB::commit();
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('ProcessingFee.index');
+            toastr()->success(trans('Success'));
+            return redirect()->route('Process_index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -93,7 +93,7 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
 
             DB::commit();
             toastr()->success(trans('messages.Update'));
-            return redirect()->route('ProcessingFee.index');
+            return redirect()->route('Process_index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -104,7 +104,7 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
     {
         try {
             ProcessingFee::destroy($request->id);
-            toastr()->error(trans('messages.Delete'));
+            toastr()->warning(trans('Delete'));
             return redirect()->back();
         }
 

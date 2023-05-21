@@ -80,7 +80,8 @@
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse"
                                     data-target="#Students_upgrade">{{ 'Students Promotions' }}<div class="pull-right">
-                                        <i class="ti-plus"></i></div>
+                                        <i class="ti-plus"></i>
+                                    </div>
                                     <div class="clearfix"></div>
                                 </a>
                                 <ul id="Students_upgrade" class="collapse">
@@ -92,7 +93,8 @@
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse"
                                     data-target="#Graduate students">{{ 'Graduate Students' }}<div class="pull-right">
-                                        <i class="ti-plus"></i></div>
+                                        <i class="ti-plus"></i>
+                                    </div>
                                     <div class="clearfix"></div>
                                 </a>
                                 <ul id="Graduate students" class="collapse">
@@ -144,9 +146,11 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('createfee')}}">{{'Study Fees'}}</a> </li>
-                            <li> <a href="{{route('indexfee')}}">{{'List Fees'}}</a> </li>
-                            <li> <a href="{{route('Receipt_index')}}">{{'Receipt'}}</a> </li>
+                            <li> <a href="{{ route('indexfee') }}">Study Fees</a> </li>
+                            <li> <a href="{{ route('Invoices_index') }}">Invoices</a> </li>
+                            <li> <a href="{{ route('Receipt_index') }}">Receipt</a> </li>
+                            <li> <a href="{{ route('Process_index') }}">Fee excluded</a> </li>
+                            <li> <a href="{{ route('Payment_index') }}">Bills of exchange</a> </li>
 
                         </ul>
                     </li>

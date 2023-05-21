@@ -76,9 +76,13 @@
                                                                 قبض</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ route('Process_show', $student->id) }}"><i
-                                                                    style="color: #83ae26"
-                                                                    class="fa fa-edit"></i>&nbsp; &nbsp;
+                                                                    style="color: #83ae26" class="fa fa-edit"></i>&nbsp;
+                                                                &nbsp;
                                                                 استبعاد رسوم</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('Payment_show', $student->id) }}"><i
+                                                                    style="color:goldenrod"
+                                                                    class="fas fa-donate"></i>&nbsp; &nbsp;سند صرف</a>
                                                             <a class="dropdown-item"
                                                                 data-target="#Delete_Student{{ $student->id }}"
                                                                 data-toggle="modal"

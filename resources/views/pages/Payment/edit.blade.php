@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-  تعديل سند قبض
+  تعديل سند صرف
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-تعديل سند قبض : <label style="color: red">{{$receipt_student->student->name}}</label>
+تعديل سند صرف : <label style="color: red">{{$payment_student->student->name}}</label>
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                            <form action="{{route('Receipt_update','test')}}" method="" autocomplete="off">
+                            <form action="{{route('Payment_students.update','test')}}" method="post" autocomplete="off">
                                 @method('PUT')
                                 @csrf
                             @csrf
@@ -37,9 +37,9 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>المبلغ : <span class="text-danger">*</span></label>
-                                        <input  class="form-control" name="Debit" value="{{$receipt_student->Debit}}" type="number" >
-                                        <input  type="hidden" name="student_id" value="{{$receipt_student->student->id}}" class="form-control">
-                                        <input  type="hidden" name="id"  value="{{$receipt_student->id}}" class="form-control">
+                                        <input  class="form-control" name="Debit" value="{{$payment_student->amount}}" type="number" >
+                                        <input  type="hidden" name="student_id" value="{{$payment_student->student->id}}" class="form-control">
+                                        <input  type="hidden" name="id"  value="{{$payment_student->id}}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>البيان : <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$receipt_student->description}}</textarea>
+                                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$payment_student->description}}</textarea>
                                     </div>
                                 </div>
 

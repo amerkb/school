@@ -68,8 +68,8 @@ class ReceiptStudentsRepository implements ReceiptStudentsRepositoryInterface
             $fund_accounts->save();
 
             DB::commit();
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('receipt_students.index');
+            toastr()->success(('Success'));
+            return redirect()->route('Receipt_index');
 
         }
 
@@ -115,8 +115,8 @@ class ReceiptStudentsRepository implements ReceiptStudentsRepositoryInterface
 
 
             DB::commit();
-            toastr()->success(trans('messages.Update'));
-            return redirect()->route('receipt_students.index');
+            toastr()->success(('Update'));
+            return redirect()->route('Receipt_index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -127,7 +127,7 @@ class ReceiptStudentsRepository implements ReceiptStudentsRepositoryInterface
     {
         try {
             ReceiptStudent::destroy($request->id);
-            toastr()->error(trans('messages.Delete'));
+            toastr()->warning(('Delete'));
             return redirect()->back();
         }
 

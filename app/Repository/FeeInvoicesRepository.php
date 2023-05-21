@@ -6,7 +6,7 @@ use App\Models\Fee;
 use App\Models\FeeInvoices;
 use App\Models\Grade;
 use App\Models\Student;
-use App\Models\StudentAccounts;
+use App\Models\StudentAccount;
 use Illuminate\Support\Facades\DB;
 
 class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
@@ -54,7 +54,7 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
                 $Fees->save();
 
                 // حفظ البيانات في جدول حسابات الطلاب
-                $StudentAccount = new StudentAccounts();
+                $StudentAccount = new StudentAccount();
                 $StudentAccount->date = date('Y-m-d');
                 $StudentAccount->type = 'invoice';
                 $StudentAccount->fee_invoice_id = $Fees->id;
@@ -87,7 +87,7 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
             $Fees->save();
 
             // تعديل البيانات في جدول حسابات الطلاب
-            $StudentAccount = StudentAccounts::where('fee_invoice_id',$request->id)->first();
+            $StudentAccount = StudentAccount::where('fee_invoice_id',$request->id)->first();
             $StudentAccount->Debit = $request->amount;
             $StudentAccount->description = $request->description;
             $StudentAccount->save();

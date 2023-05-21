@@ -231,7 +231,7 @@ Route::get('Receipt_store', [App\Http\Controllers\ReceiptStudentController::clas
 Route::get('Receipt_show{id}', [App\Http\Controllers\ReceiptStudentController::class, 'show'])
 ->name('Receipt_show');
 
-Route::get('Receipt_edit', [App\Http\Controllers\ReceiptStudentController::class, 'edit'])
+Route::get('Receipt_edit{id}', [App\Http\Controllers\ReceiptStudentController::class, 'edit'])
 ->name('Receipt_edit');
 
 Route::get('Receipt_update', [App\Http\Controllers\ReceiptStudentController::class, 'update'])
@@ -262,3 +262,28 @@ Route::get('Process_update', [App\Http\Controllers\ProcessingFeeController::clas
 
 Route::get('Process_destroy', [App\Http\Controllers\ProcessingFeeController::class, 'destroy'])
 ->name('Process_destroy');
+
+
+
+
+
+///////////////  Payment Students
+
+
+Route::get('Payment_index', [App\Http\Controllers\PaymentStudentController::class, 'index'])
+->name('Payment_index');
+
+Route::get('Payment_store', [App\Http\Controllers\PaymentStudentController::class, 'store'])
+->name('Payment_store');
+
+Route::get('Payment_show{id}', [App\Http\Controllers\PaymentStudentController::class, 'show'])
+->name('Payment_show');
+
+Route::get('Payment_edit', [App\Http\Controllers\PaymentStudentController::class, 'edit'])
+->name('Payment_edit');
+
+Route::get('Payment_update', [App\Http\Controllers\PaymentStudentController::class, 'update'])
+->name('Payment_update');
+
+Route::get('Payment_destroy', [App\Http\Controllers\PaymentStudentController::class, 'destroy'])
+->name('Payment_destroy');

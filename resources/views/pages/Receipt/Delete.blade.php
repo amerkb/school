@@ -9,14 +9,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('receipt_students.destroy','test')}}" method="post">
+                <form action="{{route('Receipt_destroy','test')}}" method="">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$receipt_student->id}}">
                     <h5 style="font-family: 'Cairo', sans-serif;">هل انت متاكد مع عملية الحذف ؟</h5>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Students_trans.Close')}}</button>
-                        <button  class="btn btn-danger">{{trans('Students_trans.submit')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{('Close')}}</button>
+                        <button  class="btn btn-danger">{{('Submit')}}</button>
                     </div>
                 </form>
             </div>

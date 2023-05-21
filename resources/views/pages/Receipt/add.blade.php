@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                        <form method="post"  action="{{ route('Receipt_index') }}" autocomplete="off">
+                        <form method=""  action="{{ route('Receipt_store') }}" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{trans('Students_trans.submit')}}</button>
+                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Submit')}}</button>
                         </form>
 
                 </div>

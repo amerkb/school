@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\ChatStudentObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +15,11 @@ class Student  extends Authenticatable implements JWTSubject
     use HasFactory;
     use SoftDeletes;
     protected $guarded=[];
-
+    protected static function boot()
+    {
+        parent::boot();
+        self::observe(ChatStudentObserver::class);
+    }
         // علاقة بين الطلاب والانواع لجلب اسم النوع في جدول الطلاب
 
         public function gender()
@@ -50,7 +55,16 @@ class Student  extends Authenticatable implements JWTSubject
         {
             return $this->morphMany('App\Models\Image', 'imageable');
         }
-
+    //members of chat
+    public function members ()
+    {
+        return $this->morphMany(Member::class, "user");
+    }
+    //messages of chat
+    public function messages ()
+    {
+        return $this->morphMany(Message::class, "user");
+    }
         // علاقة بين الطلاب والجنسيات  لجلب اسم الجنسية  في جدول الجنسيات
 
         public function Nationality()

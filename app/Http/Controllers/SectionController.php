@@ -70,7 +70,7 @@ class SectionController extends Controller
             $Sections->save();
             toastr()->success(trans('Update'));
 
-            return redirect()->route('Sections.index');
+            return redirect()->route('section');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

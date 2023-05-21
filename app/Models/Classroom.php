@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use App\Observers\ChatClassObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
+    protected static function boot()
+    {
+        parent::boot();
+        self::observe(ChatClassObserver::class);
+    }
     //use HasTranslations;
     public $translatable = ['Name_Class'];
 

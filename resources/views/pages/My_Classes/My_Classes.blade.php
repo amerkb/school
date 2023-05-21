@@ -124,10 +124,10 @@
                                                             <input id="Name" type="text" name="Name"
                                                                 class="form-control"
                                                                 value=""
-                                                                required>
+                                                                required>--}}
                                                             <input id="id" type="hidden" name="id"
                                                                 class="form-control" value="{{ $My_Class->id }}">
-                                                        </div> --}}
+                                                        </div>
                                                         <div class="col">
                                                             <label for="Name_en"
                                                                 class="mr-sm-2">{{ 'Name Class' }}

@@ -65,6 +65,11 @@ class Student  extends Authenticatable implements JWTSubject
     {
         return $this->morphMany(Message::class, "user");
     }
+    //messages of chat
+    public function messassges ()
+    {
+        return $this->morphMany(Message::class, "user");
+    }
         // علاقة بين الطلاب والجنسيات  لجلب اسم الجنسية  في جدول الجنسيات
 
         public function Nationality()

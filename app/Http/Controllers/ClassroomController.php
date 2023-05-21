@@ -64,7 +64,7 @@ class ClassroomController extends Controller
                 $Classrooms->Grade_id = $request->Grade_id,
             ]);
             toastr()->success(('Update'));
-            return redirect()->route('classupdate');
+            return redirect()->route('classindex');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

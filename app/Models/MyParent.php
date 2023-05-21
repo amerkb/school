@@ -11,6 +11,15 @@ class MyParent extends Authenticatable implements JWTSubject
 {
     use HasFactory;
     protected $guarded=[];
+    public function members ()
+    {
+        return $this->morphMany(Member::class, "user");
+    }
+    //messages of chat
+    public function messages ()
+    {
+        return $this->morphMany(Message::class, "user");
+    }
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

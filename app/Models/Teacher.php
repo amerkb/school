@@ -16,7 +16,15 @@ class Teacher extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo('App\Models\Specialization', 'Specialization_id');
     }
-
+    public function members ()
+    {
+        return $this->morphMany(Member::class, "user");
+    }
+    //messages of chat
+    public function messages ()
+    {
+        return $this->morphMany(Message::class, "user");
+    }
     // علاقة بين المعلمين والانواع لجلب جنس المعلم
     public function genders()
     {

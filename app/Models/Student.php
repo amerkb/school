@@ -79,6 +79,14 @@ class Student  extends Authenticatable implements JWTSubject
         {
             return $this->belongsTo('App\Models\MyParent', 'parent_id');
         }
+
+        // علاقة بين جدول سدادت الطلاب وجدول الطلاب لجلب اجمالي المدفوعات والمتبقي
+        public function student_account()
+        {
+            return $this->hasMany('App\Models\StudentAccount', 'student_id');
+
+        }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

@@ -130,7 +130,7 @@ class StudentRepository implements StudentRepositoryInterface
             }
             DB::commit(); // insert data
             toastr()->success(('Success'));
-            return redirect()->back();
+            return redirect()->route('index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

@@ -21,6 +21,16 @@ function uploade_image($name,$path,$file){
     $file->move($path,$newimg);
     return $path ."/". $newimg;
 }
-
+function role ($role){
+   if ($role=="student"){
+       return "App\Models\Student";
+   }
+   elseif ($role=="teacher"){
+       return "App\Models\Teacher";
+   }
+   elseif ($role=="parent"){
+       return "App\Models\MyParent";
+   }
+}
 
 

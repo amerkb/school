@@ -27,11 +27,17 @@ return  response()->json( [
 ]);
 }
 
-public function returnData($key, $value, $msg = "")
+public function returnData($key, $value,$keyo="",$valueo="")
 {
+    if (!$keyo=="" && !$valueo==""){
+        return response()->json([
+            'status' => 200,
+            $keyo=>$valueo,
+            $key => $value,
+        ]);
+    }
 return response()->json([
 'status' => 200,
-'msg' => $msg,
 $key => $value
 ]);
 }}

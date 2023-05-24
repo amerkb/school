@@ -21,8 +21,8 @@ return new class extends Migration
                 ->cascadeOnUpdate();
             $table->text("body")->nullable();
             $table->enum("type",["text","file"])->default("text");
-            $table->boolean("read_all");
-            $table->boolean("receipt_all");
+            $table->boolean("read_all")->default(0);
+            $table->boolean("receipt_all")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

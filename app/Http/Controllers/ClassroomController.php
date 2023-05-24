@@ -75,10 +75,14 @@ class ClassroomController extends Controller
 
     public function destroy(Request $request)
     {
-
+        try {
         $Classrooms = Classroom::findOrFail($request->id)->delete();
         toastr()->error(('Deleted'));
         return redirect()->back();
+
+     } catch (\Exception $e) {
+return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+}
     }
 
     public function delete_all(Request $request)

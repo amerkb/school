@@ -88,10 +88,7 @@ class Student  extends Authenticatable implements JWTSubject
 
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 9963cd46808cdbf624897d3d81ccd5066d1205d3
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

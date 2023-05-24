@@ -164,24 +164,32 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Attendance-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{ route('Attendance_index') }}">List of Students</a> </li>
                         </ul>
                     </li>
-
-                    <!-- Exams-->
+                    <!-- Subjects-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Exams-icon">
                             <div class="pull-left"><i class="fas fa-book-open"></i><span
-                                    class="right-nav-text">{{ 'Exams' }}</span></div>
+                                    class="right-nav-text">Subjects</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{ route('Sub_index') }}">Materials list</a> </li>
+                        </ul>
+                    </li>
+                    <!-- Quizzes-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#A-icon">
+                            <div class="pull-left"><i class="fas fa-book-open"></i><span
+                                    class="right-nav-text">Quizzes</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="A-icon" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('Qui_index') }}">List Quizzes</a> </li>
+                            <li> <a href="{{route('Ques_index')}}">List Questions</a> </li>
                         </ul>
                     </li>
 
@@ -211,9 +219,8 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{route('Online_index')}}">الاتصال مباشر مع زوم</a> </li>
+                            <li> <a href="themify-icons.html">الاتصال الغير مباشر مع زوم</a> </li>
                         </ul>
                     </li>
 

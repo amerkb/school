@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Grades\GradeController;
+use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -287,3 +288,106 @@ Route::get('Payment_update', [App\Http\Controllers\PaymentStudentController::cla
 
 Route::get('Payment_destroy', [App\Http\Controllers\PaymentStudentController::class, 'destroy'])
 ->name('Payment_destroy');
+
+
+
+///////////  Attendance Students
+
+
+Route::get('Attendance_index', [\App\Http\Controllers\AttendanceController::class, 'index'])
+->name('Attendance_index');
+
+Route::get('Attendance_store', [\App\Http\Controllers\AttendanceController::class, 'store'])
+->name('Attendance_store');
+
+Route::get('Attendance_show{id}', [\App\Http\Controllers\AttendanceController::class, 'show'])
+->name('Attendance_show');
+
+
+
+/////////////  Subject
+
+
+Route::get('Sub_index', [App\Http\Controllers\SubjectController::class, 'index'])
+->name('Sub_index');
+
+Route::get('Sub_store', [App\Http\Controllers\SubjectController::class, 'store'])
+->name('Sub_store');
+
+Route::get('Sub_create', [App\Http\Controllers\SubjectController::class, 'create'])
+->name('Sub_create');
+
+
+Route::get('Sub_edit{id}', [App\Http\Controllers\SubjectController::class, 'edit'])
+->name('Sub_edit');
+
+Route::get('Sub_update', [App\Http\Controllers\SubjectController::class, 'update'])
+->name('Sub_update');
+
+Route::get('Sub_destroy', [App\Http\Controllers\SubjectController::class, 'destroy'])
+->name('Sub_destroy');
+
+
+
+//////////// Quizzes
+
+
+
+Route::get('Qui_index', [App\Http\Controllers\QuizzesController::class, 'index'])
+->name('Qui_index');
+
+Route::get('Qui_store', [App\Http\Controllers\QuizzesController::class, 'store'])
+->name('Qui_store');
+
+Route::get('Qui_create', [App\Http\Controllers\QuizzesController::class, 'create'])
+->name('Qui_create');
+
+Route::get('Qui_edit{id}', [App\Http\Controllers\QuizzesController::class, 'edit'])
+->name('Qui_edit');
+
+Route::get('Qui_update', [App\Http\Controllers\QuizzesController::class, 'update'])
+->name('Qui_update');
+
+Route::get('Qui_destroy', [App\Http\Controllers\QuizzesController::class, 'destroy'])
+->name('Qui_destroy');
+
+
+
+////////////   Questions
+
+
+
+Route::get('Ques_index', [App\Http\Controllers\QuestionController::class, 'index'])
+->name('Ques_index');
+
+Route::get('Ques_store', [App\Http\Controllers\QuestionController::class, 'store'])
+->name('Ques_store');
+
+Route::get('Ques_create', [App\Http\Controllers\QuestionController::class, 'create'])
+->name('Ques_create');
+
+Route::get('QuesQui_edit{id}', [App\Http\Controllers\QuestionController::class, 'edit'])
+->name('Ques_edit');
+
+Route::get('Ques_update', [App\Http\Controllers\QuestionController::class, 'update'])
+->name('Ques_update');
+
+Route::get('Ques_destroy', [App\Http\Controllers\QuestionController::class, 'destroy'])
+->name('Ques_destroy');
+
+
+
+///////////// Online Class
+
+
+Route::get('Online_index', [App\Http\Controllers\OnlineClasseController::class, 'index'])
+->name('Online_index');
+
+Route::get('Online_store', [App\Http\Controllers\OnlineClasseController::class, 'store'])
+->name('Online_store');
+
+Route::get('Online_create', [App\Http\Controllers\OnlineClasseController::class, 'create'])
+->name('Online_create');
+
+Route::get('Online_destroy', [App\Http\Controllers\OnlineClasseController::class, 'destroy'])
+->name('Online_destroy');

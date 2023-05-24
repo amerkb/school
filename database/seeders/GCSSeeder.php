@@ -20,42 +20,6 @@ class GCSSeeder extends Seeder
             "Notes"=>"From 1 to 6",
         ]);
 
-        $classroom1= Classroom::create([
-            "Name_Class"=>"first_class",
-            "Grade_id"=>$garde1->id,
-        ]);
-        $classroom2= Classroom::create([
-            "Name_Class"=>"second_class",
-            "Grade_id"=>$garde1->id,
-        ]);
-
-        Section::create([
-            "Name_Section"=>"first_section",
-            "Status"=>1,
-            "Grade_id"=>$garde1->id,
-            "Class_id"=>$classroom1->id,
-        ]);
-
-        Section::create([
-            "Name_Section"=>"second_section",
-            "Status"=>1,
-            "Grade_id"=>$garde1->id,
-            "Class_id"=>$classroom1->id,
-        ]);
-
-        Section::create([
-            "Name_Section"=>"first_section",
-            "Status"=>1,
-            "Grade_id"=>$garde1->id,
-            "Class_id"=>$classroom2->id,
-        ]);
-        Section::create([
-            "Name_Section"=>"second_section",
-            "Status"=>1,
-            "Grade_id"=>$garde1->id,
-            "Class_id"=>$classroom2->id,
-        ]);
-
         $garde2= Grade::create([
             "Name"=>"Second Garde",
             "Notes"=>"From 7 to 9",
@@ -67,39 +31,85 @@ class GCSSeeder extends Seeder
         ]);
 
         $classroom1= Classroom::create([
-            "Name_Class"=>"first_class",
-            "Grade_id"=>$garde2->id,
+            "Name_Class"=>"First Class",
+            "Grade_id"=>$garde1->id,
         ]);
+
         $classroom2= Classroom::create([
-            "Name_Class"=>"second_class",
+            "Name_Class"=>"Second Class",
+            "Grade_id"=>$garde1->id,
+        ]);
+
+        $classroom3= Classroom::create([
+            "Name_Class"=>"Third Class",
+            "Grade_id"=>$garde1->id,
+        ]);
+
+        $classroom7= Classroom::create([
+            "Name_Class"=>"Seven Class",
             "Grade_id"=>$garde2->id,
         ]);
 
+        $classroom12 = Classroom::create([
+            "Name_Class"=>"Bacalorea",
+            "Grade_id"=>$garde3->id,
+        ]);
+
+        
         Section::create([
-            "Name_Section"=>"first_section",
+            "Name_Section"=>"A",
             "Status"=>1,
-            "Grade_id"=>$garde2->id,
+            "Grade_id"=>$garde1->id,
             "Class_id"=>$classroom1->id,
         ]);
 
         Section::create([
-            "Name_Section"=>"second_section",
+            "Name_Section"=>"B",
             "Status"=>1,
-            "Grade_id"=>$garde2->id,
+            "Grade_id"=>$garde1->id,
             "Class_id"=>$classroom1->id,
         ]);
 
         Section::create([
-            "Name_Section"=>"first_section",
+            "Name_Section"=>"A",
             "Status"=>1,
-            "Grade_id"=>$garde2->id,
+            "Grade_id"=>$garde1->id,
             "Class_id"=>$classroom2->id,
         ]);
+
         Section::create([
-            "Name_Section"=>"second_section",
+            "Name_Section"=>"B",
+            "Status"=>1,
+            "Grade_id"=>$garde1->id,
+            "Class_id"=>$classroom2->id,
+        ]);
+
+        Section::create([
+            "Name_Section"=>"A",
             "Status"=>1,
             "Grade_id"=>$garde2->id,
-            "Class_id"=>$classroom2->id,
+            "Class_id"=>$classroom7->id,
+        ]);
+
+        Section::create([
+            "Name_Section"=>"A",
+            "Status"=>1,
+            "Grade_id"=>$garde1->id,
+            "Class_id"=>$classroom3->id,
+        ]);
+
+        Section::create([
+            "Name_Section"=>"B",
+            "Status"=>1,
+            "Grade_id"=>$garde2->id,
+            "Class_id"=>$classroom7->id,
+        ]);
+
+        Section::create([
+            "Name_Section"=>"C",
+            "Status"=>1,
+            "Grade_id"=>$garde2->id,
+            "Class_id"=>$classroom7->id,
         ]);
     }
 }

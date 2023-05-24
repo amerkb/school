@@ -375,3 +375,19 @@ Route::get('Ques_update', [App\Http\Controllers\QuestionController::class, 'upda
 Route::get('Ques_destroy', [App\Http\Controllers\QuestionController::class, 'destroy'])
 ->name('Ques_destroy');
 
+
+
+///////////// Online Class
+
+
+Route::get('Online_index', [App\Http\Controllers\OnlineClasseController::class, 'index'])
+->name('Online_index');
+
+Route::get('Online_store', [App\Http\Controllers\OnlineClasseController::class, 'store'])
+->name('Online_store');
+
+Route::get('Online_create', [App\Http\Controllers\OnlineClasseController::class, 'create'])
+->name('Online_create');
+
+Route::get('Online_destroy', [App\Http\Controllers\OnlineClasseController::class, 'destroy'])
+->name('Online_destroy');

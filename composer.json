@@ -13,7 +13,6 @@
         "laravel/ui": "^4.2",
         "livewire/livewire": "^2.12",
         "spatie/laravel-fractal": "^6.0",
-        "macsidigital/laravel-zoom": "^7.0",
         "tymon/jwt-auth": "^2.0",
         "yoeunes/toastr": "^2.3"
     },

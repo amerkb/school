@@ -18,7 +18,7 @@ Route::group(['prefix' => 'chat',"middleware"=>"user"], function ($router) {
     Route::get('/GetMember', [ChatController::class, 'get_members']);
     Route::get('/GetMessage', [ChatController::class, 'get_message']);
     Route::post('/AddMessage', [ChatController::class, 'add_message']);
-    Route::post('/DeleteMessage', [ChatController::class, 'delete_message']);
+    Route::delete('/DeleteMessage', [ChatController::class, 'delete_message']);
 });
 #################################End Chat####################################
 

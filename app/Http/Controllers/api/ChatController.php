@@ -16,6 +16,7 @@ use App\Transformers\MemberTransformer;
 use App\Transformers\MessageTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use MacsiDigital\Zoom\Facades\Zoom;
 
 class ChatController extends Controller
 {
@@ -80,5 +81,6 @@ class ChatController extends Controller
         $message->delete();
         return $this ->returnSuccessMessage("successfully deleted");
     }
+
 
 }

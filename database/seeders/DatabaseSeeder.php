@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ParentSeeder::class);
         $this->call(StudentSeeder::class);
         $this->call(TeacherSeeder::class);
+        $this->call(SettingsTableSeeder::class);
 
 
         Teacher::create([

@@ -189,7 +189,7 @@
                         </a>
                         <ul id="A-icon" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('Qui_index') }}">List Quizzes</a> </li>
-                            <li> <a href="{{route('Ques_index')}}">List Questions</a> </li>
+                            <li> <a href="{{ route('Ques_index') }}">List Questions</a> </li>
                         </ul>
                     </li>
 
@@ -203,9 +203,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="library-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="Lib_index">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{ route('Lib_index') }}">Booklist</a> </li>
                         </ul>
                     </li>
 
@@ -219,7 +217,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('Online_index')}}">الاتصال مباشر مع زوم</a> </li>
+                            <li> <a href="{{ route('Online_index') }}">الاتصال مباشر مع زوم</a> </li>
                             <li> <a href="themify-icons.html">الاتصال الغير مباشر مع زوم</a> </li>
                         </ul>
                     </li>
@@ -227,19 +225,9 @@
 
                     <!-- Settings-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Settings-icon">
-                            <div class="pull-left"><i class="fas fa-cogs"></i><span
-                                    class="right-nav-text">{{ 'Settings' }}</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="Settings-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
-                        </ul>
+                        <a href="{{route('Seting_index')}}"><i class="fas fa-cogs"></i><span
+                                class="right-nav-text">{{ 'Settings' }} </span></a>
                     </li>
-
 
                     <!-- Users-->
                     <li>

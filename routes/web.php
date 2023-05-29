@@ -420,5 +420,16 @@ Route::get('Lib_update', [App\Http\Controllers\LibraryController::class, 'update
 Route::get('Lib_destroy', [App\Http\Controllers\LibraryController::class, 'destroy'])
 ->name('Lib_destroy');
 
-Route::get('Lib_download{id}', [App\Http\Controllers\LibraryController::class, 'downloadAttachment'])
+Route::get('Lib_download/{filename}', [App\Http\Controllers\LibraryController::class, 'downloadAttachment'])
 ->name('Lib_download');
+
+
+
+///////////   Seting 
+
+
+Route::get('Seting_index', [App\Http\Controllers\SetingController::class, 'index'])
+->name('Seting_index');
+
+Route::get('Seting_update', [App\Http\Controllers\SetingController::class, 'update'])
+->name('Seting_update');

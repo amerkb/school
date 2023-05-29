@@ -13,8 +13,12 @@ Route::group(['prefix' => 'auth'], function ($router) {
 #################################End Auth####################################
 
 #################################Start Chat###################################
-Route::group(['prefix' => 'chat'], function ($router) {
-    Route::get('/get', [ChatController::class, 'get']);
+Route::group(['prefix' => 'chat',"middleware"=>"user"], function ($router) {
+    Route::get('/GetConversation', [ChatController::class, 'get_conversation']);
+    Route::get('/GetMember', [ChatController::class, 'get_members']);
+    Route::get('/GetMessage', [ChatController::class, 'get_message']);
+    Route::post('/AddMessage', [ChatController::class, 'add_message']);
+    Route::delete('/DeleteMessage', [ChatController::class, 'delete_message']);
 });
 #################################End Chat####################################
 

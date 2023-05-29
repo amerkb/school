@@ -2,13 +2,14 @@
 
 namespace App\Http\Traits;
 
+
 use MacsiDigital\Zoom\Facades\Zoom;
 
 trait MeetingZoomTrait
 {
     public function createMeeting($request){
 
-        $user = Zoom::user()->first();
+        $user = Zoom::user();
 
         $meetingData = [
             'topic' => $request->topic,

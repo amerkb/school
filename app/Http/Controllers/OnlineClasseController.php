@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\MeetingZoomTrait;
 use App\Models\Grade;
 use App\Models\OnlineClass;
+use App\Models\User;
 use Illuminate\Http\Request;
 use MacsiDigital\Zoom\Facades\Zoom;
 
@@ -34,7 +35,12 @@ class OnlineClasseController extends Controller
 
     public function store(Request $request)
     {
+<<<<<<< HEAD
      //   try {
+=======
+
+      //  try {
+>>>>>>> 365821c1261e1ebd2ed0d2e40f15b73cc179e8d2
 
             $meeting = $this->createMeeting($request);
 

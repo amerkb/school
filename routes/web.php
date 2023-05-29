@@ -420,5 +420,5 @@ Route::get('Lib_update', [App\Http\Controllers\LibraryController::class, 'update
 Route::get('Lib_destroy', [App\Http\Controllers\LibraryController::class, 'destroy'])
 ->name('Lib_destroy');
 
-Route::get('Lib_download{id}', [App\Http\Controllers\LibraryController::class, 'downloadAttachment'])
+Route::get('Lib_download/{file_name}', [App\Http\Controllers\LibraryController::class, 'downloadAttachment'])
 ->name('Lib_download');

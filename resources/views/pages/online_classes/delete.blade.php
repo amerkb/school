@@ -12,7 +12,8 @@
                 <form action="{{route('Online_destroy','test')}}" method="">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="id" value="{{$online_classe->meeting_id}}">
+                    <input type="hidden" name="id" value="{{$online_classe->id}}">
+                    <input type="hidden" name="meeting_id" value="{{$online_classe->meeting_id}}">
                     <h5 style="font-family: 'Cairo', sans-serif;">هل انت متاكد مع عملية الحذف ؟</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{('Close')}}</button>

@@ -383,11 +383,42 @@ Route::get('Ques_destroy', [App\Http\Controllers\QuestionController::class, 'des
 Route::get('Online_index', [App\Http\Controllers\OnlineClasseController::class, 'index'])
 ->name('Online_index');
 
+Route::get('Online_indirectCreate', [App\Http\Controllers\OnlineClasseController::class, 'indirectCreate'])
+->name('Online_indirectCreate');
+
 Route::get('Online_store', [App\Http\Controllers\OnlineClasseController::class, 'store'])
 ->name('Online_store');
+
+Route::get('Online_storeIndirect', [App\Http\Controllers\OnlineClasseController::class, 'storeIndirect'])
+->name('Online_storeIndirect');
 
 Route::get('Online_create', [App\Http\Controllers\OnlineClasseController::class, 'create'])
 ->name('Online_create');
 
 Route::get('Online_destroy', [App\Http\Controllers\OnlineClasseController::class, 'destroy'])
 ->name('Online_destroy');
+
+
+///////  Library
+
+
+Route::get('Lib_index', [App\Http\Controllers\LibraryController::class, 'index'])
+->name('Lib_index');
+
+Route::post('Lib_store', [App\Http\Controllers\LibraryController::class, 'store'])
+->name('Lib_store');
+
+Route::get('Lib_create', [App\Http\Controllers\LibraryController::class, 'create'])
+->name('Lib_create');
+
+Route::get('Lib_edit{id}', [App\Http\Controllers\LibraryController::class, 'edit'])
+->name('Lib_edit');
+
+Route::get('Lib_update', [App\Http\Controllers\LibraryController::class, 'update'])
+->name('Lib_update');
+
+Route::get('Lib_destroy', [App\Http\Controllers\LibraryController::class, 'destroy'])
+->name('Lib_destroy');
+
+Route::get('Lib_download{id}', [App\Http\Controllers\LibraryController::class, 'downloadAttachment'])
+->name('Lib_download');

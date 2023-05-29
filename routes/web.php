@@ -425,7 +425,7 @@ Route::get('Lib_download/{filename}', [App\Http\Controllers\LibraryController::c
 
 
 
-///////////   Seting 
+///////////   Setting 
 
 
 Route::get('Seting_index', [App\Http\Controllers\SetingController::class, 'index'])
@@ -433,3 +433,4 @@ Route::get('Seting_index', [App\Http\Controllers\SetingController::class, 'index
 
 Route::get('Seting_update', [App\Http\Controllers\SetingController::class, 'update'])
 ->name('Seting_update');
+

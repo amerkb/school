@@ -9,7 +9,7 @@ trait AttachFilesTrait
     public function uploadFile($request,$name)
     {
         $file_name = $request->file($name)->getClientOriginalName();
-        $request->file($name)->move(public_path('attachments/library'),$file_name);
+        $request->file($name)->storeAs('attachments/'.$file_name,'upload_attachments');
 
     }
 

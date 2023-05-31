@@ -1,15 +1,32 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
+
+
 use App\Http\Controllers\Grades\GradeController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])
+->name('selection');
+
+Route::group(['prefix' => 'auth'], function ($router) {
+
+    Route::get('/login/{type}','LoginController@loginForm')->middleware('guest')
+     ->name('login.show');
+
+     Route::post('/login','LoginController@login')->name('login');
+
+
 });
+
 
 ///////////// Grades /////////////
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])

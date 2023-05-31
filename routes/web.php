@@ -3,6 +3,7 @@
 use App\Http\Controllers\Grades\GradeController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 Auth::routes();
 
@@ -433,4 +434,3 @@ Route::get('Seting_index', [App\Http\Controllers\SetingController::class, 'index
 
 Route::get('Seting_update', [App\Http\Controllers\SetingController::class, 'update'])
 ->name('Seting_update');
-

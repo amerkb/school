@@ -19,7 +19,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+   // use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -33,6 +33,17 @@ class LoginController extends Controller
      *
      * @return void
      */
+    public function loginForm($type){
+
+        return view('auth.login',compact('type'));
+    }
+
+    public function login(){
+
+        return 'ali';
+    }
+
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

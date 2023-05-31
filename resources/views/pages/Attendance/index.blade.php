@@ -35,7 +35,7 @@
 
 
 
-    <h5 style="font-family: 'Cairo', sans-serif;color: red"> Today's Date: {{ date('Y-m-d') }}</h5>
+    <h5 style="font-family: 'Cairo', sans-serif;color: rgb(0, 255, 94)"> Today's Date: {{ date('Y-m-d') }}</h5>
     <form method="" action="{{ route('Attendance_store') }}">
 
         @csrf

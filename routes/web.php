@@ -1,9 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
 
-
-use App\Http\Controllers\Grades\GradeController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +15,32 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])
 
 Route::group(['prefix' => 'auth'], function ($router) {
 
-    Route::get('/login/{type}','LoginController@loginForm')->middleware('guest')
+     Route::get('/login/{type}', [App\Http\Controllers\Auth\LoginController::class, 'loginForm'])
+     ->middleware('guest')
      ->name('login.show');
 
-     Route::post('/login','LoginController@login')->name('login');
+     Route::post('/login',[App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
 
+     Route::get('/logout/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
 });
+///////////// dashboard
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class,'dashboard'])
+->name('dashboard');
 
+
+Route::group(
+     [
+         //'prefix' => LaravelLocalization::setLocale(),
+         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student']
+     ], function () {
+ 
+     //==============================dashboard============================
+     Route::get('/student/dashboard', function () {
+         return view('pages.Students.dashboard');
+     });
+ 
+ });
 
 ///////////// Grades /////////////
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])

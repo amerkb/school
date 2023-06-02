@@ -69,7 +69,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
             DB::commit();
             toastr()->success(trans('messages.success'));
-            return redirect()->route('Payment_students.index');
+            return redirect()->route('Payment_index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -113,7 +113,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $students_accounts->save();
             DB::commit();
             toastr()->success(trans('messages.Update'));
-            return redirect()->route('Payment_students.index');
+            return redirect()->route('Payment_index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

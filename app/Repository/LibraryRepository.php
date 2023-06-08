@@ -31,8 +31,8 @@ class LibraryRepository implements LibraryRepositoryInterface
             $books->file_name =  $request->file('file_name')->getClientOriginalName();
             $books->Grade_id = $request->Grade_id;
             $books->classroom_id = $request->Classroom_id;
-            $books->section_id = $request->section_id;
-            $books->teacher_id = 1;
+//            $books->section_id = $request->section_id;
+//            $books->teacher_id = 1;
             $books->save();
             $this->uploadFile($request,'file_name');
 
@@ -69,8 +69,8 @@ class LibraryRepository implements LibraryRepositoryInterface
 
             $book->Grade_id = $request->Grade_id;
             $book->classroom_id = $request->Classroom_id;
-            $book->section_id = $request->section_id;
-            $book->teacher_id = 1;
+//            $book->section_id = $request->section_id;
+//            $book->teacher_id = 1;
             $book->save();
             toastr()->success(('Update'));
             return redirect()->route('Lib_index');

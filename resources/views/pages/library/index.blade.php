@@ -23,6 +23,7 @@
                             <div class="card-body">
                                 <a href="{{url('Lib_create')}}"  class="btn btn-success btn-sm" role="button"
                                    aria-pressed="true">اضافة كتاب جديد</a><br><br>
+
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -31,10 +32,10 @@
                                         <tr>
                                             <th>#</th>
                                             <th>اسم الكتب</th>
-                                            <th>اسم المعلم</th>
+{{--                                            <th>اسم المعلم</th>--}}
                                             <th>المرحلة الدراسية</th>
                                             <th>الصف الدراسي</th>
-                                            <th>القسم</th>
+{{--                                            <th>القسم</th>--}}
                                             <th>العمليات</th>
                                         </tr>
                                         </thead>
@@ -43,10 +44,10 @@
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
                                                 <td>{{$book->title}}</td>
-                                                <td>{{$book->teacher->Name}}</td>
+{{--                                                <td>{{$book->teacher->Name}}</td>--}}
                                                 <td>{{$book->grade->Name}}</td>
                                                 <td>{{$book->classroom->Name_Class}}</td>
-                                                <td>{{$book->section->Name_Section}}</td>
+{{--                                                <td>{{$book->section->Name_Section}}</td>--}}
                                                 <td>
                                                     <a href="{{route('Lib_download',$book->file_name)}}" title="تحميل الكتاب" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-download"></i></a>
                                                     <a href="{{route('Lib_edit',$book->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>

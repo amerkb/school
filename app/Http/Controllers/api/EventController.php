@@ -17,7 +17,7 @@ class EventController extends Controller
 {
 $date_today= Carbon::today()->format('Y-m-d');
     $events=Event::
-            whereDate('start_time', '<=', $date_today)
+            whereDate('start', '<=', $date_today)
            ->whereDate('end_time', '>=', $date_today)
            ->get();
     return  $this->returnData("events",$events);

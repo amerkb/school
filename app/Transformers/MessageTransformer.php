@@ -40,7 +40,7 @@ class MessageTransformer extends TransformerAbstract
             "body"=>$message->body,
             "read_all"=>$message->read_all,
             "receipt_all"=>$message->receipt_all,
-            "Date_created"=>Carbon::createFromFormat( 'Y-m-d H:i:s' , $message->created_at )->format("Y-m-d H:i:s"),
+            "Date_created"=>Carbon::createFromFormat( 'Y-m-d H:i:s' ,$message->created_at)->format("Y-m-d H:i:s"),
 
         ];
     }

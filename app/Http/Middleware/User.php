@@ -15,14 +15,14 @@ class User
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,...$roles)
     {
         try {
             $token = $request->header('token');
             $request->headers->set('auth-token', (string) $token, true);
             $request->headers->set('Authorization', 'Bearer '.$token, true);
             $user = JWTAuth::parseToken()->authenticate();
-            $roles=["parent","teacher","student"];
+//            $roles=["parent","teacher","student"];
             $auth=false;
             foreach ($roles as $role){
             if (Auth::guard($role)->check()==1){

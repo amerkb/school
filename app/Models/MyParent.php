@@ -20,6 +20,10 @@ class MyParent extends Authenticatable implements JWTSubject
     {
         return $this->morphMany(Message::class, "user");
     }
+    public function children ()
+    {
+        return $this->hasMany(Student::class,"parent_id");
+    }
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

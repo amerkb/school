@@ -93,7 +93,10 @@ class Student  extends Authenticatable implements JWTSubject
         {
             return $this->hasMany('App\Models\Attendance', 'student_id');
         }
-
+    public function parent()
+    {
+        return $this->belongsTo(MyParent::class);
+    }
 
 
     /**

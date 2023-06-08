@@ -66,15 +66,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="section_id">{{('Section')}} : </label>
-                                            <select class="custom-select mr-sm-2" name="section_id">
-                                                <option value="{{$book->section_id}}">{{$book->section->Name_Section}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div><br>
+{{--                                    <div class="col">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="section_id">{{('Section')}} : </label>--}}
+{{--                                            <select class="custom-select mr-sm-2" name="section_id">--}}
+{{--                                                <option value="{{$book->section_id}}">{{$book->section->Name_Section}}</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+                                </div>
+                                <br>
 
                                 <div class="form-row">
                                     <div class="col">

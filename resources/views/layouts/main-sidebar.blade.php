@@ -204,6 +204,7 @@
                         </a>
                         <ul id="library-icon" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('Lib_index') }}">Booklist</a> </li>
+                            <li> <a href="{{ route('Lib_index') }}">Booklist</a> </li>
                         </ul>
                     </li>
 

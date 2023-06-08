@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassroomController;
@@ -21,6 +22,9 @@ use App\Http\Controllers\SetingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+=======
+
+>>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -36,16 +40,40 @@ Route::get('/',[HomeController::class,'index'])
 
 Route::group([], function ($router) {
 
-    Route::get('/login/{type}','LoginController@loginForm')->middleware('guest')
+     Route::get('/login/{type}', [App\Http\Controllers\Auth\LoginController::class, 'loginForm'])
+     ->middleware('guest')
      ->name('login.show');
 
+<<<<<<< HEAD
 //     Route::post('/login','LoginController@login')->name('login');
     Route::post('/login',[LoginController::class, 'login'])->name('login');
+=======
+     Route::post('/login',[App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
+>>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
 
+     Route::get('/logout/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
 });
+///////////// dashboard
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class,'dashboard'])
+->name('dashboard');
 
 
+<<<<<<< HEAD
+=======
+Route::group(
+     [
+         //'prefix' => LaravelLocalization::setLocale(),
+         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student']
+     ], function () {
+ 
+     //==============================dashboard============================
+     Route::get('/student/dashboard', function () {
+         return view('pages.Students.dashboard');
+     });
+ 
+ });
+>>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
 
 ///////////// Grades /////////////
 Route::get('/home', [HomeController::class, 'index'])

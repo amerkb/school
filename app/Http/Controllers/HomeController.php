@@ -25,6 +25,10 @@ class HomeController extends Controller
     {
         return view('auth.selection');
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
     public function dashboard()
     {
         return view('dashboard');

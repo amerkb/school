@@ -26,7 +26,7 @@ class StoreTeachers extends FormRequest
             'Password' => 'required',
             // 'Name_ar' => 'required',
             'Name_en' => 'required',
-            'Specialization_id' => 'required',
+            'type_id' => 'required',
             'Gender_id' => 'required',
             'Joining_Date' => 'required|date|date_format:Y-m-d',
             'Address' => 'required',

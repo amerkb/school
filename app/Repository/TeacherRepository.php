@@ -33,7 +33,8 @@ class TeacherRepository implements TeacherRepositoryInterface
             $Teachers->Address = $request->Address;
             $Teachers->save();
             toastr()->success(trans('Added Successfully'));
-            return redirect()->back();
+            return redirect()->route('ori_store');
+           return $request;
         }catch(Exception $e) {
             return redirect()->back()->with(['Error' => $e->getMessage()]);
         }

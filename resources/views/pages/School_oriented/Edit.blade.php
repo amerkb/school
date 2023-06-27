@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-    {{ ('Add Teacher') }}
+    {{ trans('Teacher_trans.Edit_Teacher') }}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    {{('Add Teacher') }}
+    {{ trans('Teacher_trans.Edit_Teacher') }}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -23,8 +23,6 @@
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>{{ session()->get('error') }}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
-
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -32,19 +30,21 @@
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <br>
-                            <form action="{{route('storeteacher')}}" method="">
+                            <form action="{{route('ori_edit','test')}}" method="post">
+                             {{method_field('patch')}}
                              @csrf
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="title">{{('Email')}}</label>
-                                    <input type="email" name="Email" class="form-control">
+                                    <label for="title">{{trans('Teacher_trans.Email')}}</label>
+                                    <input type="hidden" value="{{$Teachers->id}}" name="id">
+                                    <input type="email" name="Email" value="{{$Teachers->Email}}" class="form-control">
                                     @error('Email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col">
-                                    <label for="title">{{('Password')}}</label>
-                                    <input type="password" name="Password" class="form-control">
+                                    <label for="title">{{trans('Teacher_trans.Password')}}</label>
+                                    <input type="password" name="Password" value="{{$Teachers->Password}}" class="form-control">
                                     @error('Password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -54,16 +54,16 @@
 
 
                             <div class="form-row">
-                                {{-- <div class="col">
-                                    <label for="title">{{('Teacher_trans.Name_ar')}}</label>
-                                    <input type="text" name="Name_ar" class="form-control">
+                                <div class="col">
+                                    <label for="title">{{trans('Teacher_trans.Name_ar')}}</label>
+                                    <input type="text" name="Name_ar" value="{{ $Teachers->getTranslation('Name', 'ar') }}" class="form-control">
                                     @error('Name_ar')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                </div> --}}
+                                </div>
                                 <div class="col">
-                                    <label for="title">{{('Name')}}</label>
-                                    <input type="text" name="Name_en" class="form-control">
+                                    <label for="title">{{trans('Teacher_trans.Name_en')}}</label>
+                                    <input type="text" name="Name_en" value="{{ $Teachers->getTranslation('Name', 'en') }}" class="form-control">
                                     @error('Name_en')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -72,9 +72,9 @@
                             <br>
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label for="inputCity">{{('specialization')}}</label>
+                                    <label for="inputCity">{{trans('Teacher_trans.specialization')}}</label>
                                     <select class="custom-select my-1 mr-sm-2" name="Specialization_id">
-                                        <option selected disabled>{{('Choose')}}...</option>
+                                        <option value="{{$Teachers->Specialization_id}}">{{$Teachers->specializations->Name}}</option>
                                         @foreach($specializations as $specialization)
                                             <option value="{{$specialization->id}}">{{$specialization->Name}}</option>
                                         @endforeach
@@ -84,9 +84,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col">
-                                    <label for="inputState">{{('Gender')}}</label>
+                                    <label for="inputState">{{trans('Teacher_trans.Gender')}}</label>
                                     <select class="custom-select my-1 mr-sm-2" name="Gender_id">
-                                        <option selected disabled>{{('Choose')}}...</option>
+                                        <option value="{{$Teachers->Gender_id}}">{{$Teachers->genders->Name}}</option>
                                         @foreach($genders as $gender)
                                             <option value="{{$gender->id}}">{{$gender->Name}}</option>
                                         @endforeach
@@ -100,9 +100,9 @@
 
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="title">{{('Joining Date')}}</label>
+                                    <label for="title">{{trans('Teacher_trans.Joining_Date')}}</label>
                                     <div class='input-group date'>
-                                        <input class="form-control" type="text"  id="datepicker-action" name="Joining_Date" data-date-format="yyyy-mm-dd"  required>
+                                        <input class="form-control" type="text"  id="datepicker-action"  value="{{$Teachers->Joining_Date}}" name="Joining_Date" data-date-format="yyyy-mm-dd"  required>
                                     </div>
                                     @error('Joining_Date')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -112,15 +112,15 @@
                             <br>
 
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">{{('Address')}}</label>
+                                <label for="exampleFormControlTextarea1">{{trans('Teacher_trans.Address')}}</label>
                                 <textarea class="form-control" name="Address"
-                                          id="exampleFormControlTextarea1" rows="4"></textarea>
+                                          id="exampleFormControlTextarea1" rows="4">{{$Teachers->Address}}</textarea>
                                 @error('Address')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Next')}}</button>
+                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{trans('Parent_trans.Next')}}</button>
                     </form>
                         </div>
                     </div>

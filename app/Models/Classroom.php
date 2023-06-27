@@ -14,7 +14,7 @@ class Classroom extends Model
         self::observe(ChatClassObserver::class);
     }
     //use HasTranslations;
-    public $translatable = ['Name_Class'];
+   // public $translatable = ['Name_Class'];
 
 
     protected $table = 'Classrooms';

@@ -7,24 +7,28 @@ use App\Http\Controllers\FeesController;
 use App\Http\Controllers\HomeController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\GradeController;
-use App\Http\Controllers\SetingController;
 use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\OnlineClasseController;
+use App\Http\Controllers\OrientedController;
+use App\Http\Controllers\PaymentStudentController;
+use App\Http\Controllers\ProcessingFeeController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizzesController;
+use App\Http\Controllers\ReceiptStudentController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SetingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\GraduatedController;
-use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\FeesInvoicesController;
-use App\Http\Controllers\OnlineClasseController;
-use App\Http\Controllers\ProcessingFeeController;
-use App\Http\Controllers\PaymentStudentController;
-use App\Http\Controllers\ReceiptStudentController;
+use App\Http\Controllers\UserController;
+
+
 
 //Auth::routes();
 
@@ -499,7 +503,7 @@ Route::get('Seting_index', [SetingController::class, 'index'])
 
 Route::get('Seting_update', [SetingController::class, 'update'])
 ->name('Seting_update');
-///////////timetable//////////
+
 Route::get('time', [TimeTableController::class, 'index'])
 ->name('time_index');
 Route::get('time/showttr', [TimeTableController::class, 'show'])
@@ -540,3 +544,28 @@ Route::post('lecture/update/{id_lecture}', [TimeTableController::class, 'l_updat
     ->name('l.update');
 Route::get('lecture/delete/{id_lecture}', [TimeTableController::class, 'l_destroy'])
     ->name('l.delete');
+
+
+
+
+/////////////   School Oriented
+
+Route::get('ori_index',[UserController::class, 'index'])
+->name('ori_index');
+
+
+Route::get('ori_create', [UserController::class, 'create'])
+->name('ori_create');
+
+
+Route::get('ori_store', [UserController::class, 'store'])
+->name('ori_store');
+
+
+Route::get('ori_edit', [UserController::class, 'edit'])
+->name('ori_edit');
+
+
+Route::get('ori_destroy', [UserController::class, 'destroy'])
+->name('ori_destroy');
+

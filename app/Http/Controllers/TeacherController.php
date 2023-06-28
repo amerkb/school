@@ -37,7 +37,7 @@ class TeacherController extends Controller
         return view('pages.Teachers.create', compact('specializations', 'genders'));
     }
 
-    public function store(StoreTeachers $request)
+    public function store(Request $request)
     {
         return $this->Teacher->StoreTeachers($request);
     }

@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-    {{ ('Add Teacher') }}
+    {{ ('Add User') }}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    {{('Add Teacher') }}
+    {{('Add User') }}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -32,7 +32,7 @@
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <br>
-                            <form action="{{route('storeteacher')}}" method="">
+                            <form action="{{route('ori_store')}}" method="">
                              @csrf
                             <div class="form-row">
                                 <div class="col">
@@ -72,14 +72,14 @@
                             <br>
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label for="inputCity">{{('specialization')}}</label>
-                                    <select class="custom-select my-1 mr-sm-2" name="Specialization_id">
+                                    <label for="inputCity">{{('Type User')}}</label>
+                                    <select class="custom-select my-1 mr-sm-2" name="type_id">
                                         <option selected disabled>{{('Choose')}}...</option>
-                                        @foreach($specializations as $specialization)
-                                            <option value="{{$specialization->id}}">{{$specialization->Name}}</option>
+                                        @foreach($type_user as $specialization)
+                                            <option value="{{$specialization->id}}">{{$specialization->type}}</option>
                                         @endforeach
                                     </select>
-                                    @error('Specialization_id')
+                                    @error('type_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

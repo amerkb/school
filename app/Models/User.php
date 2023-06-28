@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender_id',
+        'Joining_Date',
+        'Address',
+        'type_id',
     ];
 
     /**
@@ -41,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        // علاقة بين المستخدمين والانواع لجلب جنس المعلم
+        public function genders()
+        {
+            return $this->belongsTo('App\Models\Gender', 'gender_id');
+        }
+
+        public function type_user() {
+            return $this->belongsTo('App\Models\Type_User','type_id');
+        }
 }

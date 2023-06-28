@@ -237,13 +237,6 @@
                     </li>
                
 
-
-                    <!-- Settings-->
-                    <li>
-                        <a href="{{route('Seting_index')}}"><i class="fas fa-cogs"></i><span
-                                class="right-nav-text">{{ 'Settings' }} </span></a>
-                    </li>
-
                     <!-- Users-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Users-icon">
@@ -253,10 +246,14 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Users-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{route(('ori_index'))}}">School Oriented </a> </li>
                         </ul>
+                    </li>
+
+                     <!-- Settings-->
+                    <li>
+                        <a href="{{route('Seting_index')}}"><i class="fas fa-cogs"></i><span
+                                class="right-nav-text">{{ 'Settings' }} </span></a>
                     </li>
 
                 </ul>

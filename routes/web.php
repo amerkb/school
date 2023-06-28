@@ -1,33 +1,30 @@
 <?php
 
-<<<<<<< HEAD
 namespace App\Http\Controllers\Auth;
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\ClassroomController;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeesController;
-use App\Http\Controllers\FeesInvoicesController;
-use App\Http\Controllers\GradeController;
-use App\Http\Controllers\GraduatedController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LibraryController;
-use App\Http\Controllers\OnlineClasseController;
-use App\Http\Controllers\PaymentStudentController;
-use App\Http\Controllers\ProcessingFeeController;
-use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\QuizzesController;
-use App\Http\Controllers\ReceiptStudentController;
-use App\Http\Controllers\SectionController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SetingController;
+use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\QuizzesController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
-=======
-
->>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
-use App\Models\Attendance;
-use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\GraduatedController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\TimeTableController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\FeesInvoicesController;
+use App\Http\Controllers\OnlineClasseController;
+use App\Http\Controllers\ProcessingFeeController;
+use App\Http\Controllers\PaymentStudentController;
+use App\Http\Controllers\ReceiptStudentController;
 
 //Auth::routes();
 
@@ -44,12 +41,12 @@ Route::group([], function ($router) {
      ->middleware('guest')
      ->name('login.show');
 
-<<<<<<< HEAD
+
 //     Route::post('/login','LoginController@login')->name('login');
     Route::post('/login',[LoginController::class, 'login'])->name('login');
-=======
+
      Route::post('/login',[App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
->>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
+
 
      Route::get('/logout/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
@@ -59,8 +56,8 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class,'dashboard'
 ->name('dashboard');
 
 
-<<<<<<< HEAD
-=======
+
+
 Route::group(
      [
          //'prefix' => LaravelLocalization::setLocale(),
@@ -73,7 +70,7 @@ Route::group(
      });
  
  });
->>>>>>> 9207fe03205b222139aa0e1b4dd6419b32c3636d
+
 
 ///////////// Grades /////////////
 Route::get('/home', [HomeController::class, 'index'])
@@ -493,6 +490,7 @@ Route::get('Lib_download/{filename}', [LibraryController::class, 'downloadAttach
 
 
 
+    
 ///////////   Setting 
 
 
@@ -501,3 +499,44 @@ Route::get('Seting_index', [SetingController::class, 'index'])
 
 Route::get('Seting_update', [SetingController::class, 'update'])
 ->name('Seting_update');
+///////////timetable//////////
+Route::get('time', [TimeTableController::class, 'index'])
+->name('time_index');
+Route::get('time/showttr', [TimeTableController::class, 'show'])
+    ->name('ttr_show');
+Route::post('time', [TimeTableController::class, 'create'])
+->name('time_create');
+Route::get('time/show/{id}', [TimeTableController::class, 'view'])
+->name('ttr.show');
+Route::get('time/manage/{id}', [TimeTableController::class, 'manage'])
+->name('ttr.manage');
+Route::get('time/edit/{id}', [TimeTableController::class, 'edit'])
+->name('ttr.edit');
+Route::get('time/destroy/{id}', [TimeTableController::class, 'destroy'])
+->name('ttr.destroy');
+Route::post('time/update/{id}', [TimeTableController::class, 'update'])
+    ->name('ttr.update');
+//ts
+Route::get('timeslot/view', [TimeTableController::class, 'ts_index'])
+    ->name('ts.index');
+Route::get('timeslot/create', [TimeTableController::class, 'createts'])
+    ->name('ts.create');
+Route::post('timeslot/store', [TimeTableController::class, 'ts_store'])
+    ->name('ts.store');
+Route::get('timeslot/edit/{id}', [TimeTableController::class, 'ts_edit'])
+    ->name('ts.edit');
+Route::post('timeslot/update/{id}', [TimeTableController::class, 'ts_update'])
+    ->name('ts.update');
+Route::get('timeslot/delete/{id}', [TimeTableController::class, 'ts_delete'])
+    ->name('ts.delete');
+//lecture
+Route::get('lecture/create/{id}', [TimeTableController::class, 'l_create'])
+    ->name('l.create');
+Route::post('lecture/store/{id}', [TimeTableController::class, 'l_store'])
+    ->name('l.store');
+Route::get('lecture/edit/{id_lecture}', [TimeTableController::class, 'l_edit'])
+    ->name('l.edit');
+Route::post('lecture/update/{id_lecture}', [TimeTableController::class, 'l_update'])
+    ->name('l.update');
+Route::get('lecture/delete/{id_lecture}', [TimeTableController::class, 'l_destroy'])
+    ->name('l.delete');

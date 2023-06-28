@@ -37,6 +37,10 @@ class Teacher extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany('App\Models\Section','teacher_section');
     }
+    public function lecture()
+    {
+        return $this->hasMany(Lecture::class, 'teacher_id');
+    }
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

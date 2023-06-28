@@ -192,7 +192,20 @@
                             <li> <a href="{{ route('Ques_index') }}">List Questions</a> </li>
                         </ul>
                     </li>
-
+                    <!-- timetable-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#timetable-icon">
+                            <div class="pull-left"><i class="fas fa-clock-o"></i><span
+                                    class="right-nav-text">{{ 'timetable' }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="timetable-icon" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('time_index') }}">  Add timetables</a> </li>
+                            <li> <a href="{{ route('ttr_show') }}">  View timetables</a> </li>
+                            <li> <a href="{{ route('ts.index') }}">  View timeSlots</a> </li>
+                        </ul>
+                    </li>
 
                     <!-- library-->
                     <li>
@@ -222,6 +235,7 @@
                             <li> <a href="themify-icons.html">الاتصال الغير مباشر مع زوم</a> </li>
                         </ul>
                     </li>
+               
 
 
                     <!-- Settings-->

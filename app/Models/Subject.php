@@ -28,4 +28,8 @@ class Subject extends Model
     {
         return $this->belongsTo('App\Models\Teacher', 'teacher_id');
     }
+    public function lecture()
+    {
+        return $this->hasMany(Lecture::class, 'subject_id');
+    }
 }

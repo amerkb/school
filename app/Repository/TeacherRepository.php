@@ -32,8 +32,8 @@ class TeacherRepository implements TeacherRepositoryInterface
             $Teachers->Joining_Date = $request->Joining_Date;
             $Teachers->Address = $request->Address;
             $Teachers->save();
-            toastr()->success(trans('Added Successfully'));
-            return redirect()->route('ori_store');
+            toastr()->success(('Added Successfully'));
+            return redirect()->route('teacher');
            return $request;
         }catch(Exception $e) {
             return redirect()->back()->with(['Error' => $e->getMessage()]);

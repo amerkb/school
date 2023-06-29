@@ -24,15 +24,16 @@ class UserRepository implements UserRepositoryInterface
  
      public function StoreOriented($request){
         try{
-            $Teachers = new User();
-            $Teachers->email = $request->Email;
-            $Teachers->password =  Hash::make($request->Password);
-            $Teachers->name = $request->Name_en;
-            $Teachers->type_id = $request->type_id;
-            $Teachers->gender_id = $request->Gender_id;
-            $Teachers->Joining_Date = $request->Joining_Date;
-            $Teachers->Address = $request->Address;
-            $Teachers->save();
+            $Users = new User();
+            $Users->email = $request->Email;
+            $Users->password =  Hash::make($request->Password);
+            $Users->name = $request->Name_en;
+            $Users->type_id = $request->type_id;
+            $Users->Status =1;
+            $Users->gender_id = $request->Gender_id;
+            $Users->Joining_Date = $request->Joining_Date;
+            $Users->Address = $request->Address;
+            $Users->save();
             toastr()->success(trans('Added Successfully'));
             return redirect()->route('ori_index');
            return $request;
@@ -49,15 +50,15 @@ class UserRepository implements UserRepositoryInterface
      public function UpdateOriented($request)
      {
          try {
-             $Oriented = User::findOrFail($request->id);
-             $Oriented->Email = $request->Email;
-             $Oriented->Password =  Hash::make($request->Password);
-             $Oriented->Name =$request->Name_en;
-             $Oriented->Specialization_id = $request->Specialization_id;
-             $Oriented->Gender_id = $request->Gender_id;
-             $Oriented->Joining_Date = $request->Joining_Date;
-             $Oriented->Address = $request->Address;
-             $Oriented->save();
+             $Users = User::findOrFail($request->id);
+             $Users->Email = $request->Email;
+             $Users->Password =  Hash::make($request->Password);
+             $Users->Name =$request->Name_en;
+             $Users->type_id = $request->type_id;
+             $Users->Gender_id = $request->Gender_id;
+             $Users->Joining_Date = $request->Joining_Date;
+             $Users->Address = $request->Address;
+             $Users->save();
              toastr()->success(trans('messages.Update'));
              return redirect()->back();
          }

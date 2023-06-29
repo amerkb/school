@@ -58,7 +58,7 @@ Route::group(["middleware"=>"guest"], function ($router) {
 //     Route::get('/logout/{type}',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
 });
-Route::group(["middleware"=>"auth"], function ($router) {
+Route::group(["middleware" => "auth"], function ($router) {
     Route::get('/logout',[AuthController::class,'logout'])
         ->name('logout');
 ///////////// dashboard
@@ -154,8 +154,24 @@ Route::group(["middleware"=>"auth"], function ($router) {
     Route::get('createteacher', [TeacherController::class, 'create'])
         ->name('createteacher');
 
+
+Route::get('storeteacher', [TeacherController::class, 'store'])
+->name('storeteacher');
+
+
+Route::get('editteacher{id}', [TeacherController::class, 'edit'])
+->name('editteacher');
+
+Route::get('updateteacher', [TeacherController::class, 'update'])
+->name('updateteacher');
+
+
+Route::get('destroyteacher', [TeacherController::class, 'destroy'])
+->name('destroyteacher');
+
     Route::get('storeteacher', [TeacherController::class, 'store'])
         ->name('storeteacher');
+
 
 
     Route::get('editteacher', [TeacherController::class, 'edit'])
@@ -483,6 +499,46 @@ Route::group(["middleware"=>"auth"], function ($router) {
     Route::get('Seting_update', [SetingController::class, 'update'])
         ->name('Seting_update');
 
+
+
+/////////  TimeTableController
+
+Route::get('time', [TimeTableController::class, 'index'])
+->name('time_index');
+Route::get('time/showttr', [TimeTableController::class, 'show'])
+    ->name('ttr_show');
+Route::post('time', [TimeTableController::class, 'create'])
+->name('time_create');
+Route::get('time/show/{id}', [TimeTableController::class, 'view'])
+->name('ttr.show');
+Route::get('time/manage/{id}', [TimeTableController::class, 'manage'])
+->name('ttr.manage');
+Route::get('time/edit/{id}', [TimeTableController::class, 'edit'])
+->name('ttr.edit');
+Route::get('time/destroy/{id}', [TimeTableController::class, 'destroy'])
+->name('ttr.destroy');
+Route::post('time/update/{id}', [TimeTableController::class, 'update'])
+    ->name('ttr.update');
+
+
+
+
+//ts
+Route::get('timeslot/view', [TimeTableController::class, 'ts_index'])
+    ->name('ts.index');
+Route::get('timeslot/create', [TimeTableController::class, 'createts'])
+    ->name('ts.create');
+Route::post('timeslot/store', [TimeTableController::class, 'ts_store'])
+    ->name('ts.store');
+Route::get('timeslot/edit/{id}', [TimeTableController::class, 'ts_edit'])
+    ->name('ts.edit');
+Route::post('timeslot/update/{id}', [TimeTableController::class, 'ts_update'])
+    ->name('ts.update');
+Route::get('timeslot/delete/{id}', [TimeTableController::class, 'ts_delete'])
+    ->name('ts.delete');
+
+
+
     Route::get('time', [TimeTableController::class, 'index'])
         ->name('time_index');
     Route::get('time/showttr', [TimeTableController::class, 'show'])
@@ -512,6 +568,7 @@ Route::group(["middleware"=>"auth"], function ($router) {
         ->name('ts.update');
     Route::get('timeslot/delete/{id}', [TimeTableController::class, 'ts_delete'])
         ->name('ts.delete');
+
 //lecture
     Route::get('lecture/create/{id}', [TimeTableController::class, 'l_create'])
         ->name('l.create');
@@ -539,8 +596,12 @@ Route::group(["middleware"=>"auth"], function ($router) {
         ->name('ori_store');
 
 
+Route::get('ori_edit{id}', [UserController::class, 'edit'])
+->name('ori_edit');
+
     Route::get('ori_edit', [UserController::class, 'edit'])
         ->name('ori_edit');
+
 
 
     Route::get('ori_destroy', [UserController::class, 'destroy'])

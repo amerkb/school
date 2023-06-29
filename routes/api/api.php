@@ -34,6 +34,4 @@ Route::group([ 'middleware' => 'user:'.implode(',', $ps)], function ($router) {
 
 });
 
-
-
 #################################End Attendance####################################

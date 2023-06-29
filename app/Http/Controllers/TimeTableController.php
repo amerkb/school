@@ -8,6 +8,7 @@ use App\Models\Lecture;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlote;
+use App\Traits\GeneralTrait;
 use Carbon\Carbon;
 use App\Models\Grade;
 use App\Models\Section;
@@ -16,10 +17,11 @@ use Illuminate\Http\Request;
 use App\Models\TimeTableRecord;
 use App\Http\Requests\TtrRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TimeTableController extends Controller
-{
+{use GeneralTrait;
     /**
      * Display a listing of the resource.
      */
@@ -350,7 +352,11 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
     {
 
 //        try {
-
+        $exists=Lecture::where([["day_id",$request->day_id],["ttr_id",$id_ttr],["ts_id",$request->ts_id]])->get();
+        if (!$exists->isEmpty()){
+            toastr()->error(('there is a lecture at this time'));
+            return redirect()->route("l.create",$id_ttr);
+        }
            $start=Carbon::createFromFormat('h:i A',TimeSlote::where("id",$request->ts_id)->pluck("time_from")[0]);
             $end=Carbon::createFromFormat('h:i A',TimeSlote::where("id",$request->ts_id)->pluck("time_to")[0]);
             $ovarlap = Lecture::where([["day_id",$request->day_id],["ttr_id",$id_ttr]])
@@ -359,8 +365,9 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
                   foreach ($ovarlap as $o2){
                       $start_ts = Carbon::createFromFormat('h:i A', $o2->time_from);
                       $end_ts = Carbon::createFromFormat('h:i A', $o2->time_to);
-                      if ($end->gte($start_ts)==1 && $end->lt($end_ts)==1) {
-                          toastr()->error(('there is a time overlap'));
+
+                      if ($end->gt($start_ts)==1 && $end->lte($end_ts)==1) {
+                          toastr()->error(('there is a time overlap '));
                           return redirect()->route("l.create",$id_ttr);
                       }
                       if ($start->gte($start_ts)==1 && $start->lt($end_ts)==1) {
@@ -369,11 +376,7 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
                       }
                   }
 
-       $exists=Lecture::where([["day_id",$request->day_id],["ttr_id",$id_ttr],["ts_id",$request->ts_id]])->get();
-        if (!$exists->isEmpty()){
-            toastr()->error(('there is a lecture at this time'));
-            return redirect()->route("l.create",$id_ttr);
-        }
+
             $ttr= DB::table('time_table_records')
                 ->select('*')
                 ->where('id', $id_ttr)
@@ -438,7 +441,7 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
             foreach ($ovarlap as $o2){
                 $start_ts = Carbon::createFromFormat('h:i A', $o2->time_from);
                 $end_ts = Carbon::createFromFormat('h:i A', $o2->time_to);
-                if ($end->gte($start_ts)==1 && $end->lt($end_ts)==1) {
+                if ($end->gt($start_ts)==1 && $end->lte($end_ts)==1) {
                     $l = Lecture::where([["ttr_id",$id_ttr],["day_id",$request->day_id],["ts_id",$o2->id]])
                         ->where('id',"!=", $id_lecture)
                         ->get();
@@ -521,4 +524,13 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
         }
 
 }
+    public function get_time_for_student(Request $request)
+    {
+        $year=Carbon::now()->format('Y');
+      $section_id=  Auth::guard($request->role)->user()->section_id;
+     $ttr= TimeTableRecord::with("lecture")->where([["year",$year],["section_id",$section_id]])->get();
+        return $this ->returnData("TimeTable" ,$ttr,"count_TimeTable",$ttr->count());
+
+    }
+
 }

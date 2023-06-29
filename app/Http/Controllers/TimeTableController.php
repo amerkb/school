@@ -150,14 +150,20 @@ class TimeTableController extends Controller
         $year=Carbon::now()->format('Y');
 
         try {
-            $programme=TimeTableRecord::where([
+            $programme1=TimeTableRecord::where([
                     ["section_id",$request->section_id],
                     ["semester",$request->semester_id],
                     ["year",$year]
                 ]
-            )->get();
+            )->where('id', '=', $id)->get();
+            $programme2=TimeTableRecord::where([
+                    ["section_id",$request->section_id],
+                    ["semester",$request->semester_id],
+                    ["year",$year]
+                ]
+            )->where('id', '!=', $id)->get();
 
-            if( isset($programme[1])==1){
+            if( isset($programme1[1])==1 || !$programme2->isEmpty() ){
 
                 toastr()->error(('this program exists'));
                 return redirect()->route("ttr.edit",$id);
@@ -176,7 +182,7 @@ class TimeTableController extends Controller
             return redirect()->route("ttr_show");
 
         } catch (\Exception $e) {
-            return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]);
+            return redirect()->route("ttr_show")->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -311,55 +317,7 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
             }
 
         }
-//        try {
-//            if ($request->hour_from>$request->hour_to){
-//                toastr()->error(('the start time  grater than end time'));
-//                return redirect()->route("ts.edit");
-//            }
-//
-//            elseif ($request->hour_from==$request->hour_to && $request->meridian_from==$request->meridian_to ){
-//
-//                if ($request->min_from>$request->min_to && $request->meridian_from==$request->meridian_to){
-//                    toastr()->error(('the start time  grater than end time'));
-//                    return redirect()->route("ts.edit");
-//                }
-//                elseif ($request->min_from==$request->min_to && $request->meridian_from==$request->meridian_to){
-//                    toastr()->error(('the start time  equal end time'));
-//                    return redirect()->route("ts.edit");
-//                }
-//            }
-//
-//            $time_from="$request->hour_from:$request->min_from $request->meridian_from";
-//            $time_to="$request->hour_to:$request->min_to $request->meridian_to";
-//            $full="$time_from  _  $time_to";
-//
-//            $ts=TimeSlote::where("full",$full)->get();
-//
-//            if(isset($ts[1])==1){
-//
-//                toastr()->error(('this time slot exists'));
-//                return redirect()->route("ts.index");
-//
-//            }
-//               $ts=TimeSlote::findOrFail($id);
-//               $ts->update([
-//                'hour_from' =>$request->hour_from,
-//                "min_from"=>$request->min_from,
-//                "meridian_from"=>$request->meridian_from,
-//                "hour_to"=>$request->hour_to,
-//                "min_to"=>$request->min_to,
-//                "meridian_to"=>$request->meridian_to,
-//                "time_from"=>$time_from,
-//                "time_to"=>$time_to,
-//                "full"=>$full,
-//
-//
-//            ]);
-//            toastr()->success(('Updated'));
-//            return redirect()->route("ts.index");
-//
-//        }
-        catch (\Exception $e) {
+      catch (\Exception $e) {
             return redirect()->route("ts.edit",$id)->withErrors(['error' => $e->getMessage()]);
         }
 
@@ -391,7 +349,7 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
     public function l_store(LectureRequest $request,$id_ttr)
     {
 
-        try {
+//        try {
 
            $start=Carbon::createFromFormat('h:i A',TimeSlote::where("id",$request->ts_id)->pluck("time_from")[0]);
             $end=Carbon::createFromFormat('h:i A',TimeSlote::where("id",$request->ts_id)->pluck("time_to")[0]);
@@ -416,6 +374,27 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
             toastr()->error(('there is a lecture at this time'));
             return redirect()->route("l.create",$id_ttr);
         }
+            $ttr= DB::table('time_table_records')
+                ->select('*')
+                ->where('id', $id_ttr)
+                ->first();
+
+
+            $reserved_teacher=
+                DB::table('lectures as l')
+                    ->crossJoin('time_table_records as ttr')
+                    ->select('l.id',"l.teacher_id")
+                    ->where('l.teacher_id', $request->teacher_id)
+                    ->where('l.day_id', $request->day_id)
+                    ->where('l.ts_id', $request->ts_id)
+                    ->where('ttr.year', $ttr->year)
+                    ->where('ttr.semester', $ttr->semester)
+                    ->get();
+            if (!$reserved_teacher->isEmpty()){
+                toastr()->error(('Reserved Teacher'));
+                return redirect()->route("l.create",$id_ttr);
+            }
+
         Lecture::create([
             "subject_id"=>$request->subject_id,
             "teacher_id"=>$request->teacher_id,
@@ -425,9 +404,9 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
         ]);
         toastr()->success(('Created'));
             return redirect()->route("ttr.manage",$id_ttr);
-    }catch (\Exception $e) {
-            return redirect()->route("l.create",$id_ttr)->withErrors(['error' => $e->getMessage()]);
-        }
+//    }catch (\Exception $e) {
+//            return redirect()->route("l.create",$id_ttr)->withErrors(['error' => $e->getMessage()]);
+//        }
         }
 
     public function l_edit($id_lecture)
@@ -454,18 +433,28 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
             $start=Carbon::createFromFormat('h:i A',TimeSlote::where("id",$request->ts_id)->pluck("time_from")[0]);
             $end=Carbon::createFromFormat('h:i A',TimeSlote::where("id",$request->ts_id)->pluck("time_to")[0]);
             $ovarlap = Lecture::where([["day_id",$request->day_id],["ttr_id",$id_ttr]])
-                ->select("ts.time_from","ts.time_to")->join('time_slots as ts', 'lectures.ts_id', '=', 'ts.id')
+                ->select("ts.*")->join('time_slots as ts', 'lectures.ts_id', '=', 'ts.id')
                 ->get();
             foreach ($ovarlap as $o2){
                 $start_ts = Carbon::createFromFormat('h:i A', $o2->time_from);
                 $end_ts = Carbon::createFromFormat('h:i A', $o2->time_to);
                 if ($end->gte($start_ts)==1 && $end->lt($end_ts)==1) {
-                    toastr()->error(('there is a time overlap'));
-                    return redirect()->route("l.create",$id_ttr);
+                    $l = Lecture::where([["ttr_id",$id_ttr],["day_id",$request->day_id],["ts_id",$o2->id]])
+                        ->where('id',"!=", $id_lecture)
+                        ->get();
+                    if (!$l->isEmpty()) {
+                        toastr()->error(('there is a time overlap'));
+                        return redirect()->route("l.edite", $id_lecture);
+                    }
                 }
                 if ($start->gte($start_ts)==1 && $start->lt($end_ts)==1) {
-                    toastr()->error(('there is a time overlap'));
-                    return redirect()->route("l.edit",$id_lecture);
+                    $l = Lecture::where([["ttr_id",$id_ttr],["day_id",$request->day_id],["ts_id",$o2->id]])
+                        ->where('id',"!=", $id_lecture)
+                        ->get();
+                    if (!$l->isEmpty()) {
+                        toastr()->error(('there is a time overlap'));
+                        return redirect()->route("l.edit", $id_lecture);
+                    }
                 }
             }
             $exists=Lecture::where([["day_id",$request->day_id],["ttr_id",$id_ttr],["ts_id",$request->ts_id]])->get();
@@ -473,6 +462,39 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
                 toastr()->error(('there is a lecture at this time'));
                 return redirect()->route("l.edit",$id_lecture);
             }
+            $ttr= DB::table('time_table_records')
+                ->select('*')
+                ->where('id', $id_ttr)
+                ->first();
+
+
+            $reserved_teacher1=
+                DB::table('lectures as l')
+                    ->crossJoin('time_table_records as ttr')
+                    ->select('l.id',"l.teacher_id")->distinct()
+                    ->where('l.teacher_id', $request->teacher_id)
+                    ->where('l.day_id', $request->day_id)
+                    ->where('l.ts_id', $request->ts_id)
+                    ->where('ttr.year', $ttr->year)
+                    ->where('ttr.semester', $ttr->semester)
+                    ->where('l.id', $id_lecture)
+                    ->get();
+            $reserved_teacher2=
+                DB::table('lectures as l')
+                    ->crossJoin('time_table_records as ttr')
+                    ->select('l.id',"l.teacher_id")
+                    ->where('l.teacher_id', $request->teacher_id)
+                    ->where('l.day_id', $request->day_id)
+                    ->where('l.ts_id', $request->ts_id)
+                    ->where('ttr.year', $ttr->year)
+                    ->where('ttr.semester', $ttr->semester)
+                    ->where('l.id',"!=", $id_lecture)
+                    ->get();
+            if (!$reserved_teacher2->isEmpty() || isset($reserved_teacher1[1])==1){
+                toastr()->error(('Reserved Teacher'));
+                return redirect()->route("l.edit",$id_lecture);
+            }
+
             $lecture=Lecture::findOrFail($id_lecture);
             $lecture->update([
                 "subject_id"=>$request->subject_id,

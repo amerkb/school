@@ -1,6 +1,6 @@
         <!--=================================
  header start-->
-        <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #282a39">
             <!-- logo -->
             <div class="text-left navbar-brand-wrapper">
                 <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo-dark.png" alt=""></a>

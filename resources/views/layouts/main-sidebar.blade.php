@@ -2,7 +2,9 @@
     <div class="row">
         <!-- Left Sidebar start-->
         <div class="side-menu-fixed">
-            <div class="scrollbar side-menu-bg" style="overflow: scroll">
+            <div class="scrollbar side-menu-bg overflow-auto">
+                <!-- Your content here -->
+
                 <ul class="nav navbar-nav side-menu" id="sidebarnav">
                     <!-- menu item Dashboard-->
                     <li>

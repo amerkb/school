@@ -37,7 +37,7 @@
                             <div class="form-row">
                                 <div class="col">
                                     <label for="title">{{('Email')}}</label>
-                                    <input type="email" name="Email" class="form-control">
+                                    <input type="email" name="Email" class="form-control" value=".">
                                     @error('Email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -120,7 +120,29 @@
                                 @enderror
                             </div>
 
+                            
                             <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Next')}}</button>
+                            
+                            <div class="col">
+                                <div class="form-check">
+
+                                    {{-- @if ($Oriented->Status === 1) --}}
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            class="form-check-input"
+                                            name="Status"
+                                            id="exampleCheck1">
+                                    {{-- @else --}}
+                                        <input
+                                            type="checkbox"
+                                            class="form-check-input"
+                                            name="Status"
+                                            id="exampleCheck1">
+                                    {{-- @endif --}}
+                                    <label
+                                        class="form-check-label"
+                                        for="exampleCheck1">{{ 'Status' }}</label><br>
                     </form>
                         </div>
                     </div>

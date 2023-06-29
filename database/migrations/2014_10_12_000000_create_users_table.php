@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('Address');
             $table->bigInteger('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('type__users')->onDelete('cascade');
+            $table->string('Status');
             $table->timestamps();
         });
     }

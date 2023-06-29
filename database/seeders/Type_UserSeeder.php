@@ -20,7 +20,7 @@ class Type_UserSeeder extends Seeder
             'Oriented',
             'ًWorker',
             'Accountant',
-            'Others', 
+            'librarian', 
         ];
         foreach ($specializations as $S) {
             Type_User::create(['type' => $S]);

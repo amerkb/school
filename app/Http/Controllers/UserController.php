@@ -42,10 +42,10 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $Teachers = $this->user->editOriented($id);
+        $Users = $this->user->editOriented($id);
         $genders = $this->user->GetGender();
         $type_user = $this->user->Get_type();
-        return view('pages.School_oriented.edit',compact('Teachers','genders','type_user'));
+        return view('pages.School_oriented.edit',compact('Users','genders','type_user'));
     }
 
     public function update(Request $request) {

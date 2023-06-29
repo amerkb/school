@@ -160,7 +160,7 @@ Route::get('storeteacher', [TeacherController::class, 'store'])
 ->name('storeteacher');
 
 
-Route::get('editteacher', [TeacherController::class, 'edit'])
+Route::get('editteacher{id}', [TeacherController::class, 'edit'])
 ->name('editteacher');
 
 Route::get('updateteacher', [TeacherController::class, 'update'])
@@ -504,6 +504,10 @@ Route::get('Seting_index', [SetingController::class, 'index'])
 Route::get('Seting_update', [SetingController::class, 'update'])
 ->name('Seting_update');
 
+
+
+/////////  TimeTableController
+
 Route::get('time', [TimeTableController::class, 'index'])
 ->name('time_index');
 Route::get('time/showttr', [TimeTableController::class, 'show'])
@@ -520,6 +524,10 @@ Route::get('time/destroy/{id}', [TimeTableController::class, 'destroy'])
 ->name('ttr.destroy');
 Route::post('time/update/{id}', [TimeTableController::class, 'update'])
     ->name('ttr.update');
+
+
+
+
 //ts
 Route::get('timeslot/view', [TimeTableController::class, 'ts_index'])
     ->name('ts.index');
@@ -533,6 +541,8 @@ Route::post('timeslot/update/{id}', [TimeTableController::class, 'ts_update'])
     ->name('ts.update');
 Route::get('timeslot/delete/{id}', [TimeTableController::class, 'ts_delete'])
     ->name('ts.delete');
+
+
 //lecture
 Route::get('lecture/create/{id}', [TimeTableController::class, 'l_create'])
     ->name('l.create');
@@ -562,7 +572,7 @@ Route::get('ori_store', [UserController::class, 'store'])
 ->name('ori_store');
 
 
-Route::get('ori_edit', [UserController::class, 'edit'])
+Route::get('ori_edit{id}', [UserController::class, 'edit'])
 ->name('ori_edit');
 
 

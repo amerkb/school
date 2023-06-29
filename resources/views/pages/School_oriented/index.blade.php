@@ -29,6 +29,7 @@
                                             <th>{{ 'Name User' }}</th>
                                             <th>{{ 'Gender' }}</th>
                                             <th>{{ 'Joining Date' }}</th>
+                                            <th>{{ 'Status' }}</th>
                                             <th>{{ 'Type' }}</th>
                                             <th>{{ 'Processes' }}</th>
                                         </tr>
@@ -42,6 +43,17 @@
                                                 <td>{{ $Teacher->name }}</td>
                                                 <td>{{ $Teacher->genders->Name }}</td>
                                                 <td>{{ $Teacher->Joining_Date }}</td>
+                                                <td>
+                                                    @if ($Teacher->Status === 1)
+                                                        <label
+                                                        class="badge badge-danger">{{ 'No Active' }}</label>
+                                                    @else
+                                                        <label
+                                                        class="badge badge-success">{{ 'Active' }}</label>
+
+                                                    @endif
+
+                                                </td>
                                                 <td>{{ $Teacher->type_user->type }}</td>
                                                 <td>
                                                     <a  href="{{route('ori_edit',$Teacher->id)}}" class="btn btn-info btn-sm" role="button"

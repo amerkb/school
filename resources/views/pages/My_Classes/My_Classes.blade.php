@@ -4,7 +4,7 @@
 
 
     @section('title')
-        {{ 'title_page' }}
+        classes list
     @stop
 @endsection
 @section('page-header')
@@ -16,7 +16,7 @@
 @endsection
 @section('content')
     <!-- row -->
-    <div class="row">
+
 
         <div class="col-xl-12 mb-30">
             <div class="card card-statistics h-100">
@@ -207,7 +207,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
 
     <!-- add_modal_class -->

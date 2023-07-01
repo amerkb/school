@@ -42,6 +42,7 @@ use App\Http\Controllers\UserController;
 Route::group(["middleware"=>"guest"], function ($router) {
     Route::get('/login',[AuthController::class,'index'])
         ->name('view.login');
+    Route::get('/',[AuthController::class,'welcome']);
     Route::post('/login',[AuthController::class,'login'])
         ->name('check.login');
 //     Route::get('/login/{type}', [App\Http\Controllers\Auth\LoginController::class, 'loginForm'])

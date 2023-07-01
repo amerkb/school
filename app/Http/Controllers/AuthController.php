@@ -11,6 +11,10 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
+    public function welcome()
+    {
+        return view('welcome');
+    }
     public function login(Request $request)
     {
 //$remember_me=$request->has("remember_me")?true:false;

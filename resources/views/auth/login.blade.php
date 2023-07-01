@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="login-form-07/css/style.css">
 
-    <title>Login #7</title>
+    <title>Login</title>
   </head>
   <body>
   
@@ -56,7 +56,7 @@
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
               </div>
 
-              <input type="submit" value="Log In" class="btn btn-block btn-primary">
+              <input type="submit" value="Log In" class="btn btn-block btn-success">
 
               <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
               

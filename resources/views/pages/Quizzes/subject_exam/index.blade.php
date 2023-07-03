@@ -1,50 +1,47 @@
 @extends('layouts.master')
 @section('css')
-{{--    @toastr_css--}}
+    @toastr_css
     @section('title')
-        {{ 'List TimeTable' }}
+        {{ 'View TimeSlot' }}
     @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
     @section('PageTitle')
-        {{ 'List TimeTable' }}
+        {{ 'View  TimeSlot' }}
     @stop
     <!-- breadcrumb -->
 @endsection
 @section('content')
-    <!-- row -->
 
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
-                                <a href="{{ route('time_index') }}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true"> Add TimeTable </a><br><br>
-                                <div class="table-responsive" style="padding-bottom: 100px">
+                    <div class="col-xl-12 mb-30">
+                        <div class="card card-statistics h-100">
+                            <div class="card-body">
+                                <a href="{{ route('ts.create') }}" class="btn btn-success btn-sm" role="button"
+                                   aria-pressed="true"> Add TimeSlot </a><br><br>
+                                <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50" style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>Name</th>
-                                            <th>Grade</th>
-                                            <th>Class</th>
-                                            <th>ٍSection</th>
-                                            <th>Year</th>
-                                            <th>Semester</th>
+                                            <th>from time</th>
+                                            <th>to time</th>
+                                            <th>full time</th>
                                             <th>Action</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($tt_records as $ttr )
+                                        @foreach ($ts as $ts )
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $ttr->name }}</td>
-                                                <td>{{ $ttr->grades->Name }}</td>
-                                                <td>{{ $ttr->classrooms->Name_Class }}</td>
-                                                <td>{{ $ttr->sections->Name_Section }}</td>
-                                                <td>{{ $ttr->year }}</td>
-                                                <td>{{ $ttr->semester }}</td>
+                                                <td>{{ $ts->time_from }}</td>
+                                                <td>{{ $ts->time_to }}</td>
+                                                <td>{{ $ts->full }}</td>
                                                 <td>
                                                     <div class="dropdown show">
                                                         <a class="btn btn-success btn-sm dropdown-toggle" href="#"
@@ -53,28 +50,19 @@
                                                             Action
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            {{--  view--}}
-                                                            <a class="dropdown-item" target="_blank"
-                                                               href="{{ route('ttr.show', $ttr->id) }}"><i
-                                                                        style="color: #ffc107"
-                                                                        class="far fa-eye "></i>&nbsp;   view</a>
-                                                            {{--  mange--}}
-                                                            <a class="dropdown-item"
-                                                               href="{{ route('ttr.manage', $ttr->id) }}"><i
-                                                                        style="color:green" class="fa fa-tasks"></i>&nbsp;
-                                                                mange</a>
+
                                                             {{--Edit--}}
                                                             <a class="dropdown-item"
-                                                               href="{{ route('ttr.edit', $ttr->id) }}"><i
+                                                               href="{{ route('ts.edit', $ts->id) }}"><i
                                                                         style="color: #83ae26" class="fa fa-edit"></i>&nbsp;
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
 
-                                                               href="{{ route('ttr.destroy', $ttr->id) }}"><i
+                                                               href="{{ route('ts.delete', $ts->id) }}"><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
-                                                               &nbsp; delete</a>
+                                                                &nbsp; delete</a>
 
 
 
@@ -90,10 +78,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- row closed -->
 @endsection
-@section('js')
-    @toastr_js
-    @toastr_render
-@endsection
+

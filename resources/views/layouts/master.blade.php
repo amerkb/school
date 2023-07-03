@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{asset('startbootstrap-sb-admin-gh-pages/css/styles.css')}}" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title> @yield('title')</title>
     @include('layouts.head')
     @livewireStyles
@@ -20,9 +19,10 @@
 
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="background-color: black">
-
     <!-- Navbar Brand-->
+    <i style="font-size: 30px;color: white" class="fa fa-university" ></i>
     <h1 style="font-size: 25px ; font-weight: bold" class="navbar-brand ps-3" href="#">
+
         Name School
     </h1>
 
@@ -33,8 +33,8 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <a class="navbar-brand ps-3" style="padding-left: 180px; font-size: 18px;
-    font-weight: bold;" href="#">
+        <a class="navbar-brand ps-3" style=" padding-left: 180px; font-size: 18px;
+    font-weight: bold" href="#">
             {{ \App\Models\Type_User::where(
         "id",auth()->user()->type_id)->pluck("type")[0]}}  Dashboard</a>
         <li class="nav-item dropdown">
@@ -42,8 +42,8 @@
                id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{route("logout")}}"> Logout<i class="fa fa-lock" style="color: red"></i></a></li>
-            </ul>
+                <li><a  class="dropdown-item" href="{{route("logout")}}">  Logout  <i  class="fa fa-sign-out" style="
+                 color: red ; padding-left: 40px "></i></a></li>     </ul>
         </li>
     </ul>
 </nav>
@@ -67,6 +67,7 @@
 <script src="assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="js/datatables-simple-demo.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 @include('layouts.footer-scripts')
 </body>
 </html>

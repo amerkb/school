@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\ChatController;
+use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,9 @@ Route::group([ 'middleware' => 'user:'.implode(',', $ps)], function ($router) {
 });
 
 #################################End Attendance####################################
+#################################Start event ####################################
+
+Route::group([ 'middleware' => 'user:'.implode(',', $pts)], function ($router) {
+    Route::get('/events', [EventController::class, 'get_event']);
+});
+#################################End event ####################################

@@ -13,27 +13,19 @@ class Quizze extends Model
         return $this->belongsTo('App\Models\Teacher', 'teacher_id');
     }
 
-
-
-    public function subject()
+    public function Type()
     {
-        return $this->belongsTo('App\Models\Subject', 'subject_id');
+        return $this->belongsTo(Type_Exam::class, 'type_exam_id');
     }
 
 
-    public function grade()
-    {
-        return $this->belongsTo('App\Models\Grade', 'grade_id');
-    }
-
-
-    public function classroom()
-    {
-        return $this->belongsTo('App\Models\Classroom', 'classroom_id');
-    }
 
 
     public function section()
     {
         return $this->belongsTo('App\Models\Section', 'section_id');
-    }}
+    }
+    public  function getSemesterAttribute($val){
+        return   $val==1?"the first semester":"the second semester";
+    }
+}

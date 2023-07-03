@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    /*@toastr_css*/
 @section('title')
-    تعديل اختبار {{$quizz->name}}
+    Edit quizze
+{{$quizz->name}}
 @stop
 @endsection
 @section('page-header')
@@ -15,8 +16,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if(session()->has('error'))
@@ -53,21 +53,23 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="Grade_id">Subject: <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="subject_id">
-                                                @foreach($subjects as $subject)
-                                                    <option value="{{ $subject->id }}" {{$subject->id == $quizz->subject_id ? "selected":""}}>{{ $subject->name }}</option>
-                                                @endforeach
+                                            <label for="Grade_id">semester <span class="text-danger"></span></label>
+                                            <select required class="custom-select mr-sm-2" name="semester">
+                                                <option selected disabled>Chose</option>
+                                                <option {{ $quizz->semester == "the first semester" ? 'selected' : '' }}  value= 1 > the first semester </option>
+                                                <option  {{ $quizz->semester == "the second semester" ? 'selected' : '' }} value= 2 > the second semester </option>
+
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="Grade_id">Name Teacher : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="teacher_id">
-                                                @foreach($teachers as $teacher)
-                                                    <option  value="{{ $teacher->id }}" {{$teacher->id == $quizz->teacher_id ? "selected":""}}>{{ $teacher->Name }}</option>
+                                            <label for="Grade_id">Type : <span class="text-danger"></span></label>
+                                            <select required class="custom-select mr-sm-2" name="type_id">
+                                                <option selected disabled>Chose</option>
+                                                @foreach($types as $type)
+                                                    <option {{ $quizz->type_exam_id == $type->id ? 'selected' : '' }} value="{{ $type->id }}">{{ $type->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -75,43 +77,16 @@
 
                                 </div>
 
-                                <div class="form-row">
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="Grade_id">{{('Grade')}} : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="Grade_id">
-                                                @foreach($grades as $grade)
-                                                    <option  value="{{ $grade->id }}" {{$grade->id == $quizz->grade_id ? "selected":""}}>{{ $grade->Name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="Classroom_id">{{('Classrooms')}} : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="Classroom_id">
-                                                <option value="{{$quizz->classroom_id}}">{{$quizz->classroom->Name_Class}}</option>                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="section_id">{{('Section')}} : </label>
-                                            <select class="custom-select mr-sm-2" name="section_id">
-                                                <option value="{{$quizz->section_id}}">{{$quizz->section->Name_Section}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div><br>
-                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">تاكيد البيانات</button>
+                         <br>
+                                <div class="text-center">
+                                    <button id="ajax-btn" type="submit"
+                                            class="btn btn-primary">Submit form <i class="fas fa-send"></i></button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection

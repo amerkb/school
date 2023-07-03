@@ -42,7 +42,7 @@ use App\Http\Controllers\UserController;
 Route::group(["middleware"=>"guest"], function ($router) {
     Route::get('/login',[AuthController::class,'index'])
         ->name('view.login');
-    Route::get('/',[AuthController::class,'welcome']);
+    Route::get('/',[AuthController::class,'welcome'])->name('welcome');;
     Route::post('/login',[AuthController::class,'login'])
         ->name('check.login');
 //     Route::get('/login/{type}', [App\Http\Controllers\Auth\LoginController::class, 'loginForm'])
@@ -197,6 +197,9 @@ Route::get('destroyteacher', [TeacherController::class, 'destroy'])
 
     Route::get('Get_classrooms/{id}', [StudentController::class, 'Get_classrooms'])
         ->name('Get_classrooms');
+
+    Route::get('Get_Subject/{id}', [SubjectController::class, 'Get_Subject'])
+        ->name('Get_Subject');
 
     Route::get('Get_Sections/{id}', [StudentController::class, 'Get_Sections'])
         ->name('Get_Sections');
@@ -421,7 +424,17 @@ Route::get('destroyteacher', [TeacherController::class, 'destroy'])
     Route::get('Qui_destroy', [QuizzesController::class, 'destroy'])
         ->name('Qui_destroy');
 
-
+    Route::get('quizze/manage/{id}', [QuizzesController::class, 'manage'])
+        ->name('quizze.manage');
+// add se
+    Route::get('quizze/create/subject/{id}', [QuizzesController::class, 'se_create'])
+        ->name('se.add');
+    Route::post('quizze/store/subject/{id}', [QuizzesController::class, 'se_store'])
+        ->name('se.store');
+    Route::get('quizze/edit/subject/{id}', [QuizzesController::class, 'se_edit'])
+        ->name('se.edit');
+    Route::post('quizze/update/subject/{id}', [QuizzesController::class, 'se_update'])
+        ->name('se.update');
 ////////////   Questions
 
 

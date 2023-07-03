@@ -289,6 +289,7 @@
                         <a class="nav-link" href="{{ route('as') }}">Grades list</a>
                     </nav>
                 </div>
+
                 {{--          Class      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Classes" aria-expanded="false" aria-controls="collapseLayouts">

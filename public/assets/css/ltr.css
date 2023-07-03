@@ -1995,7 +1995,6 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
   border-color: #28a745; }
 
 .btn-success:hover {
@@ -2383,7 +2382,7 @@ a.btn.disabled, fieldset:disabled a.btn {
   border-radius: .3rem; }
 
 .btn-group-sm > .btn, .btn-sm {
-  padding: .25rem .5rem;
+  padding: .35rem .25rem;
   font-size: .875rem;
   line-height: 1.5;
   border-radius: .2rem; }
@@ -2540,7 +2539,7 @@ tbody.collapse.show {
 
 .dropdown-item {
   display: block;
-  width: 40%;
+  width: 100%;
   padding: .25rem 1.5rem;
   clear: both;
   font-weight: 400;
@@ -18953,7 +18952,7 @@ dl dd {
   list-style: none; }
 
 svg {
-  width: 100%  ; }
+  width: fit-content  ; }
 
 .accordion .acd-group .acd-heading {
   font-weight: 500;
@@ -22374,8 +22373,8 @@ textarea.form-control {
   color: #626262; }
 
 .pagination .page-item.active .page-link {
-  background: #84ba3f;
-  border-color: #84ba3f;
+  background: #28a745;
+  border-color: #28a745;
   color: #ffffff; }
 
 /* style-customizer */

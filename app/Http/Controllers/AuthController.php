@@ -33,6 +33,6 @@ else{
     public function logout(Request $request)
     {
         auth()->guard("web")->logout();
-        return redirect()->route('view.login');
+        return redirect()->route('welcome');
     }
 }

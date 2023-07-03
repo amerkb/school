@@ -31,20 +31,24 @@ class TimeTableTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform($teacher)
+    public function transform($ttr)
     {
-        $Specialization=Specialization::select("Name")->find($teacher->Specialization_id);
-        $gender=  Gender::select("Name")->find($teacher->Gender_id);
+        $lectures=[];
+        foreach ($ttr->lecture as $index=> $tr){
+            $lectures[$index] = fractal($tr, new LectureTransformer())->toArray();
+            $lectures[$index]= $lectures[$index]["data"];
+        }
+
         return [
-            "teacher_Id"=>$teacher->id,
-            "teacher_Name"=>$teacher->Name,
-            "teacher_Specialization"=>$Specialization->Name,
-            "teacher_Gender"=>$gender->Name,
-            "teacher_Address"=>$teacher->Address,
-            "teacher_Joining_Date"=>$teacher->Joining_Date,
-            "teacher_phone"=>null
-
-
+            "timetable_Id"=>$ttr->id,
+            "timetable_Name"=>$ttr->name,
+            "timetable_Grade"=>$ttr->grades->Name,
+            "timetable_Classroom"=>$ttr->classrooms->Name_Class,
+            "timetable_Section"=>$ttr->sections->Name_Section,
+            "timetable_Semester"=>$ttr->semester,
+            "timetable_Year"=>$ttr->year,
+            "timetable_Count_Lecture"=>$ttr->lecture->count(),
+            "timetable_Lecture"=>$lectures,
         ];
     }
 }

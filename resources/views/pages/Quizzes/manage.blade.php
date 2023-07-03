@@ -1,50 +1,63 @@
 @extends('layouts.master')
 @section('css')
-{{--    @toastr_css--}}
+{{--    /*@toastr_css*/--}}
     @section('title')
-        {{ 'List TimeTable' }}
+        {{ 'Manage Quizze' }}
     @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
     @section('PageTitle')
-        {{ 'List TimeTable' }}
+        {{ 'Manage TimeTable' }}
     @stop
     <!-- breadcrumb -->
 @endsection
 @section('content')
-    <!-- row -->
+
 
         <div class="col-md-12 mb-30">
+
             <div class="card card-statistics h-100">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4"><h6 class="card-title"><strong>Name: </strong> {{ $Quizze->name }}</h6></div>
+                        <div class="col-md-4"><h6 class="card-title"><strong>Semester: </strong> {{ $Quizze->semester}}</h6></div>
+                        <div class="col-md-4"><h6 class="card-title"><strong>Type: </strong> {{$Quizze->type->name}} {{ '('.$Quizze->year.')' }}</h6></div>
+                    </div>
+                </div>
                 <div class="card-body">
-                                <a href="{{ route('time_index') }}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true"> Add TimeTable </a><br><br>
-                                <div class="table-responsive" style="padding-bottom: 100px">
+
+                                <div class="row">
+                                    <div style="margin-bottom: 26px" class="col-md-4">
+                                        <a style="padding: 6px"  href="{{route("se.add",$Quizze->id)}}" class="btn btn-success btn-sm" role="button"
+                                                              aria-pressed="true"> Add Subject </a></div>
+                                    <div class="col-md-4"> <a style="background-color: black; padding: 6px" target="_blank" href="{{ route('ts.index') }}" class="btn  btn-sm" role="button"
+                                                              aria-pressed="true"> <span style="color:white">View  TimeSlot</span> </a></div>
+                                    <div class="col-md-4"> <a style="padding: 6px"  target="_blank" href="" class="btn btn-danger btn-sm" role="button"
+                                                              aria-pressed="true"> view TimeTable </a></div>
+                                </div>
+                                <div  class="table-responsive" style="padding-bottom: 100px">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50" style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>Name</th>
+                                            <th>subject</th>
                                             <th>Grade</th>
-                                            <th>Class</th>
-                                            <th>ٍSection</th>
-                                            <th>Year</th>
-                                            <th>Semester</th>
+                                            <th> Class </th>
+                                            <th> time slot</th>
                                             <th>Action</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($tt_records as $ttr )
+                                        @foreach ($ses as $se )
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $ttr->name }}</td>
-                                                <td>{{ $ttr->grades->Name }}</td>
-                                                <td>{{ $ttr->classrooms->Name_Class }}</td>
-                                                <td>{{ $ttr->sections->Name_Section }}</td>
-                                                <td>{{ $ttr->year }}</td>
-                                                <td>{{ $ttr->semester }}</td>
+                                                <td>{{ $loop->iteration}}</td>
+                                                <td>{{ $se->subject->name}}</td>
+                                                <td>{{$se->grade->Name }}</td>
+                                                <td>{{$se->classroom->Name_Class }}</td>
+                                                <td>{{ $se->timeslot->full }}</td>
                                                 <td>
                                                     <div class="dropdown show">
                                                         <a class="btn btn-success btn-sm dropdown-toggle" href="#"
@@ -53,28 +66,19 @@
                                                             Action
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            {{--  view--}}
-                                                            <a class="dropdown-item" target="_blank"
-                                                               href="{{ route('ttr.show', $ttr->id) }}"><i
-                                                                        style="color: #ffc107"
-                                                                        class="far fa-eye "></i>&nbsp;   view</a>
-                                                            {{--  mange--}}
-                                                            <a class="dropdown-item"
-                                                               href="{{ route('ttr.manage', $ttr->id) }}"><i
-                                                                        style="color:green" class="fa fa-tasks"></i>&nbsp;
-                                                                mange</a>
+
                                                             {{--Edit--}}
                                                             <a class="dropdown-item"
-                                                               href="{{ route('ttr.edit', $ttr->id) }}"><i
+                                                               href="{{route("se.edit",$se)}}"><i
                                                                         style="color: #83ae26" class="fa fa-edit"></i>&nbsp;
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
 
-                                                               href="{{ route('ttr.destroy', $ttr->id) }}"><i
+                                                               href=""><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
-                                                               &nbsp; delete</a>
+                                                                &nbsp; delete</a>
 
 
 
@@ -91,9 +95,8 @@
                         </div>
                     </div>
 
-    <!-- row closed -->
-@endsection
-@section('js')
-    @toastr_js
-    @toastr_render
+
+
+    {{--TimeTable Manage Ends--}}
+
 @endsection

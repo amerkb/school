@@ -33,6 +33,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="background-color: black">
 
     <!-- Navbar Brand-->
+        <i style="font-size: 30px;color: white" class="fa fa-university" ></i>
     <h1 style="font-size: 25px ; font-weight: bold" class="navbar-brand ps-3" href="#">
         Name School
        </h1>
@@ -44,8 +45,8 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <a class="navbar-brand ps-3" style="padding-left: 180px; font-size: 18px;
-    font-weight: bold;" href="#">
+        <a class="navbar-brand ps-3" style=" padding-left: 180px; font-size: 18px;
+    font-weight: bold" href="#">
             {{ \App\Models\Type_User::where(
         "id",auth()->user()->type_id)->pluck("type")[0]}}  Dashboard</a>
         <li class="nav-item dropdown">
@@ -53,7 +54,8 @@
                id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{route("logout")}}">  Logout  <i class="fa fa-sign-out" style=" color: red"></i></a></li>
+                <li><a  class="dropdown-item" href="{{route("logout")}}">  Logout  <i  class="fa fa-sign-out" style="
+                 color: red ; padding-left: 40px "></i></a></li>
             </ul>
         </li>
     </ul>
@@ -92,7 +94,7 @@
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                               <a href="{{route('index')}}" target="_blank"><h6 class="text-white">View Details</h6></a>
+                            <h6 class="text-white"><a href="{{route('index')}}" target="_blank">View Details</a></h6>
                             </p>
                         </div>
 
@@ -113,7 +115,7 @@
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <a href="{{route('teacher')}}" target="_blank"><h6 class="text-white">View Details</h6></a>
+                            <h6 class="text-white"> <a href="{{route('teacher')}}" target="_blank">View Details</a> </h6>
                             </p>
                         </div>
 
@@ -121,7 +123,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
-                        <div class="btn-success card-body">
+                        <div class="btn-danger card-body" style="background-color: green">
                             <div class="clearfix">
                                 <div class="float-left ">
                                     <span class="text-white">
@@ -134,7 +136,7 @@
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <a href="{{route('add_parent')}}" target="_blank"><h6 class="text-white">View Details</h6></a>
+                            <h6 class="text-white"><a href="{{route('add_parent')}}" target="_blank">View Details</a> </h6>
                             </p>
                         </div>
 
@@ -155,7 +157,7 @@
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <a href="{{route('section')}}" target="_blank"><h6 class="text-white">View Details</h6></a>
+                            <h6 class="text-white"> <a href="{{route('section')}}" target="_blank">View Details</a></h6>
                             </p>
                         </div>
 

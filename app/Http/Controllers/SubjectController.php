@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
+use App\Models\Subject;
 use App\Repository\SubjectRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -53,5 +55,11 @@ class SubjectController extends Controller
     public function destroy(Request $request)
     {
         return $this->Subject->destroy($request);
+    }
+    public function Get_Subject($id)
+    {
+
+        $list_classes = Subject::where("classroom_id", $id)->pluck("name", "id");
+        return $list_classes;
     }
 }

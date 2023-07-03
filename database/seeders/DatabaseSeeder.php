@@ -9,6 +9,7 @@ use App\Models\MyParent;
 use App\Models\Specialization;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Type_Exam;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,6 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TeacherSeeder::class);
         $this->call(SettingsTableSeeder::class);
         $this->call(Type_UserSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(Type_examrSeeder::class);
 
 
         Teacher::create([

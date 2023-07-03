@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlote;
 use App\Traits\GeneralTrait;
+use App\Transformers\TimeTableTransformer;
 use Carbon\Carbon;
 use App\Models\Grade;
 use App\Models\Section;
@@ -351,7 +352,7 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
     public function l_store(LectureRequest $request,$id_ttr)
     {
 
-//        try {
+        try {
         $exists=Lecture::where([["day_id",$request->day_id],["ttr_id",$id_ttr],["ts_id",$request->ts_id]])->get();
         if (!$exists->isEmpty()){
             toastr()->error(('there is a lecture at this time'));
@@ -407,9 +408,9 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
         ]);
         toastr()->success(('Created'));
             return redirect()->route("ttr.manage",$id_ttr);
-//    }catch (\Exception $e) {
-//            return redirect()->route("l.create",$id_ttr)->withErrors(['error' => $e->getMessage()]);
-//        }
+    }catch (\Exception $e) {
+            return redirect()->route("l.create",$id_ttr)->withErrors(['error' => $e->getMessage()]);
+        }
         }
 
     public function l_edit($id_lecture)
@@ -527,9 +528,14 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
     public function get_time_for_student(Request $request)
     {
         $year=Carbon::now()->format('Y');
-      $section_id=  Auth::guard($request->role)->user()->section_id;
-     $ttr= TimeTableRecord::with("lecture")->where([["year",$year],["section_id",$section_id]])->get();
-        return $this ->returnData("TimeTable" ,$ttr,"count_TimeTable",$ttr->count());
+        $section_id=  Auth::guard($request->role)->user()->section_id;
+        $ttr= TimeTableRecord::with("lecture")->where([["year",$year],["section_id",$section_id]])->get();
+        $ttrTransfermer=[];
+        foreach ($ttr as $index=> $tr){
+            $ttrTransfermer[$index] = fractal($tr, new TimeTableTransformer())->toArray();
+            $ttrTransfermer[$index]= $ttrTransfermer[$index]["data"];
+        }
+        return $this ->returnData("TimeTable" ,$ttrTransfermer,"count_TimeTable",$ttr->count());
 
     }
 

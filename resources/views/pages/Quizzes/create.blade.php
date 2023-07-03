@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    @toastr_css--}}
 @section('title')
-    اضافة اختبار جديد
+    Add Quizzes
 @stop
 @endsection
 @section('page-header')
@@ -15,8 +15,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if(session()->has('error'))
@@ -42,7 +41,7 @@
 
                                     <div class="col">
                                         <label for="title">Test Name</label>
-                                        <input type="text" name="Name_en" class="form-control">
+                                        <input required type="text" name="Name_en" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -51,23 +50,24 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="Grade_id">Subject : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="subject_id">
+                                            <label for="Grade_id">Semester : <span class="text-danger"></span></label>
+                                            <select required class="custom-select mr-sm-2" name="semester">
                                                 <option selected disabled>Chose</option>
-                                                @foreach($subjects as $subject)
-                                                    <option  value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                                @endforeach
+                                                <option  value=1>the first semester </option>
+                                                <option  value=2>the second semester </option>
+
+
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="Grade_id">Name Teacher : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="teacher_id">
+                                            <label for="Grade_id">Type : <span class="text-danger"></span></label>
+                                            <select required class="custom-select mr-sm-2" name="type_id">
                                                 <option selected disabled>Chose</option>
-                                                @foreach($teachers as $teacher)
-                                                    <option  value="{{ $teacher->id }}">{{ $teacher->Name }}</option>
+                                                @foreach($types as $type)
+                                                    <option  value="{{ $type->id }}">{{ $type->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -77,44 +77,18 @@
 
                                 <div class="form-row">
 
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="Grade_id">{{('Grade')}} : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="Grade_id">
-                                                <option selected disabled>{{('Choose')}}...</option>
-                                                @foreach($grades as $grade)
-                                                    <option  value="{{ $grade->id }}">{{ $grade->Name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="Classroom_id">{{('Classrooms')}} : <span class="text-danger">*</span></label>
-                                            <select class="custom-select mr-sm-2" name="Classroom_id">
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="section_id">{{('Section')}} : </label>
-                                            <select class="custom-select mr-sm-2" name="section_id">
-
-                                            </select>
-                                        </div>
-                                    </div>
 
                                 </div>
-                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">حفظ البيانات</button>
+
+                                <div class="text-center">
+                                    <button id="ajax-btn" type="submit"
+                                            class="btn btn-primary">Submit form <i class="fas fa-send"></i></button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection

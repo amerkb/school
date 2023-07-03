@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    @toastr_css--}}
 @section('title')
-    قائمة الاختبارات
+    Quizzes list
 @stop
 @endsection
 @section('page-header')
@@ -14,90 +14,79 @@
 @endsection
 @section('content')
     <!-- row -->
+    <div class="col-md-12 mb-30">
+        <div class="card card-statistics h-100">
+            <div class="card-body">
+                <a href="{{ route('Qui_create') }}" class="btn btn-success btn-sm" role="button"
+                   aria-pressed="true"> Add Quizze </a><br><br>
+                <div class="table-responsive" style="padding-bottom: 100px">
+                    <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
+                           data-page-length="50" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Test Name</th>
+                            <th>type</th>
+                            <th>Year</th>
+                            <th>Semester</th>
+                            <th>Process</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($quizzes as $quizze)
+                            <tr>
+                                <td>{{ $loop->iteration}}</td>
+                                <td>{{$quizze->name}}</td>
+                                <td>{{$quizze->type->name}}</td>
+                                <td>{{$quizze->year}}</td>
+                                <td>{{$quizze->semester}}</td>
+                                <td>
+                                    <div class="dropdown show">
+                                        <a class="btn btn-success btn-sm dropdown-toggle" href="#"
+                                           role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                           aria-haspopup="true" aria-expanded="false">
+                                            Action
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            {{--  view--}}
+                                            <a class="dropdown-item" target="_blank"
+                                               href=""><i
+                                                        style="color: #ffc107"
+                                                        class="far fa-eye "></i>&nbsp;   view</a>
+                                            {{--  mange--}}
+                                            <a class="dropdown-item"
+                                               href="{{route("quizze.manage",$quizze->id)}}"><i
+                                                        style="color:green" class="fa fa-tasks"></i>&nbsp;
+                                                mange</a>
+                                            {{--Edit--}}
+                                            <a class="dropdown-item"
+                                               href="{{route('Qui_edit',$quizze->id)}}"><i
+                                                        style="color: #83ae26" class="fa fa-edit"></i>&nbsp;
+                                                &nbsp; Edit</a>
+                                            {{--destroy--}}
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
-                <div class="card-body">
-                    <div class="col-xl-12 mb-30">
-                        <div class="card card-statistics h-100">
-                            <div class="card-body">
-                                <a href="{{route('Qui_create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">Add new test</a><br><br>
-                                <div class="table-responsive">
-                                    <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Test Name</th>
-                                            <th>Name Teacher</th>
-                                            <th>Grade</th>
-                                            <th>ClassRoom</th>
-                                            <th>Section</th>
-                                            <th>Process</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($quizzes as $quizze)
-                                            <tr>
-                                                <td>{{ $loop->iteration}}</td>
-                                                <td>{{$quizze->name}}</td>
-                                                <td>{{$quizze->teacher->Name}}</td>
-                                                <td>{{$quizze->grade->Name}}</td>
-                                                <td>{{$quizze->classroom->Name_Class}}</td>
-                                                <td>{{$quizze->section->Name_Section}}</td>
-                                                <td>
-                                                    <a href="{{route('Qui_edit',$quizze->id)}}"
-                                                       class="btn btn-info btn-sm" role="button" aria-pressed="true"><i
-                                                            class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm"
-                                                            data-toggle="modal"
-                                                            data-target="#delete_exam{{ $quizze->id }}" title="حذف"><i
-                                                            class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
+                                            <a class="dropdown-item"
+                                               data-toggle="modal"
+                                               data-target="#delete_exam{{ $quizze->id }}"
+                                            href=""><i
+                                                        style="color: red"
+                                                        class="fa fa-trash"></i>&nbsp;
+                                                &nbsp; delete</a>
 
-                                            <div class="modal fade" id="delete_exam{{$quizze->id}}" tabindex="-1"
-                                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <form action="{{route('Qui_destroy','test')}}" method="">
-                                                        {{method_field('')}}
-                                                        {{csrf_field()}}
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 style="font-family: 'Cairo', sans-serif;"
-                                                                    class="modal-title" id="exampleModalLabel">Test Delete</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p> {{ ('Warning Grade') }} {{$quizze->name}}</p>
-                                                                <input type="hidden" name="id" value="{{$quizze->id}}">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                            data-dismiss="modal">{{ ('Close') }}</button>
-                                                                    <button type="submit"
-                                                                            class="btn btn-danger">{{('Submit') }}</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
     <!-- row closed -->
 @endsection

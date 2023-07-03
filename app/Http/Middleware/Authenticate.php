@@ -14,7 +14,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
 
-                return route('view.login');
+                return route('welcome');
         }
     }
 }

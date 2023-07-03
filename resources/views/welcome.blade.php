@@ -34,7 +34,7 @@
 <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between">
 
-        <h1><a href="index.html"><span>.</span></a></h1>
+        <h1><a href="index.html"><span></span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -57,31 +57,31 @@
             <div class="col-xl-2 col-md-4">
                 <div class="icon-box">
                     <i  class="ri-user-line"></i>
-                    <h3><a href="">Student Data Management</a></h3>
+                    <h3><a >Student Data Management</a></h3>
                 </div>
             </div>
             <div class="col-xl-2 col-md-4">
                 <div class="icon-box">
                     <i class="ri-team-fill"></i>
-                    <h3><a href="">User Data Management</a></h3>
+                    <h3><a >User Data Management</a></h3>
                 </div>
             </div>
             <div class="col-xl-2 col-md-4">
                 <div class="icon-box">
                     <i class="ri-time-fill"></i>
-                    <h3><a href="">Timetable Data Management</a></h3>
+                    <h3><a >Timetable Data Management</a></h3>
                 </div>
             </div>
             <div class="col-xl-2 col-md-4">
                 <div class="icon-box">
                     <i class="ri-money-dollar-circle-fill"></i>
-                    <h3><a href="">Fees Data Management</a></h3>
+                    <h3><a>Fees Data Management</a></h3>
                 </div>
             </div>
             <div class="col-xl-2 col-md-4">
                 <div class="icon-box">
                     <i class="ri-book-open-fill"></i>
-                    <h3><a href="">Library Data Management</a></h3>
+                    <h3><a >Library Data Management</a></h3>
                 </div>
             </div>
         </div>

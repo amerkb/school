@@ -2,7 +2,7 @@
 @section('css')
     @toastr_css
 @section('title')
-    {{ ('title_page') }}
+    Grade list
 @stop
 @endsection
 @section('page-header')
@@ -14,7 +14,7 @@
 @endsection
 @section('content')
 <!-- row -->
-<div class="row">
+
 
 
     @if ($errors->any())
@@ -209,7 +209,7 @@
         </div>
     </div>
 
-</div>
+
 
 <!-- row closed -->
 @endsection

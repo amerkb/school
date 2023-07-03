@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\TimeTableController;
 use Illuminate\Support\Facades\Route;
 
 //#################################Start Auth###################################
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
     Route::get('/events', [EventController::class, 'get_event']);
 
 #################################End event####################################
+#################################Start Timetable###################################
+
+Route::group([ 'middleware' => 'user:student'], function ($router) {
+    Route::get('/GetTimeStudent', [TimeTableController::class, 'get_time_for_student']);
+
+});
+#################################End Timetable####################################

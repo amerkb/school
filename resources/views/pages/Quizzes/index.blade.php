@@ -50,7 +50,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             {{--  view--}}
                                             <a class="dropdown-item" target="_blank"
-                                               href=""><i
+                                               href="{{route("quizze.view",$quizze->id)}}"><i
                                                         style="color: #ffc107"
                                                         class="far fa-eye "></i>&nbsp;   view</a>
                                             {{--  mange--}}

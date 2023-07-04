@@ -31,22 +31,22 @@
             <table class="table datatable-button-html5-columns">
                 <thead>
                 <tr>
-                    <th>Days/Time</th>
+                    <th style="border:1px solid #343a40 ; text-align: center">Days/Time</th>
                @foreach($time_slot as $ts)
 
-                    <th>{{$ts->full}}</th>
+                    <th style="border:1px solid #343a40 ; text-align: center">{{$ts->full}}</th>
                     @endforeach
                 </tr>
                 </thead>
                 <tbody>
                      @foreach($days as $day)
                     <tr>
-                        <td>{{ $day->name }}</td>
+                        <td style="border:1px solid #343a40 ; text-align: center">{{ $day->name }}</td>
                         @foreach($time_slot as $ts)
                         @forelse (\App\Models\lecture::where('ts_id', $ts->id)->where('day_id', $day->id)->get() as $lecture)
-                                <td class="text-center font-weight-bold">{{$lecture->subject->name }}<br><span style="font-size: 12px ">({{$lecture->teacher->Name }})</span></td>
+                                <td style="border:1px solid #343a40 ; text-align: center" class="text-center font-weight-bold">{{$lecture->subject->name }}<br><span style="font-size: 12px ">({{$lecture->teacher->Name }})</span></td>
                             @empty
-                                <td class="text-center font-weight-bold" style="background-color: grey"><span style="color: whitesmoke">Empty</span></td>
+                                <td  class="text-center font-weight-bold" style="background-color: #343a40"><span style="color: whitesmoke">Empty</span></td>
                             @endforelse
                             @endforeach
                     </tr>

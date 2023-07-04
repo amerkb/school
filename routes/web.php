@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ResultController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeesController;
@@ -435,6 +436,20 @@ Route::get('destroyteacher', [TeacherController::class, 'destroy'])
         ->name('se.edit');
     Route::post('quizze/update/subject/{id}', [QuizzesController::class, 'se_update'])
         ->name('se.update');
+    Route::get('quizze/delete/subject/{id}', [QuizzesController::class, 'se_delete'])
+        ->name('se.delete');
+    Route::get('quizze/view/{id}', [QuizzesController::class, 'se_view'])
+        ->name('quizze.view');
+    //////////////// Result
+
+    Route::get('/result', [ResultController::class, 'index'])
+        ->name('ru.index');
+    Route::get('/class/{id}', [ResultController::class, 'class'])
+        ->name('ru.class');
+    Route::get('/section/{id}', [ResultController::class, 'section'])
+        ->name('ru.section');
+
+
 ////////////   Questions
 
 

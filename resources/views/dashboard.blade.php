@@ -89,7 +89,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Number Students :</h5>
+                                    <h5 class="card-text text-white">Students Number :</h5>
                                     <h4 class="text-white">{{\App\Models\Student::count()}}</h4>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Number Teacher :</h5>
+                                    <h5 class="card-text text-white">Teacher Number :</h5>
                                     <h4 class="text-white">{{\App\Models\Teacher::count()}}</h4>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Number Parent :</h5>
+                                    <h5 class="card-text text-white">Parent Number :</h5>
                                     <h4 class="text-white">{{\App\Models\MyParent::count()}}</h4>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Number Section :</h5>
+                                    <h5 class="card-text text-white">Section Number:</h5>
                                     <h4 class="text-white">{{\App\Models\Section::count()}}</h4>
                                 </div>
                             </div>

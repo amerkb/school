@@ -43,7 +43,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="add-tt">
                     <div class="col-md-8">
-                        <form class="ajax-store" method="post" action="{{route('se.update',$Quizze->id)}}">
+                        <form class="ajax-store" method="post" action="{{route('se.update',$se->id)}}">
                             @csrf
 
 
@@ -67,8 +67,8 @@
                                     <select required data-placeholder="Select Class"style="height: 50px" class="form-control select"
                                             name="Classroom_id" id="teacher_id">
                                         <option selected disabled>{{('Choose')}}...</option>
-                                        @foreach($subjects as $subject)
-                                            <option {{ $subject-> id == $se->subject_id ? 'selected' : '' }} value="{{ $subject->id }}">{{ $subject->Name }}</option>
+                                        @foreach($classes as $class)
+                                            <option {{ $class-> id == $se->classroom_id ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->Name_Class }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -92,7 +92,7 @@
                                     <select required data-placeholder="Select Class"style="height: 50px" class="form-control select" name="ts_id" id="ts_id">
                                         <option selected disabled>{{('Choose')}}...</option>
                                         @foreach($ts as $ts)
-                                            <option  value="{{ $ts->id }}">{{ $ts->full }}</option>
+                                            <option {{ $ts-> id == $se->ts_id ? 'selected' : '' }} value="{{ $ts->id }}">{{ $ts->full }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -102,7 +102,7 @@
                                 <div class="col-lg-9">
                                     <div class="form-group">
                                         <input class="form-control" type="text"
-                                               id="datepicker-action" placeholder="Choose" name="date" data-date-format="yyyy-m-d">
+                                               id="datepicker-action" placeholder="Choose" value="{{$se->date}}" name="date" data-date-format="yyyy-m-d">
                                     </div>
                                 </div>
                             </div>

@@ -446,6 +446,21 @@
                     </nav>
 
                 </div>
+                {{--          Result      --}}
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                   data-bs-target="#Result" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>
+                    Results
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+
+                <div class="collapse" id="Result" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href=""> Add Result</a>
+                        <a class="nav-link" href="{{ route('ru.index') }}"> Result List</a>
+                    </nav>
+
+                </div>
                 {{--          timetable      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#timetable" aria-expanded="false" aria-controls="collapseLayouts">

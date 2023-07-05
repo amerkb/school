@@ -34,7 +34,7 @@
     @endif
 
 
-
+    <div class="card">
 
 
         <div class="card-body">
@@ -114,7 +114,7 @@
             <button class="btn btn-success" type="submit">{{ ('Submit') }}</button>
         </P>
     </form><br>
-        </div>
+        </div></div>
     <!-- row closed -->
 @endsection
 @section('js')

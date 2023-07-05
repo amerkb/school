@@ -456,8 +456,7 @@
 
                 <div class="collapse" id="Result" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('ru.create') }}"> Add Result</a>
-                        <a class="nav-link" href=""> Result List</a>
+                        <a class="nav-link" href="{{ route('Result_index') }}"> Add Result</a>
                     </nav>
 
                 </div>
@@ -530,8 +529,8 @@
                 </a>
             </div>
         </div>
-        <div class="sb-sidenav-footer">
-        </div>
+{{--        <div class="sb-sidenav-footer">--}}
+{{--        </div>--}}
     </nav>
 </div>
 

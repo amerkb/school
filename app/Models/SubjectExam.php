@@ -15,6 +15,10 @@ class SubjectExam extends Model
     {
         return $this->belongsTo(TimeSlote::class, 'ts_id');
     }
+    public function quizze()
+    {
+        return $this->belongsTo(Quizze::class, 'quizze_id');
+    }
     public function subject()
     {
         return $this->belongsTo('App\Models\Subject', 'subject_id');

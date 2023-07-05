@@ -16,7 +16,11 @@
     <!-- Style -->
     <link rel="stylesheet" href="login-form-07/css/style.css">
 
+
+    <title>Login</title>
+
     <title>Login </title>
+
   </head>
   <body>
 

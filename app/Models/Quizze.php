@@ -17,6 +17,10 @@ class Quizze extends Model
     {
         return $this->belongsTo(Type_Exam::class, 'type_exam_id');
     }
+    public function se()
+    {
+        return $this->hasMany(SubjectExam::class, 'quizze_id');
+    }
 
 
 

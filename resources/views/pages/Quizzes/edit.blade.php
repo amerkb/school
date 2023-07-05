@@ -62,7 +62,19 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="academic_year">{{('Year')}} : <span class="text-danger"></span></label>
+                                            <select required class="custom-select mr-sm-2" name="Year">
+                                                <option selected disabled>{{('Choose')}}...</option>
+                                                @php
+                                                    $current_year = date("Y");
+                                                @endphp
+                                                @for($year=$current_year-1; $year<=$current_year +1 ;$year++)
+                                                    <option  {{ $quizz->year == $year."-".$year +1 ? 'selected' : '' }} value="{{ $year."-".$year +1}}">{{ $year."-".$year +1 }}</option>
+                                                @endfor
+                                            </select>
+                                        </div></div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="Grade_id">Type : <span class="text-danger"></span></label>
@@ -91,8 +103,8 @@
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+{{--    @toastr_js--}}
+{{--    @toastr_render--}}
     <script>
         $(document).ready(function () {
             $('select[name="Grade_id"]').on('change', function () {

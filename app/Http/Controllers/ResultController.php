@@ -8,24 +8,86 @@ use App\Models\Grade;
 use App\Models\Quizze;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\SubjectExam;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use App\Repository\ResultRepositoryInterface;
+use LDAP\Result;
 
 class ResultController extends Controller
 {
-    public function grade(){
-         $data["grades"]=Grade::all();
-        return view("grade",$data);
+    use GeneralTrait;
+    protected $result;
+
+    public function __construct(ResultRepositoryInterface $result)
+    {
+        $this->result = $result;
     }
-    public function class($id_grade){
-        $data["classes"]=Classroom::where("Grade_id",$id_grade)->get();
-        return view("class",$data);
+
+    
+    public function index()
+    {
+        return $this->result->index();
     }
-    public function section($id_class){
-        $data["sections"]=Section::where("Class_id",$id_class)->get();
-        return view("section",$data);
+
+    public function store(Request $request)
+    {
+        return $this->result->store($request);
     }
-    public function create(){
-        $data["quizzes"]=Quizze::orderBy('year', 'DESC')->get();
-        return view("pages.results.add",$data);
+
+    public function create()
+    {
+        $data["quizzes"] = Quizze::orderBy('year', 'DESC')->get();
+        return view("pages.results.add", $data);
+    }
+
+
+    public function show($id,$year,$id_se)
+    {
+        return $this->result->show($id,$year,$id_se);
+
+}
+    public function show_exam($id_section)
+    {
+        $id_class=Section::where("id",$id_section)->pluck("Class_id")[0];
+        $data["exams"] = Quizze::with("se")
+            ->whereHas("se", function($query) use($id_class) {
+                $query->where("classroom_id", $id_class);
+            })
+            ->orderBy("year","DESC")->get();
+        $data["id_section"]=$id_section;
+        return view("pages.Result.Exem",$data);
+
+    }
+    public function ur_store(Request $request,$id_se)
+    {
+
+        $results=[];
+        $index=0;
+        foreach ( $request->status_id as $student=>$status){
+            $index++;
+            $results[$index]["student_id"]=$student;
+            $results[$index]["status"]=$status;
+    }
+        $index=0;
+        foreach ( $request->degree_id as $student=>$degree){
+            $index++;
+            $results[$index]["degree"]=$degree;
+            $results[$index]["quizzes_subject_id"]=$id_se;
+
+        }
+        foreach ( $results as $result){
+            \App\Models\Result::updateOrCreate(
+           ['student_id' =>$result["student_id"], 'quizzes_subject_id' =>$id_se],
+           [
+               "student_id"=>$result["student_id"],
+               "status"=>$result["status"],
+               "degree"=>$result["degree"],
+               "quizzes_subject_id"=>$result["quizzes_subject_id"],
+           ]
+
+       );}
+        toastr()->success("success");
+        return redirect()->back();
     }
 }

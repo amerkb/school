@@ -16,6 +16,7 @@ class StudentFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
             "name"=> $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -28,7 +29,7 @@ class StudentFactory extends Factory
             'Classroom_id' => $this->faker->numberBetween(1,4),
             'section_id' =>$this->faker->numberBetween(1,8),
             "parent_id"=>$this->faker->numberBetween(1,10),
-            "academic_year"=>$this->faker->date(),
+            "academic_year"=>"2023-2024",
 
 
 

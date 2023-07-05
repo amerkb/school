@@ -15,7 +15,18 @@
 @section('content')
     <!-- row -->
 
-
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
                 <div class="card-body">
 
                     @if(session()->has('error'))
@@ -60,7 +71,19 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <div class="col">
+                                    <div class="form-group">
+                                        <label for="academic_year">{{('Year')}} : <span class="text-danger"></span></label>
+                                        <select required class="custom-select mr-sm-2" name="Year">
+                                            <option selected disabled>{{('Choose')}}...</option>
+                                            @php
+                                                $current_year = date("Y");
+                                            @endphp
+                                            @for($year=$current_year-1; $year<=$current_year +1 ;$year++)
+                                                <option value="{{ $year."-".$year +1}}">{{ $year."-".$year +1 }}</option>
+                                            @endfor
+                                        </select>
+                                    </div></div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="Grade_id">Type : <span class="text-danger"></span></label>

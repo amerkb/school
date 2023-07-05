@@ -28,14 +28,12 @@ class QuizzRepository implements QuizzRepositoryInterface
 
     public function store($request)
     {
-
         try {
-            $year=Carbon::now()->format('Y');
             $quizzes = new Quizze();
             $quizzes->name =  $request->Name_en;
             $quizzes->type_exam_id = $request->type_id;
             $quizzes->semester = $request->semester;
-            $quizzes->year = $year;
+            $quizzes->year = $request->Year;
             $quizzes->save();
             toastr()->success(trans('success'));
             return redirect()->route('Qui_index');
@@ -60,6 +58,7 @@ class QuizzRepository implements QuizzRepositoryInterface
             $quizzes->name =  $request->Name_en;
             $quizzes->type_exam_id = $request->type_id;
             $quizzes->semester = $request->semester;
+            $quizzes->year= $request->Year;
             $quizzes->save();
             toastr()->success(('Update'));
             return redirect()->route('Qui_index');

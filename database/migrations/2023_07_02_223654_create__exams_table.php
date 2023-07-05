@@ -47,6 +47,14 @@ return new class extends Migration
             $table->foreignId('quizze_id')->references('id')->on('quizzes')->onDelete('cascade');
             $table->timestamps();
         });
+        Schema::create('results', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('quizzes_subject_id')->references('id')->on('quizzes_subject')->onDelete('cascade');
+            $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->integer('degree');
+            $table->string('status');
+            $table->timestamps();
+        });
     }
 
 

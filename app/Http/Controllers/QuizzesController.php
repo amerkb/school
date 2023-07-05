@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuizzeRequest;
 use App\Http\Requests\SubjectexamRequest;
 use App\Models\Classroom;
 use App\Models\Grade;
@@ -35,7 +36,7 @@ class QuizzesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(QuizzeRequest $request)
     {
         return $this->Quizz->store($request);
     }
@@ -50,7 +51,7 @@ class QuizzesController extends Controller
         return $this->Quizz->edit($id);
     }
 
-    public function update(Request $request)
+    public function update(QuizzeRequest $request)
     {
         return $this->Quizz->update($request);
     }

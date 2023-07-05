@@ -19013,14 +19013,14 @@ svg {
   padding: 12px 24px; }
 .accordion.gray .acd-heading:hover {
   color: #ffffff;
-  background: #84ba3f; }
+  background: #198754; }
 
 .accordion.gray .acd-des {
   padding: 0 30px 20px; }
 
 .accordion.gray .acd-group.acd-active .acd-heading {
   color: #ffffff;
-  background: #84ba3f; }
+  background: #198754; }
 
 /*shadow*/
 .accordion.shadow .acd-heading {
@@ -19036,11 +19036,11 @@ svg {
 
 .accordion.shadow .acd-group.acd-active .acd-heading {
   color: #ffffff;
-  background: #84ba3f; }
+  background: #198754; }
 
 .accordion.shadow .acd-group .acd-heading:hover {
   color: #ffffff;
-  background: #84ba3f; }
+  background: #198754; }
 
 /*border*/
 .accordion.accordion-border .acd-heading {

@@ -29,8 +29,7 @@ use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\FeesInvoicesController;
 use App\Http\Controllers\UserController;
-
-
+use LDAP\Result;
 
 //Auth::routes();
 
@@ -635,4 +634,17 @@ Route::get('ori_edit{id}', [UserController::class, 'edit'])
 
     Route::get('ori_destroy', [UserController::class, 'destroy'])
         ->name('ori_destroy');});
+
+
+///////////  Result Students
+
+
+    Route::get('Result_index', [ResultController::class, 'index'])
+    ->name('Result_index');
+
+Route::get('Result_store', [ResultController::class, 'store'])
+    ->name('Result_store');
+
+Route::get('Result_show{id}', [ResultController::class, 'show'])
+    ->name('Result_show');
 

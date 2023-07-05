@@ -70,6 +70,10 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repository\UserRepositoryInterface',
             'App\Repository\UserRepository');
+
+        $this->app->bind(
+            'App\Repository\ResultRepositoryInterface',
+            'App\Repository\ResultRepository');
     }
     /**
      * Bootstrap services.

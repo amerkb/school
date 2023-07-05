@@ -7,24 +7,35 @@ use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Student;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use App\Repository\ResultRepositoryInterface;
+use LDAP\Result;
 
 class ResultController extends Controller
 {
-    public function grade(){
-         $data["grades"]=Grade::all();
-        return view("grade",$data);
+    use GeneralTrait;
+    protected $result;
+
+    public function __construct(ResultRepositoryInterface $result)
+    {
+        $this->result = $result;
     }
-    public function class($id_grade){
-        $data["classes"]=Classroom::where("Grade_id",$id_grade)->get();
-        return view("class",$data);
+
+    
+    public function index()
+    {
+        return $this->result->index();
     }
-    public function section($id_class){
-        $data["sections"]=Section::where("Class_id",$id_class)->get();
-        return view("section",$data);
+
+    public function store(Request $request)
+    {
+        return $this->result->store($request);
     }
-    public function index(){
-        $data["students"]=Student::all();
-        return view("pages.results.index",$data);
+
+
+    public function show($id)
+    {
+        return $this->result->show($id);
     }
 }

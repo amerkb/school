@@ -47,9 +47,9 @@
                 <th class="alert-success">{{ ('Name') }}</th>
                 <th class="alert-success">{{ ('Email') }}</th>
                 <th class="alert-success">{{ ('Gender') }}</th>
-                <th class="alert-success">{{ ('Grade') }}</th>
+                {{-- <th class="alert-success">{{ ('Grade') }}</th>
                 <th class="alert-success">{{ ('Classrooms') }}</th>
-                <th class="alert-success">{{ ('Section') }}</th>
+                <th class="alert-success">{{ ('Section') }}</th> --}}
                 <th class="alert-success">{{ ('Processes') }}</th>
             </tr>
             </thead>
@@ -60,9 +60,9 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->gender->Name }}</td>
-                    <td>{{ $student->grade->Name }}</td>
+                    {{-- <td>{{ $student->grade->Name }}</td>
                     <td>{{ $student->classroom->Name_Class }}</td>
-                    <td>{{ $student->section->Name_Section }}</td>
+                    <td>{{ $student->section->Name_Section }}</td> --}}
                     <td>
 
                         @if(isset($student->attendance()->where('attendence_date',date('Y-m-d'))->first()->student_id))

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
+use App\Models\Quizze;
 use App\Models\Subject;
+use App\Models\SubjectExam;
 use App\Repository\SubjectRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -60,6 +62,12 @@ class SubjectController extends Controller
     {
 
         $list_classes = Subject::where("classroom_id", $id)->pluck("name", "id");
+        return $list_classes;
+    }
+    public function Get_Subject_quizze($id_q)
+    {
+        $id_subject=SubjectExam::where("quizze_id",$id_q)->pluck("subject_id");
+        $list_classes = Subject::whereIn("id", $id_subject)->pluck("name", "id");
         return $list_classes;
     }
 }

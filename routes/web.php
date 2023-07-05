@@ -201,6 +201,8 @@ Route::get('destroyteacher', [TeacherController::class, 'destroy'])
 
     Route::get('Get_Subject/{id}', [SubjectController::class, 'Get_Subject'])
         ->name('Get_Subject');
+    Route::get('Get_Subject_quizze/{id}', [SubjectController::class, 'Get_Subject_quizze'])
+        ->name('Get_Subject_quizze');
 
     Route::get('Get_Sections/{id}', [StudentController::class, 'Get_Sections'])
         ->name('Get_Sections');
@@ -442,8 +444,8 @@ Route::get('destroyteacher', [TeacherController::class, 'destroy'])
         ->name('quizze.view');
     //////////////// Result
 
-    Route::get('/result', [ResultController::class, 'index'])
-        ->name('ru.index');
+    Route::get('/create/result', [ResultController::class, 'create'])
+        ->name('ru.create');
     Route::get('/class/{id}', [ResultController::class, 'class'])
         ->name('ru.class');
     Route::get('/section/{id}', [ResultController::class, 'section'])

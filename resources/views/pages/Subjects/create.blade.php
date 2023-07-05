@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css*/--}}
 @section('title')
-    اضافة مادة دراسية
+    Add Subject
 @stop
 @endsection
 @section('page-header')
@@ -15,8 +15,7 @@
 @section('content')
 <!-- row -->
 
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
+
             <div class="card-body">
 
                 @if (session()->has('error'))
@@ -72,24 +71,15 @@
                                 </div> --}}
 
 
-                                <div class="form-group col">
-                                    <label for="inputState">Name Teacher</label>
-                                    <select class="custom-select my-1 mr-sm-2" name="teacher_id">
-                                        <option selected disabled>{{ 'Choose' }}...</option>
-                                        @foreach ($teachers as $teacher)
-                                            <option value="{{ $teacher->id }}">{{ $teacher->Name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                             </div>
-                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right"
-                                type="submit">Save</button>
+                            <div class="text-center">
+                                <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fa fa-send"></i></button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 
 <!-- row closed -->
 @endsection

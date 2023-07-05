@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    @toastr_css--}}
 @section('title')
-    قائمة المواد الدراسية
+Subjects List
 @stop
 @endsection
 @section('page-header')
@@ -14,15 +14,9 @@
 @endsection
 @section('content')
     <!-- row -->
-
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
-                <div class="card-body">
-                    <div class="col-xl-12 mb-30">
-                        <div class="card card-statistics h-100">
-                            <div class="card-body">
+    <div class="card-body">
                                 <a href="{{route('Sub_create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">اضافة مادة جديدة</a><br><br>
+                                   aria-pressed="true">Add Subject</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -30,11 +24,10 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم المادة</th>
-                                            <th>المرحلة الدراسية</th>
-                                            <th>الصف الدراسي</th>
-                                            <th>اسم المعلم</th>
-                                            <th>العمليات</th>
+                                            <th> name subject</th>
+                                            <th> classes</th>
+                                            <th> category </th>
+                                            <th> action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -42,7 +35,6 @@
                                             <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$subject->name}}</td>
-                                            <td>{{$subject->grade->Name}}</td>
                                             <td>{{$subject->classroom->Name_Class}}</td>
                                             <td>{{$subject->teacher->Name}}</td>
                                                 <td>
@@ -83,11 +75,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection

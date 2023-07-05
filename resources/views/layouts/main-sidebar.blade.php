@@ -435,14 +435,14 @@
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Quizzes" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa fa-bookmark"></i></div>
-                    Quizzes
+                    Exems
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
 
                 <div class="collapse" id="Quizzes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('Qui_index') }}"> Quizzes List</a>
-                        <a class="nav-link" href="{{ route('Ques_index') }}"> Questions List</a>
+                        <a class="nav-link" href="{{ route('Qui_index') }}"> Exem List</a>
+{{--                        <a class="nav-link" href="{{ route('Ques_index') }}"> Questions List</a>--}}
                     </nav>
 
                 </div>
@@ -456,8 +456,8 @@
 
                 <div class="collapse" id="Result" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href=""> Add Result</a>
-                        <a class="nav-link" href="{{ route('ru.index') }}"> Result List</a>
+                        <a class="nav-link" href="{{ route('ru.create') }}"> Add Result</a>
+                        <a class="nav-link" href=""> Result List</a>
                     </nav>
 
                 </div>

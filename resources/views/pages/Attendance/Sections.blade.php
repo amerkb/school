@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
 @section('title')
     {{ 'title_page' }}: الحضور والغياب
 @stop
@@ -14,9 +13,7 @@
 @endsection
 @section('content')
 <!-- row -->
-<div class="row">
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
+
             <div class="card-body">
                 <a class="button x-small" href="#" data-toggle="modal" data-target="#exampleModal">
                     {{ 'Add Section' }}</a>
@@ -106,8 +103,6 @@
 <!-- row closed -->
 @endsection
 @section('js')
-@toastr_js
-@toastr_render
 <script>
     $(document).ready(function() {
         $('select[name="Grade_id"]').on('change', function() {

@@ -51,16 +51,16 @@ class AttendanceController extends Controller
                 return $this->returnData("attendances" ,$AttendanceTransfermer,"count_attendances",$attendances->count());
             }
 
-            elseif ($request->role=="parent"){
-                $parent= MyParent::with("children")->find(Auth::guard($request->role)->id());
-                $attendances= Attendance::where("student_id",$parent["children"][0]["id"])->get();
-                $AttendanceTransfermer=[];
-                foreach ($attendances as $index=> $attendance){
-                    $AttendanceTransfermer[$index] = fractal($attendance, new AttendanceTransformer())->toArray();
-                    $AttendanceTransfermer[$index]= $AttendanceTransfermer[$index]["data"];
-                }
-                return $this->returnData("attendances" ,$AttendanceTransfermer,"count_attendances",$attendances->count());
-            }
+//            elseif ($request->role=="parent"){
+//                $parent= MyParent::with("children")->find(Auth::guard($request->role)->id());
+//                $attendances= Attendance::where("student_id",$parent["children"][0]["id"])->get();
+//                $AttendanceTransfermer=[];
+//                foreach ($attendances as $index=> $attendance){
+//                    $AttendanceTransfermer[$index] = fractal($attendance, new AttendanceTransformer())->toArray();
+//                    $AttendanceTransfermer[$index]= $AttendanceTransfermer[$index]["data"];
+//                }
+//                return $this->returnData("attendances" ,$AttendanceTransfermer,"count_attendances",$attendances->count());
+//            }
 
         }
       catch (\Exception $e) {

@@ -43,7 +43,6 @@ class AttendanceRepository implements AttendanceRepositoryInterface
                     'grade_id'=> $request->grade_id,
                     'classroom_id'=> $request->classroom_id,
                     'section_id'=> $request->section_id,
-                    'teacher_id'=> 1,
                     'attendence_date'=> date('Y-m-d'),
                     'attendence_status'=> $attendence_status
                 ]);

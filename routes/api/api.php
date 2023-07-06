@@ -4,6 +4,8 @@ use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\ChatController;
 use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\QuizzesController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +34,8 @@ Route::group(['prefix' => 'chat', 'middleware' => 'user:'.implode(',', $pts)], f
 Route::group([ 'middleware' => 'user:'.implode(',', $ps)], function ($router) {
     Route::get('/GetAttendance', [AttendanceController::class, 'get_attendance_for_student']);
     Route::get('/GetTeacher', [TeacherController::class, 'get_teachers_for_student']);
-
+    Route::get('/GetQuizze', [QuizzesController::class, 'get_quizze_for_student']);
+    Route::get('/GetResult', [ResultController::class, 'get_result_for_student']);
 });
 
 #################################End Attendance####################################

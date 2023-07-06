@@ -12,12 +12,15 @@ use App\Models\Subject;
 use App\Models\SubjectExam;
 use App\Models\TimeSlote;
 use App\Repository\QuizzRepositoryInterface;
+use App\Traits\GeneralTrait;
+use App\Transformers\QuizzeTransformer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizzesController extends Controller
 {
-
+    use GeneralTrait;
     protected $Quizz;
 
     public function __construct(QuizzRepositoryInterface $Quizz)
@@ -190,6 +193,34 @@ class QuizzesController extends Controller
         $data["date"] = $date;
 ;        return view('pages.Quizzes.view',$data);
     }
+    public function get_quizze_for_student(Request $request)
+    {
+
+        try {
+            if($request->role=="student"){
+                $class=Auth::guard($request->role)->user()->Classroom_id;
+                $year=Auth::guard($request->role)->user()->academic_year;
+
+                $quizzes= Quizze::with("se")
+                    ->whereHas("se", function($query) use($class) {
+                        $query->where("classroom_id", $class);
+                    })
+                    ->where("year", $year)->get();
+                $quizzesTransfermer=[];
+                foreach ($quizzes as $index=> $quizze){
+                    $quizzesTransfermer[$index] = fractal($quizze, new QuizzeTransformer())->toArray();
+                    $quizzesTransfermer[$index]= $quizzesTransfermer[$index]["data"];
+                }
+                return $this->returnData("quizzes" ,$quizzesTransfermer,"count_quizzes",$quizzes->count());
+            }
+
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+
 
 
 }

@@ -4,7 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 
-class AttendanceTransformer extends TransformerAbstract
+class ResultTransformer extends TransformerAbstract
 {
     /**
      * List of resources to automatically include
@@ -29,12 +29,15 @@ class AttendanceTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform($Attendance)
+    public function transform($result)
     {
         return [
-            "attendance_id"=>$Attendance->id,
-            "attendence_date"=>$Attendance->attendence_date,
-            "attendence_status"=>$Attendance->attendence_status,
+            "result_id"=>$result->id,
+            "result_degree"=>$result->degree,
+            "result_status"=>$result->status,
+            "subject_name"=>$result->se->subject->name,
+            "subject_date"=>$result->se->date,
+            "subject_time"=>$result->se->timeslot->full,
 
         ];
     }

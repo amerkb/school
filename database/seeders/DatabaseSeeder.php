@@ -34,6 +34,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Type_UserSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(Type_examrSeeder::class);
+        $this->call(teacherSectionSeeder::class);
+        $this->call(QuizzesTableSeeder::class);
+        $this->call(TimeTableTableSeeder::class);
 
 
         Teacher::create([

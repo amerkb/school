@@ -76,17 +76,32 @@
                                     </div>
                             </div>
                             <div class="form-group row">
+                                <label for="semester_id" class="col-lg-3 col-form-label font-weight-semibold">Year <span class="text-danger">*</span></label>
+                                <div class="col-lg-9">
+
+                                    <select class="form-control select" style="height: 50px;" name="Year">
+                                        <option selected disabled>{{('Choose')}}...</option>
+                                        @php
+                                            $current_year = date("Y");
+                                        @endphp
+                                        @for($year=$current_year-1; $year<=$current_year +1 ;$year++)
+                                            <option value="{{ $year."-".$year +1}}">{{ $year."-".$year +1 }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="semester_id" class="col-lg-3 col-form-label font-weight-semibold">Semester <span class="text-danger">*</span></label>
                                 <div class="col-lg-9">
-                                    
+
                                     <select required data-placeholder="Select Class"style="height: 50px"  class="form-control select" name="semester_id" id="semester_id">
                                         <option selected disabled>{{('Choose')}}...</option>
                                         <option  value= 1 > the first semester </option>
                                         <option value= 2 > the second semester </option>
                                     </select>
                                 </div>
-                            </div>  
-                        </div>
+                            </div>
+                    </div>
                             </div>
 
                                 </div>

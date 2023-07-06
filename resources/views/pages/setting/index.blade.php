@@ -91,8 +91,9 @@
                                 <label class="col-lg-2 col-form-label font-weight-semibold">The end of the first term
                                 </label>
                                 <div class="col-lg-9">
-                                    <input name="end_first_term" value="{{ $setting['end_first_term'] }}" type="text"
-                                        class="form-control date-pick" placeholder="Date Term Ends">
+                                    <input class="form-control date-pick" type="text" value="{{ $setting['end_first_term'] }}"
+                                           id="datepicker-action" name="end_first_term" data-date-format="yyyy-m-d">
+
                                 </div>
                             </div>
                             <div class="form-group row">

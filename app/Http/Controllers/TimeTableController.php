@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LectureRequest;
 use App\Models\Day;
 use App\Models\Lecture;
+use App\Models\Setting;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlote;
@@ -40,13 +41,13 @@ class TimeTableController extends Controller
      */
     public function create(TtrRequest $request)
     {
-        $year=Carbon::now()->format('Y');
+
 
         try {
             $programme=TimeTableRecord::where([
             ["section_id",$request->section_id],
             ["semester",$request->semester_id],
-            ["year",$year]
+            ["year",$request->Year]
             ]
             )->get();
 
@@ -62,7 +63,7 @@ class TimeTableController extends Controller
                 "classroom_id"=>$request->Classroom_id,
                 "section_id"=>$request->section_id,
                 "semester"=>$request->semester_id,
-                "year"=>$year,
+                "year"=>$request->Year,
             ]);
             toastr()->success(('Created'));
             return redirect()->route("ttr_show");
@@ -150,19 +151,18 @@ class TimeTableController extends Controller
      */
     public function update(TtrRequest $request,  $id)
     {
-        $year=Carbon::now()->format('Y');
-
+//        return $request;
         try {
             $programme1=TimeTableRecord::where([
                     ["section_id",$request->section_id],
                     ["semester",$request->semester_id],
-                    ["year",$year]
+                    ["year",$request->Year]
                 ]
             )->where('id', '=', $id)->get();
             $programme2=TimeTableRecord::where([
                     ["section_id",$request->section_id],
                     ["semester",$request->semester_id],
-                    ["year",$year]
+                    ["year",$request->Year]
                 ]
             )->where('id', '!=', $id)->get();
 
@@ -179,7 +179,7 @@ class TimeTableController extends Controller
                 "classroom_id"=>$request->Classroom_id,
                 "section_id"=>$request->section_id,
                 "semester"=>$request->semester_id,
-                "year"=>$year,
+                "year"=>$request->Year,
             ]);
             toastr()->success(('Updated'));
             return redirect()->route("ttr_show");
@@ -527,9 +527,20 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
 }
     public function get_time_for_student(Request $request)
     {
-        $year=Carbon::now()->format('Y');
+        $end_first_term=  Setting::where("key","end_first_term")->pluck("value")[0];
+        $end_first_term = Carbon::createFromFormat("Y-m-d",$end_first_term);
+        $Current_year=Carbon::createFromFormat("Y-m-d",Carbon::now()->format("Y-m-d"));
+        $semster=0;
+        if ($Current_year->gt($end_first_term)){
+            $semster=2;
+        }
+        if ($Current_year->lte($end_first_term)){
+            $semster=1;
+        }
         $section_id=  Auth::guard($request->role)->user()->section_id;
-        $ttr= TimeTableRecord::with("lecture")->where([["year",$year],["section_id",$section_id]])->get();
+        $year=     Auth::guard($request->role)->user()->academic_year;
+        $ttr= TimeTableRecord::with("lecture")->where([["year",$year],["section_id",$section_id]
+            ,["semester",$semster]])->get();
         $ttrTransfermer=[];
         foreach ($ttr as $index=> $tr){
             $ttrTransfermer[$index] = fractal($tr, new TimeTableTransformer())->toArray();

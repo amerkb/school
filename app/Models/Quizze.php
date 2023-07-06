@@ -12,6 +12,15 @@ class Quizze extends Model
     {
         return $this->belongsTo('App\Models\Teacher', 'teacher_id');
     }
+    public function results()
+    {
+        return $this->hasManyThrough(
+            Result::class,
+            SubjectExam::class,
+            'quizze_id',
+            'quizzes_subject_id',
+        );
+    }
 
     public function Type()
     {

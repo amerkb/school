@@ -27,6 +27,7 @@ class TtrRequest extends FormRequest
             "Classroom_id"=>"required",
             "section_id"=>"required",
             "semester_id"=>"required",
+            "Year"=>"required",
         ];
     }
 }

@@ -10,8 +10,10 @@ use App\Models\Section;
 use App\Models\Student;
 use App\Models\SubjectExam;
 use App\Traits\GeneralTrait;
+use App\Transformers\ResultTransformer;
 use Illuminate\Http\Request;
 use App\Repository\ResultRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use LDAP\Result;
 
 class ResultController extends Controller
@@ -90,4 +92,25 @@ class ResultController extends Controller
         toastr()->success("success");
         return redirect()->back();
     }
+    public function get_result_for_student(Request $request)
+    {
+        $id_quizze=$request->id_quizze;
+        $id=Auth::guard($request->role)->id();
+    $quizze = Quizze::find($id_quizze);
+           $results = $quizze->results->filter(function ($result) use($id) {
+            return $result->student_id==$id;
+        });
+        $resultsTransfermer=[];
+        $i=0;
+        foreach ($results as  $result){
+
+            $resultsTransfermer[$i] = fractal($result, new ResultTransformer())->toArray();
+            $resultsTransfermer[$i]= $resultsTransfermer[$i]["data"];
+            $i++;
+        }
+        return $this->returnData("results" ,$resultsTransfermer,"count_results",$results->count());
+
+//        return$q= Quizze::with("results")->get();
+    }
+
 }

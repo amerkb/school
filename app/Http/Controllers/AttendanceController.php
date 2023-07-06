@@ -42,7 +42,8 @@ class AttendanceController extends Controller
     {
         try {
             if($request->role=="student"){
-               $attendances= Attendance::where("student_id",Auth::guard($request->role)->id())->get();
+               $attendances= Attendance::where("student_id",Auth::guard($request->role)->id())->
+               where("attendence_status",0)->get();
                 $AttendanceTransfermer=[];
                 foreach ($attendances as $index=> $attendance){
                     $AttendanceTransfermer[$index] = fractal($attendance, new AttendanceTransformer())->toArray();

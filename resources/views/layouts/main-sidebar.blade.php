@@ -382,8 +382,8 @@
 
                 <div class="collapse" id="Parents" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ url('add_parent') }}"> Add Parents</a>
-                        <a class="nav-link" href=""> Parents List</a>
+                        <a class="nav-link" href="{{ url('add_parent') }}"> Parents List</a>
+{{--                        <a class="nav-link" href=""> Parents List</a>--}}
                     </nav>
                 </div>
                 {{--          Accounts      --}}
@@ -426,7 +426,7 @@
 
                 <div class="collapse" id="Subjects" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="">Add subjects </a>
+                        <a class="nav-link" href="{{ route('Sub_create') }}">Add subjects </a>
                         <a class="nav-link" href="{{ route('Sub_index') }}">Subjects list</a>
                     </nav>
 
@@ -515,7 +515,7 @@
 
         <div class="collapse" id="Users" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-                <a  class="nav-link" href="">Add user</a>
+                <a  class="nav-link" href="{{route(('ori_create'))}}">Add user</a>
                 <a  class="nav-link" href="{{route(('ori_index'))}}"> User List</a>
             </nav>
 

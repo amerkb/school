@@ -88,7 +88,7 @@
                                         <div class="form-group">
                                             <label for="Grade_id">Type : <span class="text-danger"></span></label>
                                             <select required class="custom-select mr-sm-2" name="type_id">
-                                                <option selected disabled>Chose</option>
+                                                <option selected disabled>Choose</option>
                                                 @foreach($types as $type)
                                                     <option  value="{{ $type->id }}">{{ $type->name }}</option>
                                                 @endforeach
@@ -105,7 +105,7 @@
 
                                 <div class="text-center">
                                     <button id="ajax-btn" type="submit"
-                                            class="btn btn-primary">Submit form <i class="fas fa-send"></i></button>
+                                            class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
                                 </div>
                             </form>
                         </div>

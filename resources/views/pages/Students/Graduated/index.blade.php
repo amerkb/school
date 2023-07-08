@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css */ --}}
 @section('title')
     {{ 'List Graduate' }}
 @stop
@@ -14,11 +14,7 @@
 @endsection
 @section('content')
 <!-- row -->
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div class="col-xl-12 mb-30">
-                    <div class="card card-statistics h-100">
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
@@ -63,11 +59,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 <!-- row closed -->
 @endsection
 @section('js')

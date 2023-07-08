@@ -34,12 +34,12 @@
                 <div class="card-body">
 
                                 <div class="row">
-                                    <div style="margin-bottom: 26px" class="col-md-4">
-                                        <a style="padding: 6px"  href="{{ route('l.create',$ttr->id) }}" class="btn btn-success btn-sm" role="button"
+                                    <div style="margin-bottom: 26px" class="col-md-4 d-flex justify-content-center align-items-center">
+                                        <a style="padding: 6px"  href="{{ route('l.create',$ttr->id) }}" class=" btn btn-success btn-sm" role="button"
                                                               aria-pressed="true"> Add Lecture </a></div>
-                                    <div class="col-md-4"> <a style="background-color: black; padding: 6px" target="_blank" href="{{ route('ts.index') }}" class="btn  btn-sm" role="button"
+                                    <div class="col-md-4 d-flex justify-content-center align-items-center"> <a style="background-color: black; padding: 6px" target="_blank" href="{{ route('ts.index') }}" class="btn  btn-sm" role="button"
                                                               aria-pressed="true"> <span style="color:white">View  TimeSlot</span> </a></div>
-                                    <div class="col-md-4"> <a style="padding: 6px"  target="_blank" href="{{ route('ttr.show',$ttr->id) }}" class="btn btn-danger btn-sm" role="button"
+                                    <div class="col-md-4 d-flex justify-content-center align-items-center"> <a style="padding: 6px"  target="_blank" href="{{ route('ttr.show',$ttr->id) }}" class="btn btn-danger btn-sm" role="button"
                                                               aria-pressed="true"> view TimeTable </a></div>
                                 </div>
                                 <div  class="table-responsive" style="padding-bottom: 100px">

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
     {{ 'Study fees' }}
 @stop
@@ -15,11 +15,7 @@
 @section('content')
 <!-- row -->
 
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div class="col-xl-12 mb-30">
-                    <div class="card card-statistics h-100">
+
                         <div class="card-body">
                             <a href="{{route('createfee')}}" class="btn btn-success btn-sm" role="button" aria-pressed="true">Add new fees</a><br><br>
                             <div class="table-responsive">
@@ -66,15 +62,10 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 <!-- row closed -->
 @endsection
 @section('js')
-@toastr_js
-@toastr_render
+
 @endsection

@@ -109,7 +109,7 @@
 
 
         <div class="text-center">
-            <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fa fa-send"></i></button>
+            <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
         </div>
 
         </form>

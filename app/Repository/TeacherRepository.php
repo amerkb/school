@@ -34,7 +34,6 @@ class TeacherRepository implements TeacherRepositoryInterface
             $Teachers->save();
             toastr()->success(('Added Successfully'));
             return redirect()->route('teacher');
-           return $request;
         }catch(Exception $e) {
             return redirect()->back()->with(['Error' => $e->getMessage()]);
         }

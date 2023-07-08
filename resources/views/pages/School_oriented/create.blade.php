@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
     {{ ('Add User') }}
 @stop
@@ -15,9 +15,8 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
-                <div class="card-body">
+
+
 
                     @if(session()->has('error'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -29,6 +28,7 @@
                             </button>
                         </div>
                     @endif
+    <div class="card-body">
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <br>
@@ -120,39 +120,38 @@
                                 @enderror
                             </div>
 
-                            
-                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Next')}}</button>
-                            
-                            <div class="col">
-                                <div class="form-check">
+                                <div class="col">
+                                    <div class="form-check">
 
-                                    {{-- @if ($Oriented->Status === 1) --}}
+                                        {{-- @if ($Oriented->Status === 1) --}}
                                         <input
-                                            type="checkbox"
-                                            checked
-                                            class="form-check-input"
-                                            name="Status"
-                                            id="exampleCheck1">
-                                    {{-- @else --}}
+                                                type="checkbox"
+                                                checked
+                                                class="form-check-input"
+                                                name="Status"
+                                                id="exampleCheck1">
+                                        {{-- @else --}}
                                         <input
-                                            type="checkbox"
-                                            class="form-check-input"
-                                            name="Status"
-                                            id="exampleCheck1">
-                                    {{-- @endif --}}
-                                    <label
-                                        class="form-check-label"
-                                        for="exampleCheck1">{{ 'Status' }}</label><br>
-                    </form>
+                                                type="checkbox"
+                                                class="form-check-input"
+                                                name="Status"
+                                                id="exampleCheck1">
+                                        {{-- @endif --}}
+                                        <label
+                                                class="form-check-label"
+                                                for="exampleCheck1">{{ 'Status' }}</label><br>
+
+                                        <div class="text-center">
+                                    <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+
 @endsection

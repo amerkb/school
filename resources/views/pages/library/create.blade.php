@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
-    اضافة كتاب جديد
+   Add book
 @stop
 @endsection
 @section('page-header')
@@ -15,8 +15,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if(session()->has('error'))
@@ -35,7 +34,7 @@
                                 <div class="form-row">
 
                                     <div class="col">
-                                        <label for="title">اسم الكتاب</label>
+                                        <label for="title">name book </label>
                                         <input type="text" name="title" class="form-control">
                                     </div>
 
@@ -80,19 +79,18 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="academic_year">المرفقات : <span class="text-danger">*</span></label>
+                                            <label for="academic_year">Attachment : <span class="text-danger">*</span></label>
                                             <input type="file" accept="application/pdf" name="file_name" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">حفظ البيانات</button>
-                            </form>
+                                <div class="text-center">
+                                    <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                                </div>   </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
     <!-- row closed -->
 @endsection

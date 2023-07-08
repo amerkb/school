@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css */--}}
 @section('title')
-    اضافة مادة دراسية
+  Edie Subject
 @stop
 @endsection
 @section('page-header')
@@ -15,8 +15,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if(session()->has('error'))
@@ -42,7 +41,7 @@
                                         <input type="hidden" name="id" value="{{$subject->id}}">
                                     </div> --}}
                                     <div class="col">
-                                        <label for="title">اسم المادة باللغة الانجليزية</label>
+                                        <label for="title">   name subject</label>
                                         <input type="text" name="Name_en"
                                                value="{{ $subject->name }}"
                                                class="form-control">
@@ -53,7 +52,7 @@
 
                                 <div class="form-row">
                                     <div class="form-group col">
-                                        <label for="inputState">المرحلة الدراسية</label>
+                                        <label for="inputState"> grade</label>
                                         <select class="custom-select my-1 mr-sm-2" name="Grade_id">
                                             <option selected disabled>{{('Choose')}}...</option>
                                             @foreach($grades as $grade)
@@ -64,7 +63,7 @@
                                     </div>
 
                                     <div class="form-group col">
-                                        <label for="inputState">الصف الدراسي</label>
+                                        <label for="inputState">class </label>
                                         <select name="Class_id" class="custom-select">
                                             <option
                                                 value="{{ $subject->classroom->id }}">{{ $subject->classroom->Name_Class }}
@@ -73,25 +72,24 @@
                                     </div>
 
                                     <div class="form-group col">
-                                        <label for="inputState">اسم المعلم</label>
-                                        <select class="custom-select my-1 mr-sm-2" name="teacher_id">
-                                            <option selected disabled>{{('Choose')}}...</option>
-                                            @foreach($teachers as $teacher)
-                                                <option
-                                                    value="{{$teacher->id}}" {{$teacher->id == $subject->teacher_id ?'selected':''}}>{{$teacher->Name}}</option>
+                                        <label for="inputState">category</label>
+                                        <select class="custom-select my-1 mr-sm-2" name="category_Id">
+                                            <option selected disabled>{{ 'Choose' }}...</option>
+                                            @foreach ($category as $categor)
+                                                <option {{$categor->id == $subject->subject_category_id ?'selected':''}}
+                                                        value="{{ $categor->id }}">{{ $categor->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">حفظ
-                                    البيانات
-                                </button>
+                                <div class="text-center">
+                                    <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection

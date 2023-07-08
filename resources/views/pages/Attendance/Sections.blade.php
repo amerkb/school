@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('css')
 @section('title')
-    {{ 'title_page' }}: الحضور والغياب
+  Attendance
 @stop
 @endsection
 @section('page-header')
@@ -14,10 +14,7 @@
 @section('content')
 <!-- row -->
 
-            <div class="card-body">
-                <a class="button x-small" href="#" data-toggle="modal" data-target="#exampleModal">
-                    {{ 'Add Section' }}</a>
-            </div>
+
 
             @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -78,8 +75,8 @@
                                                                         <td>
                                                                             <a href="{{ route('Attendance_show', $list_Sections->id) }}"
                                                                                 class="btn btn-warning btn-sm"
-                                                                                role="button" aria-pressed="true">قائمة
-                                                                                الطلاب</a>
+                                                                                role="button" aria-pressed="true">
+                                                                                students list</a>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach

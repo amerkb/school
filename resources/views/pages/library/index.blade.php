@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css */ --}}
 @section('title')
-    قائمة الكتب
+    book lst
 @stop
 @endsection
 @section('page-header')
@@ -15,14 +15,11 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
-                <div class="card-body">
-                    <div class="col-xl-12 mb-30">
-                        <div class="card card-statistics h-100">
+
+
                             <div class="card-body">
                                 <a href="{{url('Lib_create')}}"  class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">اضافة كتاب جديد</a><br><br>
+                                   aria-pressed="true">  Add book</a><br><br>
 
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
@@ -31,12 +28,12 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم الكتب</th>
+                                            <th> name</th>
 {{--                                            <th>اسم المعلم</th>--}}
-                                            <th>المرحلة الدراسية</th>
-                                            <th>الصف الدراسي</th>
+                                            <th> grade</th>
+                                            <th>class </th>
 {{--                                            <th>القسم</th>--}}
-                                            <th>العمليات</th>
+                                            <th>action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -60,15 +57,12 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
   
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+{{--    @toastr_js--}}
+{{--    @toastr_render--}}
 @endsection

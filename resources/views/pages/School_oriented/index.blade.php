@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
     {{ 'List Users' }}
 @stop
@@ -15,8 +15,7 @@
 @section('content')
 <!-- row -->
 
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
+
             <div class="card-body">
                 <a href="{{ route('ori_create') }}" class="btn btn-success btn-sm" role="button"
                     aria-pressed="true">{{ 'Add New User' }}</a><br><br>
@@ -97,8 +96,7 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
+
 
 <!-- row closed -->
 @endsection

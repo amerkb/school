@@ -19075,7 +19075,7 @@ button:focus {
   outline: 0; }
 
 .button {
-  background: #84ba3f;
+  background: #198754;
   padding: 10px 20px;
   font-size: 1rem;
   letter-spacing: 1px;
@@ -19086,7 +19086,7 @@ button:focus {
   display: inline-block;
   border-radius: 3px;
   text-align: center;
-  border: 2px solid #84ba3f;
+  border: 2px solid #198754;
   cursor: pointer;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -19786,15 +19786,15 @@ ul.list-unstyled li {
 .tab .nav.nav-tabs li a i {
   padding-right: 5px; }
 .tab .nav.nav-tabs li a.active {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff;
   border-color: transparent; }
 .tab .nav.nav-tabs li a.active:focus {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff;
   border-color: transparent; }
 .tab .nav.nav-tabs li a.active:hover {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff;
   border-color: transparent; }
 

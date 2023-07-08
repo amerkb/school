@@ -36,7 +36,7 @@ Subjects List
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$subject->name}}</td>
                                             <td>{{$subject->classroom->Name_Class}}</td>
-                                            <td>{{$subject->teacher->Name}}</td>
+                                            <td>{{$subject->category->name}}</td>
                                                 <td>
                                                     <a href="{{route('Sub_edit',$subject->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_subject{{ $subject->id }}" title="حذف"><i class="fa fa-trash"></i></button>

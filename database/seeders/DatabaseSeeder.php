@@ -8,6 +8,7 @@ use App\Models\Gender;
 use App\Models\MyParent;
 use App\Models\Specialization;
 use App\Models\Student;
+use App\Models\SubjectCategory;
 use App\Models\Teacher;
 use App\Models\Type_Exam;
 use Illuminate\Database\Seeder;
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Type_UserSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(Type_examrSeeder::class);
+        $this->call(SubjectCategoriesSeeder::class);
         $this->call(teacherSectionSeeder::class);
         $this->call(QuizzesTableSeeder::class);
         $this->call(TimeTableTableSeeder::class);

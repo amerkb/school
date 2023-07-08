@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
     {{ ('Edit User') }}
 @stop
@@ -15,8 +15,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if(session()->has('error'))
@@ -125,12 +124,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+
 @endsection

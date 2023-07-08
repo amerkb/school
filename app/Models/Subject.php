@@ -16,6 +16,10 @@ class Subject extends Model
     {
         return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
+    public function category()
+    {
+        return $this->belongsTo(SubjectsCategorie::class, 'subject_category_id');
+    }
 
     // جلب اسم الصفوف الدراسية
     public function classroom()

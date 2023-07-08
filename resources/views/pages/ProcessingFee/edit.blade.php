@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
   تعديل معالجة رسوم
 @stop
@@ -15,8 +15,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if ($errors->any())
@@ -58,13 +57,11 @@
                         </form>
 
                 </div>
-            </div>
-        </div>
+
 
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+
 
 @endsection

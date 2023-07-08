@@ -56,11 +56,20 @@
                                 </div>
 
                                 <div class="form-group col">
-                                    <label for="inputState">Grade</label>
+                                    <label for="inputState">Classes</label>
                                     <select class="custom-select my-1 mr-sm-2" name="Class_id">
                                         <option selected disabled>{{ 'Choose' }}...</option>
                                         @foreach ($Class as $class)
                                             <option value="{{ $class->id }}">{{ $class->Name_Class }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label for="inputState">category</label>
+                                    <select class="custom-select my-1 mr-sm-2" name="category_Id">
+                                        <option selected disabled>{{ 'Choose' }}...</option>
+                                        @foreach ($category as $categor)
+                                            <option value="{{ $categor->id }}">{{ $categor->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -73,7 +82,7 @@
 
                             </div>
                             <div class="text-center">
-                                <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fa fa-send"></i></button>
+                                <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
                             </div>
                         </form>
                     </div>

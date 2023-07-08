@@ -27,12 +27,13 @@ class teacherSectionSeeder extends Seeder
                 ]);
             }
         }
-        for ($i = 1; $i <= 15; $i++) {
+        $statuses = ['Mathematics', 'Science',"English","History"];
+        for ($i = 1; $i <= 3; $i++) {
             for ($j = 1; $j <= 4; $j++) {
                 for ($k = 1; $k <= 2; $k++) {
                     DB::table('subjects')->insert([
-                        'name' => "arabic",
-                        'teacher_id' => $i,
+                        'name' => $statuses[mt_rand(0, 3)],
+                        'subject_category_id' => mt_rand(1, 6),
                         'classroom_id' => $j,
                         'grade_id' => 1,
                     ]);

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css */ --}}
 
 
     @section('title')
@@ -18,8 +18,7 @@
     <!-- row -->
 
 
-        <div class="col-xl-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if ($errors->any())
@@ -205,8 +204,7 @@
                     @endforeach
                     </table>
                 </div>
-            </div>
-        </div>
+
 
 
 

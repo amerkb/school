@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
     Setting
 @stop
@@ -27,8 +27,7 @@
 
 <!-- row -->
 
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
+
             <div class="card-body">
                 <form enctype="multipart/form-data" method="" action="{{ route('Seting_update', 'test') }}">
                     @csrf @method('')
@@ -124,12 +123,10 @@
                         type="submit">{{ 'Submit' }}</button>
                 </form>
             </div>
-        </div>
-    </div>
+
 
 <!-- row closed -->
 @endsection
 @section('js')
-@toastr_js
-@toastr_render
+
 @endsection

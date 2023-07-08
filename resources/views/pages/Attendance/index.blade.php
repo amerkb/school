@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
-    قائمة الحضور والغياب للطلاب
+    Attendance list
 @stop
 @endsection
 @section('page-header')
@@ -34,7 +34,7 @@
     @endif
 
 
-    <div class="card">
+
 
 
         <div class="card-body">
@@ -111,10 +111,12 @@
             </tbody>
         </table>
         <P>
-            <button class="btn btn-success" type="submit">{{ ('Submit') }}</button>
+        <div class="text-center">
+            <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-success">Submit form <i class="fas fa-paper-plane"></i></button>
+        </div>
         </P>
     </form><br>
-        </div></div>
+        </div>
     <!-- row closed -->
 @endsection
 @section('js')

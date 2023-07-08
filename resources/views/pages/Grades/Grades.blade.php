@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css */ --}}
 @section('title')
     Grade list
 @stop
@@ -23,8 +23,7 @@
 
 
 
-    <div class="col-xl-12 mb-30">
-        <div class="card card-statistics h-100">
+
             <div class="card-body">
 
                 @if ($errors->any())
@@ -163,8 +162,6 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
 
 
     <!-- add_modal_Grade -->

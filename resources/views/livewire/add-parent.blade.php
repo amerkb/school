@@ -18,7 +18,9 @@
             @include('livewire.Parent_Table')
         @else
             <div class="stepwizard">
-                <div class="stepwizard-row setup-panel">
+                <div style="    display: flex;
+    justify-content: space-evenly;
+" class="stepwizard-row setup-panel">
                     <div class="stepwizard-step">
                         <a href="#step-1" type="button"
                            class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-success' }}">1</a>

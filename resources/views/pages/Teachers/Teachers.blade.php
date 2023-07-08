@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css */--}}
 @section('title')
     {{ 'List Teachers' }}
 @stop
@@ -15,11 +15,7 @@
 @section('content')
 <!-- row -->
 
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div class="col-xl-12 mb-30">
-                    <div class="card card-statistics h-100">
+
                         <div class="card-body">
                             <a href="{{ route('createteacher') }}" class="btn btn-success btn-sm" role="button"
                                 aria-pressed="true">{{ 'Add Teacher' }}</a><br><br>
@@ -47,7 +43,7 @@
                                                 <td>{{ $Teacher->Joining_Date }}</td>
                                                 <td>{{ $Teacher->specializations->Name }}</td>
                                                 <td>
-                                                    <a href="{{ route('editteacher', $Teacher->id) }}"
+                                                    <a href="{{ route('editteacher',$Teacher->id) }}"
                                                         class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>
                                                     <button type="button" class="btn btn-danger btn-sm"
@@ -96,11 +92,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 <!-- row closed -->
 @endsection

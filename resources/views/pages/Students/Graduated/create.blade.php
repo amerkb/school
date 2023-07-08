@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+{{--    /*@toastr_css*/--}}
 @section('title')
     {{('Add Graduate')}}
 @stop
@@ -16,8 +16,7 @@
     <!-- row -->
 
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
 
                     @if (Session::has('error_Graduated'))
@@ -58,12 +57,11 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                            <div class="text-center">
+                                <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                            </div>   </form>
 
                 </div>
-            </div>
-        </div>
 
 
     <!-- row closed -->

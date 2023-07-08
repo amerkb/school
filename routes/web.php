@@ -160,7 +160,7 @@ Route::get('storeteacher', [TeacherController::class, 'store'])
 ->name('storeteacher');
 
 
-Route::get('editteacher{id}', [TeacherController::class, 'edit'])
+Route::get('editteacher/{id}', [TeacherController::class, 'edit'])
 ->name('editteacher');
 
 Route::get('updateteacher', [TeacherController::class, 'update'])
@@ -173,17 +173,17 @@ Route::get('destroyteacher', [TeacherController::class, 'destroy'])
     Route::get('storeteacher', [TeacherController::class, 'store'])
         ->name('storeteacher');
 
-
-
-    Route::get('editteacher', [TeacherController::class, 'edit'])
-        ->name('editteacher');
-
-    Route::get('updateteacher', [TeacherController::class, 'update'])
-        ->name('updateteacher');
-
-
-    Route::get('destroyteacher', [TeacherController::class, 'destroy'])
-        ->name('destroyteacher');
+//
+//
+//    Route::get('editteacher', [TeacherController::class, 'edit'])
+//        ->name('editteacher');
+//
+//    Route::get('updateteacher', [TeacherController::class, 'update'])
+//        ->name('updateteacher');
+//
+//
+//    Route::get('destroyteacher', [TeacherController::class, 'destroy'])
+//        ->name('destroyteacher');
 
 
 ////////////////////// Students /////////////////

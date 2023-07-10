@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         $Users->email = "ali@gmail.com";
         $Users->password =  Hash::make("00000000");
         $Users->name = "Ali";
-        $Users->type_id = 5;
+        $Users->type_id = 6;
         $Users->Status =1;
         $Users->gender_id = 1;
         $Users->Joining_Date ="2023-2-2";

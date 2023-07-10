@@ -160,7 +160,7 @@
                                     @php
                                         $current_year = date("Y");
                                     @endphp
-                                    @for($year=$current_year; $year<=$current_year +1 ;$year++)
+                                    @for($year=$current_year-1; $year<=$current_year +1 ;$year++)
                                         <option value="{{ $year."-".$year +1}}">{{ $year."-".$year +1 }}</option>
                                     @endfor
                                 </select>

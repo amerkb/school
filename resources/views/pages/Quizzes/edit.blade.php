@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    /*@toastr_css*/
+{{--    /*@toastr_css*/ --}}
 @section('title')
     Edit quizze
 {{$quizz->name}}

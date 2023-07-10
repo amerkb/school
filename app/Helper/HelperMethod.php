@@ -32,5 +32,23 @@ function role ($role){
        return "App\Models\MyParent";
    }
 }
+function IsManager ($type){
+
+    if ($type=="Manager"){
+        return true;
+    }
+    else{
+        return false;
+    }}
+
+    function IsLibrarian ($type){
+
+        if ($type=="librarian"){
+            return true;
+        }
+        else{
+            return false;
+        }}
+
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
     @section('title')
         {{ 'View TimeSlot' }}
     @stop
@@ -14,8 +14,7 @@
 @endsection
 @section('content')
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
                                 <a href="{{ route('ts.create') }}" class="btn btn-success btn-sm" role="button"
                                    aria-pressed="true"> Add TimeSlot </a><br><br>
@@ -73,8 +72,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
 
 @endsection
 

@@ -15,8 +15,7 @@
 @section('content')
     <!-- row -->
 
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
+
                 <div class="card-body">
                                 <a href="{{ route('time_index') }}" class="btn btn-success btn-sm" role="button"
                                    aria-pressed="true"> Add TimeTable </a><br><br>
@@ -88,8 +87,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
 
     <!-- row closed -->
 @endsection

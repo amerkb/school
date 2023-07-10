@@ -18,10 +18,11 @@ class Type_UserSeeder extends Seeder
         DB::table('type__users')->delete();
         $specializations = [
             'Oriented',
-            'ًWorker',
+            'Driver',
             'Accountant',
             'librarian',
-            "manager",
+            "Manager",
+            "غسالة المدير",
         ];
         foreach ($specializations as $S) {
             Type_User::create(['type' => $S]);

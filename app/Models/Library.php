@@ -23,6 +23,10 @@ class Library extends Model
     {
         return $this->belongsTo('App\Models\Section', 'section_id');
     }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
 
     public function teacher()
     {

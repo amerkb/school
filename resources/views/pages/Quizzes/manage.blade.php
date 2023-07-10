@@ -15,9 +15,7 @@
 @section('content')
 
 
-        <div class="col-md-12 mb-30">
 
-            <div class="card card-statistics h-100">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-4"><h6 class="card-title"><strong>Name: </strong> {{ $Quizze->name }}</h6></div>
@@ -94,8 +92,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
 
 
 

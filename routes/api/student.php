@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeTableController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([ 'middleware' => 'user:student'], function ($router) {
     Route::get('/GetTimeStudent', [TimeTableController::class, 'get_time_for_student']);
+    Route::get('/GetSubjectByCategory', [SubjectController::class, 'get_subject_for_student']);
 
 });
 #################################End Timetable####################################

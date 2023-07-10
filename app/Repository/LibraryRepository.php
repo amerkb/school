@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Http\Traits\AttachFilesTrait;
+use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Library;
+use App\Models\Subject;
 
 class LibraryRepository implements LibraryRepositoryInterface
 {
@@ -31,7 +33,8 @@ class LibraryRepository implements LibraryRepositoryInterface
             $books->file_name =  $request->file('file_name')->getClientOriginalName();
             $books->Grade_id = $request->Grade_id;
             $books->classroom_id = $request->Classroom_id;
-//            $books->section_id = $request->section_id;
+            $books->year = $request->year;
+            $books->subject_id = $request->subject_id;
 //            $books->teacher_id = 1;
             $books->save();
             $this->uploadFile($request,'file_name');
@@ -47,7 +50,9 @@ class LibraryRepository implements LibraryRepositoryInterface
     {
         $grades = Grade::all();
         $book = library::findorFail($id);
-        return view('pages.library.edit',compact('book','grades'));
+        $classes=Classroom::where("Grade_id",$book->Grade_id)->get();
+        $subject=Subject::where("classroom_id", $book->Classroom_id)->get();
+        return view('pages.library.edit',compact('book','grades',"classes","subject"));
     }
 
     public function update($request)
@@ -69,6 +74,8 @@ class LibraryRepository implements LibraryRepositoryInterface
 
             $book->Grade_id = $request->Grade_id;
             $book->classroom_id = $request->Classroom_id;
+            $book->year = $request->year;
+            $book->subject_id = $request->subject_id;
 //            $book->section_id = $request->section_id;
 //            $book->teacher_id = 1;
             $book->save();

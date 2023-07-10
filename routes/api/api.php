@@ -43,5 +43,6 @@ Route::group([ 'middleware' => 'user:'.implode(',', $ps)], function ($router) {
 
 Route::group([ 'middleware' => 'user:'.implode(',', $pts)], function ($router) {
     Route::get('/events', [EventController::class, 'get_event']);
+
 });
 #################################End event ####################################

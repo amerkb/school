@@ -262,9 +262,13 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-{{--        <!-- Left Sidebar End-->--}}
+{{--        <!-- Left Sidebar End-->--}}{{--    {{ \App\Models\Type_User::where(--}}
+{{--        "id",auth()->user()->type_id)->pluck("type")[0]}}--}}
 
 {{--        <!--=================================--}}
+@php
+  $type=  \App\Models\Type_User::where( "id",auth()->user()->type_id)->pluck("type")[0];
+@endphp
 
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -277,6 +281,7 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
 {{--          Grades      --}}
+                @if(IsManager($type))
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
@@ -289,8 +294,9 @@
                         <a class="nav-link" href="{{ route('as') }}">Grades list</a>
                     </nav>
                 </div>
-
+                @endif
                 {{--          Class      --}}
+                @if(IsManager($type))
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Classes" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
@@ -303,6 +309,8 @@
                         <a class="nav-link" href="{{ route('classindex') }}"> classes List</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          sections      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#sections" aria-expanded="false" aria-controls="collapseLayouts">
@@ -316,6 +324,8 @@
                         <a class="nav-link" href="{{ route('section') }}"> sections List</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          student      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#student" aria-expanded="false" aria-controls="collapseLayouts">
@@ -330,6 +340,8 @@
                         <a class="nav-link" href="{{ route('index') }}"> students List</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Promotion      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Promotion" aria-expanded="false" aria-controls="collapseLayouts">
@@ -344,6 +356,8 @@
                         <a class="nav-link" href="{{ route('createpro') }}"> Promotion List</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Graduate      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Graduate" aria-expanded="false" aria-controls="collapseLayouts">
@@ -358,6 +372,8 @@
                         <a class="nav-link" href="{{ route('indexGra') }}"> Graduates List</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Teachers      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Teachers" aria-expanded="false" aria-controls="collapseLayouts">
@@ -372,6 +388,8 @@
                         <a class="nav-link" href="{{ route('teacher') }}"> Teachers List</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Parents      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Parents" aria-expanded="false" aria-controls="collapseLayouts">
@@ -386,6 +404,8 @@
 {{--                        <a class="nav-link" href=""> Parents List</a>--}}
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Accounts      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Accounts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -403,6 +423,8 @@
                         <a class="nav-link" href="{{ route('Payment_index') }}">Bills of exchange</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Attendance      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Attendance" aria-expanded="false" aria-controls="collapseLayouts">
@@ -416,6 +438,8 @@
                         <a class="nav-link" href="{{ route('Attendance_index') }}">List of Students</a>
                     </nav>
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Subjects      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Subjects" aria-expanded="false" aria-controls="collapseLayouts">
@@ -431,6 +455,8 @@
                     </nav>
 
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Quizzes      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Quizzes" aria-expanded="false" aria-controls="collapseLayouts">
@@ -446,6 +472,8 @@
                     </nav>
 
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Result      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Result" aria-expanded="false" aria-controls="collapseLayouts">
@@ -460,6 +488,8 @@
                     </nav>
 
                 </div>
+                @endif
+                @if(IsManager($type))
                 {{--          timetable      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#timetable" aria-expanded="false" aria-controls="collapseLayouts">
@@ -476,6 +506,8 @@
                     </nav>
 
                 </div>
+                @endif
+                @if(IsManager($type) || IsLibrarian($type))
                 {{--          library      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#library" aria-expanded="false" aria-controls="collapseLayouts">
@@ -486,10 +518,14 @@
 
                 <div class="collapse" id="library" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link"  href="{{ route('Lib_index') }}">Book list</a></a>
+                        <a class="nav-link"  href="{{ route('Lib_index') }}">curriculum list</a>
+                        <a class="nav-link"  href="{{ route('book_index') }}">Book list</a>
+                        <a class="nav-link"  href="{{ route('Questionli_index') }}">Question list</a>
                     </nav>
 
                 </div>
+                @endif
+                @if(IsManager($type))
             {{--          Online      --}}
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                data-bs-target="#Online" aria-expanded="false" aria-controls="collapseLayouts">
@@ -505,6 +541,8 @@
                 </nav>
 
             </div>
+                @endif
+                @if(IsManager($type))
         {{--          Users      --}}
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
            data-bs-target="#Users" aria-expanded="false" aria-controls="collapseLayouts">
@@ -520,6 +558,8 @@
             </nav>
 
         </div>
+                @endif
+                @if(IsManager($type))
                 {{--          Seeting      --}}
                 <a class="nav-link " href="{{route('Seting_index')}}"
                    data-bs-target="#Seeting" aria-expanded="false" aria-controls="collapseLayouts">
@@ -527,6 +567,7 @@
                     </div>
                     Settings
                 </a>
+                @endif
             </div>
         </div>
 {{--        <div class="sb-sidenav-footer">--}}

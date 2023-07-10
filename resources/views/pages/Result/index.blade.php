@@ -130,7 +130,7 @@
                     </tbody>
                 </table>
                 <div class="text-center">
-                    <button class="btn btn-success" type="submit">{{ ('Submit') }}</button>
+                    <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-success">Submit form <i class="fas fa-paper-plane"></i></button>
                 </div>
             </form><br>
         </div></div>

@@ -11,6 +11,7 @@ return new class extends Migration
 		Schema::create('Grades', function(Blueprint $table) {
 			$table->id();
 			$table->timestamps();
+            $table->integer('Status')->default(1);
 			$table->string('Name');
         	$table->text('Notes')->nullable();
 		});

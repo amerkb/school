@@ -220,9 +220,24 @@ class SectionController extends Controller
     public function destroy(Request $request)
     {
 
-      Section::findOrFail($request->id)->delete();
-      toastr()->error(('Delete'));
-      return redirect()->back();
+        try {
+
+
+            $old_status = Section::where("id",$request->id)->pluck("Status")[0];
+            $new_status=$old_status==0?1:0;
+            $class = Section::findOrFail($request->id)->update(["Status"=>$new_status]);
+            if ($new_status==1) {
+                toastr()->success(('Active'));
+            }
+            else{
+                toastr()->warning('No Active');
+            }
+            return redirect()->route('section');
+
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
 
     }
 }

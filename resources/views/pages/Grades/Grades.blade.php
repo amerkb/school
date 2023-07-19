@@ -49,6 +49,7 @@
                                 <th>#</th>
                                 <th>{{ ('Name') }}</th>
                                 <th>{{ ('Notes') }}</th>
+                                <th>{{ ('status') }}</th>
                                 <th>{{ ('Processes') }}</th>
                             </tr>
                         </thead>
@@ -61,14 +62,32 @@
                                     <td>{{ $Grade->Name }}</td>
                                     <td>{{ $Grade->Notes }}</td>
                                     <td>
+                                        @if ($Grade->Status === 1)
+                                            <label
+                                                    class="badge badge-success">{{ 'Active' }}</label>
+                                        @else
+                                            <label
+                                                    class="badge badge-danger">{{ 'No Active' }}</label>
+                                        @endif
+
+                                    </td>
+                                    <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#edit{{ $Grade->id }}"
                                             title="{{ ('Edit') }}"><i
                                                 class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#delete{{ $Grade->id }}"
-                                            title="{{('Delete') }}"><i
-                                                class="fa fa-trash"></i></button>
+                                        @if ($Grade->Status === 1)
+                                            <a href="#"
+                                               class="btn btn-outline-danger btn-sm"
+                                               data-toggle="modal"
+                                               data-target="#delete{{ $Grade->id }}">{{ 'Un Active' }}</a>
+                                        @else
+                                            <a href="#"
+                                               class="btn btn-outline-success btn-sm"
+                                               data-toggle="modal"
+                                               data-target="#delete{{ $Grade->id }}">{{ 'Active' }}</a>
+                                        @endif
+
                                     </td>
                                 </tr>
 
@@ -133,7 +152,11 @@
                                             <div class="modal-header">
                                                 <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                                     id="exampleModalLabel">
-                                                    {{('Delete') }}
+                                                    @if ($Grade->Status === 1)
+                                                        Active
+                                                    @else
+                                                        No Active
+                                                    @endif
                                                 </h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
@@ -151,7 +174,12 @@
                                                     <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">{{('Close') }}</button>
                                                     <button type="submit"
-                                                        class="btn btn-danger">{{ ('Delete') }}</button>
+                                                        class="btn btn-danger">
+                                                        @if ($Grade->Status === 1)
+                                                           Active
+                                                        @else
+                                                            No Active
+                                                        @endif</button>
                                                 </div>
                                             </form>
                                             </div>

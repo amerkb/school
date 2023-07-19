@@ -36,10 +36,10 @@ class SetingController extends Controller
             if($request->hasFile('logo')) {
                 $logo_name = $request->file('logo')->getClientOriginalName();
                 Setting::where('key', 'logo')->update(['value' => $logo_name]);
-                $this->uploadFile($request,'logo','logo');
+                $this->uploadlogo($request,'logo');
             }
 
-            toastr()->success(trans('messages.Update'));
+            toastr()->success('Update');
             return back();
         }
         catch (\Exception $e){

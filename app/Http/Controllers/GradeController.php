@@ -52,18 +52,23 @@ class GradeController extends Controller
 
     public function destroy(Request $request)
     {
+        try {
 
-        $MyClass_id = Classroom::where('Grade_id',$request->id)->pluck('Grade_id');
-        if($MyClass_id->count() == 0)
-        {
-            $Grades = Grade::findOrFail($request->id)->delete();
-            toastr()->error(('Delete'));
+            $old_status = Grade::where("id",$request->id)->pluck("Status")[0];
+            $new_status=$old_status==0?1:0;
+            $Grades = Grade::findOrFail($request->id)->update(["Status"=>$new_status]);
+            if ($new_status==1) {
+                toastr()->success(('Active'));
+            }
+            else{
+                toastr()->warning('No Active');
+            }
             return redirect()->route('as');
-        }
-        else{
-            toastr()->error(('You Can not delete'));
-            return redirect()->route('as');
-        }
+
+
+    } catch (\Exception $e) {
+return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+}
     }
 
 

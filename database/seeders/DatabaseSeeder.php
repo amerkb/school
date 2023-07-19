@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(teacherSectionSeeder::class);
         $this->call(QuizzesTableSeeder::class);
         $this->call(TimeTableTableSeeder::class);
+        $this->call(LibrarySeeder::class);
 
 
         Teacher::create([
@@ -50,5 +51,19 @@ class DatabaseSeeder extends Seeder
             "Joining_Date"=>"2023-05-23",
             "Address"=>"midan",
         ]);
+
+        Student::create(["name"=> "ali",
+            'email' => "ali@gamil.com",
+            'password' => bcrypt(12345678),
+            'gender_id' =>1,
+            'nationalitie_id' =>1,
+            'blood_id' =>1,
+            'Date_Birth' =>"2023-9-4",
+            'Grade_id' => 1,
+            'Classroom_id' => 1,
+            'section_id' =>1,
+            "parent_id"=>1,
+            "academic_year"=>"2023-2024",]);
     }
+
 }

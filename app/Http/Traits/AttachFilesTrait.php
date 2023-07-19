@@ -24,6 +24,12 @@ trait AttachFilesTrait
         $request->file($name)->move(public_path('attachments/question'),$file_name);
 
     }
+    public function uploadlogo($request,$name)
+    {
+        $file_name = $request->file($name)->getClientOriginalName();
+        $request->file($name)->move(public_path('attachments/logo'),$file_name);
+
+    }
 
     public function deleteFile($name)
     {

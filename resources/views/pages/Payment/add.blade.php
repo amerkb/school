@@ -33,7 +33,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>المبلغ : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" name="Debit" type="number" >
+                                    <input required class="form-control" name="Debit" type="number" >
                                     <input  type="hidden" name="student_id"  value="{{$student->id}}" class="form-control">
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>البيان : <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea required class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>

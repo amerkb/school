@@ -40,10 +40,10 @@ class teacherSectionSeeder extends Seeder
                 }
             }
         }
-        for ($i = 1; $i <= 15; $i++) {
-            for ($j = 1; $j <= 4; $j++) {
+        for ($i = 1; $i <= 5; $i++) {
+            for ($j = 1; $j <= 2; $j++) {
                 for ($k = 1; $k <= 2; $k++) {
-                    for ($l = 1; $l <= 8; $l++) {
+                    for ($l = 1; $l <= 2; $l++) {
                         $date = Carbon::today()->subDays(rand(0, 30))->format("Y-m-d");
                         $status = rand(0, 1);
                         DB::table('attendances')->insert([

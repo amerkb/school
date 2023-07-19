@@ -29,8 +29,8 @@
 
 
             <div class="card-body">
-                <form enctype="multipart/form-data" method="" action="{{ route('Seting_update', 'test') }}">
-                    @csrf @method('')
+                <form enctype="multipart/form-data" method="post" action="{{ route('Seting_update', 'test') }}">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6 border-right-2 border-right-blue-400">
                             <div class="form-group row">
@@ -46,12 +46,13 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-9">
                                     <select data-placeholder="Choose..." required name="current_session"
-                                        id="current_session" class="select-search form-control">
+                                        id="current_session" class="select-search form-control"
+                                    style="height: calc(3.8rem + 2px)">
                                         <option value=""></option>
                                         @for ($y = date('Y', strtotime('- 3 years')); $y <= date('Y', strtotime('+ 1 years')); $y++)
                                             <option
                                                 {{ $setting['current_session'] == ($y -= 1) . '-' . ($y += 1) ? 'selected' : '' }}>
-                                                {{ ($y -= 1) . '-' . ($y += 1) }}</option>
+                                                {{ ($y -= 1).'-'.($y += 1) }}</option>
                                         @endfor
                                     </select>
                                 </div>

@@ -16,9 +16,7 @@
     <!-- row -->
 
 
-                <div class="card-body">
-                    <div class="col-xl-12 mb-30">
-                        <div class="card card-statistics h-100">
+
                             <div class="card-body">
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Delete_all">
@@ -50,7 +48,7 @@
                                         @foreach($promotions as $promotion)
                                             <tr>
                                                 <td>{{ $loop->index+1 }}</td>
-                                                <td>{{$promotion->student_id}}</td>
+                                                <td>{{$promotion->student->name}}</td>
                                                 <td>{{$promotion->f_grade->Name}}</td>
                                                 <td>{{$promotion->academic_year}}</td>
                                                 <td>{{$promotion->f_classroom->Name_Class}}</td>
@@ -70,13 +68,9 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+
 @endsection

@@ -54,12 +54,11 @@
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
-
-                                                               href="{{ route('ts.delete', $ts->id) }}"><i
+                                                               data-toggle="modal" data-target="#delete_book{{ $ts->id }}"
+                                                               ><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
                                                                 &nbsp; delete</a>
-
 
 
 
@@ -68,6 +67,7 @@
                                                 </td>
                                             </tr>
 
+                                                            @include('pages.timetables.time_slots.destroy')
                                         @endforeach
                                     </table>
                                 </div>

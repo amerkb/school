@@ -68,4 +68,18 @@ class AttendanceController extends Controller
             return $e->getMessage();
       }
     }
+
+    public function show_attendance( $id_student)
+    {
+        try {
+            $data["student"]=Student::findOrFail($id_student);
+            $data["attendances"]= Attendance::where("student_id",$id_student)->
+            where("attendence_status",0)->orderBy("attendence_date")->get();
+            return view("pages.students.show_absent",$data);
+        }
+        catch (\Exception $e) {
+            return redirect()->route("")->withErrors($e->getMessage());
+        }
+        }
+
 }

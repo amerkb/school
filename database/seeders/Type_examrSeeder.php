@@ -17,10 +17,9 @@ class Type_examrSeeder extends Seeder
     public function run(): void
     {
         $specializations = [
-            'simple exam',
-            'final exam',
-            'half exam',
-            'test',
+            ' test',
+            ' quizze',
+            ' exam',
         ];
         foreach ($specializations as $S) {
             Type_Exam::create(['name' => $S]);

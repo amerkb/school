@@ -66,8 +66,8 @@
 
                                             <a class="dropdown-item"
                                                data-toggle="modal"
-                                               data-target="#delete_exam{{ $quizze->id }}"
-                                            href=""><i
+                                               data-target="#delete_q{{ $quizze->id }}"
+                                           ><i
                                                         style="color: red"
                                                         class="fa fa-trash"></i>&nbsp;
                                                 &nbsp; delete</a>
@@ -79,7 +79,7 @@
                                     </div>
                                 </td>
                             </tr>
-
+                        @include('pages.Quizzes.destroy')
                         @endforeach
                     </table>
                 </div>
@@ -89,6 +89,4 @@
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
 @endsection

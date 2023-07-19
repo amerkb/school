@@ -49,6 +49,14 @@ function IsManager ($type){
         else{
             return false;
         }}
+function IsOriented ($type){
+
+    if ($type=="Oriented"){
+        return true;
+    }
+    else{
+        return false;
+    }}
 
 
 

@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\curriculumRequest;
+use App\Models\Library;
 use App\Repository\LibraryRepositoryInterface;
+use App\Traits\GeneralTrait;
+use App\Transformers\CurriculumTransformer;
+use App\Transformers\TimeTableTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LibraryController extends Controller
 {
+    use GeneralTrait;
 
     protected $library;
 
@@ -53,4 +59,29 @@ class LibraryController extends Controller
     {
         return $this->library->download($filename);
     }
+    public function get_curriculum(Request $request)
+    {
+        try {
+
+            if ($request->role == "student") {
+                $year = Auth::guard($request->role)->user()->academic_year;
+                $class = Auth::guard($request->role)->user()->Classroom_id;
+
+           $Curriculums=Library::where([["Classroom_id",$class],["year",$year]])->get();
+                $CurriculumsTransfermer=[];
+                foreach ($Curriculums as $index=> $Curriculum){
+                    $CurriculumsTransfermer[$index] = fractal($Curriculum, new CurriculumTransformer())->toArray();
+                    $CurriculumsTransfermer[$index]= $CurriculumsTransfermer[$index]["data"];
+                }
+                return $this ->returnData("Curriculums" ,$CurriculumsTransfermer,"count_Curriculums",$Curriculums->count());
+
+
+            }
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
 }

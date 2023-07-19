@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\AttachFilesTrait;
 use App\Models\Book;
 use App\Models\SubjectsCategorie;
+use App\Traits\GeneralTrait;
+use App\Transformers\BookTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 { use AttachFilesTrait;
@@ -107,4 +110,29 @@ class BookController extends Controller
     {
         return response()->download(public_path('attachments/book/'.$filename));
     }
+use GeneralTrait;
+    public function get_book(Request $request)
+    {
+        try {
+
+            if ($request->role == "student") {
+
+
+                $books=Book::get();
+                $booksTransfermer=[];
+                foreach ($books as $index=> $book){
+                    $booksTransfermer[$index] = fractal($book, new BookTransformer())->toArray();
+                    $booksTransfermer[$index]= $booksTransfermer[$index]["data"];
+                }
+                return $this ->returnData("books" ,$booksTransfermer,"count_book",$book->count());
+
+
+            }
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
 }

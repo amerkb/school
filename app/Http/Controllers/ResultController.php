@@ -52,12 +52,13 @@ class ResultController extends Controller
     public function show_exam($id_section)
     {
         $id_class=Section::where("id",$id_section)->pluck("Class_id")[0];
-        $data["exams"] = Quizze::with("se")
-            ->whereHas("se", function($query) use($id_class) {
+        $data["exams"] = Quizze::
+            whereHas("se", function($query) use($id_class) {
                 $query->where("classroom_id", $id_class);
-            })
+            })->with("se")
             ->orderBy("year","DESC")->get();
         $data["id_section"]=$id_section;
+        $data["id_class"]=$id_class;
         return view("pages.Result.Exem",$data);
 
     }
@@ -112,5 +113,17 @@ class ResultController extends Controller
 
 //        return$q= Quizze::with("results")->get();
     }
+
+    public function show_result_dashboard($id_quizze, $id_student)
+    {
+
+        $data["student"]=Student::findOrFail($id_student);
+        $quizze = Quizze::find($id_quizze);
+        $data['results'] = $quizze->results->filter(function ($result) use($id_student) {
+            return $result->student_id==$id_student;
+        });
+    return view("pages.students.show_result",$data);
+    }
+
 
 }

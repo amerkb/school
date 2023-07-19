@@ -15,8 +15,6 @@
 @section('content')
 <!-- row -->
 
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
             <div class="card-body">
                 <a class="button x-small" href="#" data-toggle="modal" data-target="#exampleModal">
                     {{ 'Add Section' }}</a>
@@ -57,8 +55,7 @@
                                                             <thead>
                                                                 <tr class="text-dark">
                                                                     <th>#</th>
-                                                                    <th>{{ 'Name Section' }}
-                                                                    </th>
+                                                                    <th>{{ 'Name Section' }}</th>
                                                                     <th>{{ 'Name Class' }}</th>
                                                                     <th>{{ 'Status' }}</th>
                                                                     <th>{{ 'Processes' }}</th>
@@ -89,10 +86,18 @@
                                                                                 class="btn btn-outline-info btn-sm"
                                                                                 data-toggle="modal"
                                                                                 data-target="#edit{{ $list_Sections->id }}">{{ 'Edit' }}</a>
-                                                                            <a href="#"
-                                                                                class="btn btn-outline-danger btn-sm"
-                                                                                data-toggle="modal"
-                                                                                data-target="#delete{{ $list_Sections->id }}">{{ 'Delete' }}</a>
+                                                                            @if ($list_Sections->Status === 1)
+                                                                                <a href="#"
+                                                                                   class="btn btn-outline-danger btn-sm"
+                                                                                   data-toggle="modal"
+                                                                                   data-target="#delete{{ $list_Sections->id }}">{{ 'Un Active' }}</a>
+                                                                            @else
+                                                                                <a href="#"
+                                                                                   class="btn btn-outline-success btn-sm"
+                                                                                   data-toggle="modal"
+                                                                                   data-target="#delete{{ $list_Sections->id }}">{{ 'Active' }}</a>
+                                                                            @endif
+
                                                                         </td>
                                                                     </tr>
 
@@ -389,13 +394,10 @@
             </div>
 
         </div>
-    </div>
-</div>
+
 <!-- row closed -->
 @endsection
 @section('js')
-@toastr_js
-@toastr_render
 <script>
     $(document).ready(function() {
         $('select[name="Grade_id"]').on('change', function() {

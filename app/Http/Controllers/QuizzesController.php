@@ -8,6 +8,7 @@ use App\Http\Requests\SubjectexamRequest;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Quizze;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\SubjectExam;
 use App\Models\TimeSlote;
@@ -215,6 +216,29 @@ class QuizzesController extends Controller
             }
 
         }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    public function show_exam_for_student(Request $request,$id)
+    {
+
+        try {
+
+                $class=Student::where('id',$id)->pluck('Classroom_id')[0];
+                $year=Student::where('id',$id)->pluck('academic_year')[0];
+                $data["student"]=Student::where('id',$id)->first();
+
+                $data["quizzes"]= Quizze::with("se")
+                    ->whereHas("se", function($query) use($class) {
+                        $query->where("classroom_id", $class);
+                    })
+                    ->where("year", $year)->get();
+                return view("pages.students.show_exam",$data);
+
+               }
+
+
         catch (\Exception $e) {
             return $e->getMessage();
         }

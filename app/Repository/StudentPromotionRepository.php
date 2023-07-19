@@ -60,8 +60,8 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
                 ]);
             }
             DB::commit();
-            toastr()->success(trans('messages.success'));
-            return redirect()->back();
+            toastr()->success('success');
+            return redirect()->route("createpro");
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -110,7 +110,7 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
 
                 Promotion::destroy($request->id);
                 DB::commit();
-                toastr()->error(('Delete'));
+                toastr()->success(('Back'));
                 return redirect()->back();
             }
         } catch (\Exception $e) {

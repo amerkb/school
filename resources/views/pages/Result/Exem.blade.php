@@ -58,7 +58,8 @@
                                                             </thead>
                                                             <tbody>
                                                                 <?php $i = 0; ?>
-                                                                @foreach ($exam->se as $se)
+                                                                @foreach ($exam->se->filter(function ($result) use($id_class) {
+                                                                 return $result->classroom_id==$id_class;}) as $se)
                                                                     <tr>
                                                                         <?php $i++; ?>
                                                                         <td>{{ $i }}</td>

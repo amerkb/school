@@ -38,7 +38,7 @@
 
 
         <div class="card-body">
-    <h5 style="font-family: 'Cairo', sans-serif;color: rgb(0, 255, 94)"> Today's Date: {{ date('Y-m-d') }}</h5>
+    <h5 style="font-family: 'Cairo', sans-serif;color:#28a745"> Today's Date: {{ date('Y-m-d') }}</h5>
     <form method="" action="{{ route('Attendance_store') }}">
 
         @csrf
@@ -71,31 +71,31 @@
                         @if(isset($student->attendance()->where('attendence_date',date('Y-m-d'))->first()->student_id))
 
                             <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
-                                <input name="attendences[{{ $student->id }}]" disabled
+                                <input name="attendences[{{ $student->id }}]"
                                        {{ $student->attendance()->first()->attendence_status == 1 ? 'checked' : '' }}
                                        class="leading-tight" type="radio" value="presence">
-                                <span class="text-success">حضور</span>
+                                <span class="text-success">presence</span>
                             </label>
 
                             <label class="ml-4 block text-gray-500 font-semibold">
-                                <input name="attendences[{{ $student->id }}]" disabled
+                                <input name="attendences[{{ $student->id }}]"
                                        {{ $student->attendance()->first()->attendence_status == 0 ? 'checked' : '' }}
                                        class="leading-tight" type="radio" value="absent">
-                                <span class="text-danger">غياب</span>
+                                <span class="text-danger">absent</span>
                             </label>
 
                         @else
 
                             <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
                                 <input name="attendences[{{ $student->id }}]" class="leading-tight" type="radio"
-                                       value="presence">
-                                <span class="text-success">حضور</span>
+                                  required     value="presence">
+                                <span class="text-success">presence</span>
                             </label>
 
                             <label class="ml-4 block text-gray-500 font-semibold">
                                 <input name="attendences[{{ $student->id }}]" class="leading-tight" type="radio"
-                                       value="absent">
-                                <span class="text-danger">غياب</span>
+                                     required  value="absent">
+                                <span class="text-danger">absent</span>
                             </label>
 
                         @endif
@@ -120,6 +120,4 @@
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
 @endsection

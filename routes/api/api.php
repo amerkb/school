@@ -7,6 +7,9 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\QuizzesController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\TeacherController;
+
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 #################################Start Auth###################################
@@ -46,3 +49,16 @@ Route::group([ 'middleware' => 'user:'.implode(',', $pts)], function ($router) {
 
 });
 #################################End event ####################################
+Route::post('/image', function () {
+    $path = public_path("attachments/book/2018-2019-2 (2).pdf");
+    if (!File::exists($path)) {
+      return 1;
+    }
+    $a=[];
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+
+});

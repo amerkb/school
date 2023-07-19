@@ -78,12 +78,11 @@
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
-
-                                                               href="{{ route('l.delete', $lecture->id) }}"><i
+                                                               data-toggle="modal" data-target="#delete_l{{ $lecture->id }}"
+                                                               ><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
                                                                 &nbsp; delete</a>
-
 
 
 
@@ -92,6 +91,7 @@
                                                 </td>
                                             </tr>
 
+                                        @include('pages.timetables.lecture.destroy')
                                         @endforeach
                                     </table>
                                 </div>

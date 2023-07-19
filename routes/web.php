@@ -88,6 +88,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 //
 //    });
     $M = ["Manager"];
+    $MO = ["Manager","Oriented"];
     ///////////// Grades /////////////
     Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
 
@@ -132,7 +133,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     /////////////////////  Sections ///////////////////
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
         Route::get('section', [SectionController::class, 'index'])
             ->name('section');
@@ -150,13 +151,13 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ////////////////////// Add Parents  //////////////////
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
         Route::view('add_parent', 'livewire.show_Form')->name("add_parent");
 
     });
     ///////////////////// Teacher ///////////////////////
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
         Route::get('teacher', [TeacherController::class, 'index'])
             ->name('teacher');
@@ -196,7 +197,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ////////////////////// Students /////////////////
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
         Route::get('create', [StudentController::class, 'create'])
@@ -213,7 +214,14 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
         Route::get('Get_Sections/{id}', [StudentController::class, 'Get_Sections'])
             ->name('Get_Sections');
+        Route::get('show-exam/{id}', [QuizzesController::class, 'show_exam_for_student'])
+            ->name('show_exam');
 
+        Route::get('show_dashboard_result/{id_Quizze}/{id_student}', [ResultController::class, 'show_result_dashboard'])
+            ->name('show_dashboard_result');
+
+        Route::get('show_attendance/{id}', [AttendanceController::class, 'show_attendance'])
+            ->name('show_attendance');
 
         Route::get('Store_Student', [StudentController::class, 'Store_Student'])
             ->name('Store_Student');
@@ -237,7 +245,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ////////////// Promotion Students
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
         Route::get('proindex', [PromotionController::class, 'index'])
@@ -255,7 +263,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     //////////////////  Graduated Students
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
         Route::get('indexGra', [GraduatedController::class, 'index'])
@@ -275,7 +283,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ////////////////  Fees
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
         Route::get('indexfee', [FeesController::class, 'index'])
@@ -392,7 +400,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ///////////  Attendance Students
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
 
@@ -407,7 +415,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     /////////////  Subject
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
 
@@ -432,7 +440,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     //////////// Quizzes
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
 
@@ -502,7 +510,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 //    });
 
     ///////////// Online Class
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
 
@@ -612,11 +620,11 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
         Route::get('Seting_index', [SetingController::class, 'index'])
             ->name('Seting_index');
 
-        Route::get('Seting_update', [SetingController::class, 'update'])
+        Route::post('Seting_update', [SetingController::class, 'update'])
             ->name('Seting_update');
     });
     /////////  TimeTableController
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
         Route::get('time', [TimeTableController::class, 'index'])
@@ -723,7 +731,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
     });
 
    ///////////  Result Students
-Route::group(["middleware"=>'Dashboard:'.implode(',', $M)], function ($router) {
+Route::group(["middleware"=>'Dashboard:'.implode(',', $MO)], function ($router) {
 
 
 

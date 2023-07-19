@@ -15,6 +15,9 @@
 @section('content')
 <!-- row -->
 <div class="card-body">
+    @php
+        $type=  \App\Models\Type_User::where( "id",auth()->user()->type_id)->pluck("type")[0];
+    @endphp
     <a href="{{ route('create') }}" class="btn btn-success btn-sm" role="button"
        aria-pressed="true">{{ 'Add Student' }}</a><br><br>
     <div class="table-responsive">
@@ -24,7 +27,7 @@
             <tr>
                 <th>#</th>
                 <th>{{ 'Name' }}</th>
-                <th>{{ 'Email' }}</th>
+                <th>{{ 'academic year' }}</th>
                 <th>{{ 'Gender' }}</th>
                 <th>{{ 'Grade' }}</th>
                 <th>{{ 'Classrooms' }}</th>
@@ -37,7 +40,7 @@
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $student->name }}</td>
-                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->academic_year }}</td>
                     <td>{{ $student->gender->Name }}</td>
                     <td>{{ $student->grade->Name }}</td>
                     <td>{{ $student->classroom->Name_Class }}</td>
@@ -55,9 +58,19 @@
                                             style="color: #ffc107"
                                             class="far fa-eye "></i>&nbsp; عرض بيانات الطالب</a>
                                 <a class="dropdown-item"
+                                   href="{{ route('show_exam', $student->id) }}"><i
+                                            style="color: #5e2e2e"
+                                            class="fas fa-poll"></i>&nbsp; عرض   نتائج الطالب</a>
+
+                                <a class="dropdown-item"
+                                   href="{{ route('show_attendance', $student->id) }}"><i
+                                            style="color:brown" class="fas fa-calendar-times"></i>&nbsp;
+                                    عرض غيابات الطالب</a>
+                                <a class="dropdown-item"
                                    href="{{ route('edit_Student', $student->id) }}"><i
                                             style="color:green" class="fa fa-edit"></i>&nbsp;
                                     تعديل بيانات الطالب</a>
+                                   @if(IsManager($type))
                                 <a class="dropdown-item"
                                    href="{{ route('Invoices_show', $student->id) }}"><i
                                             style="color: #0000cc"
@@ -77,6 +90,7 @@
                                    href="{{ route('Payment_show', $student->id) }}"><i
                                             style="color:goldenrod"
                                             class="fas fa-donate"></i>&nbsp; &nbsp;سند صرف</a>
+                                @endif
                                 <a class="dropdown-item"
                                    data-target="#Delete_Student{{ $student->id }}"
                                    data-toggle="modal"

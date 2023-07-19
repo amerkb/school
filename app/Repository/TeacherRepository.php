@@ -56,7 +56,7 @@ class TeacherRepository implements TeacherRepositoryInterface
             $Teachers->Joining_Date = $request->Joining_Date;
             $Teachers->Address = $request->Address;
             $Teachers->save();
-            toastr()->success(trans('messages.Update'));
+            toastr()->success('Update');
             return redirect()->route('teacher');
         }
         catch (Exception $e) {
@@ -68,7 +68,7 @@ class TeacherRepository implements TeacherRepositoryInterface
     public function DeleteTeachers($request)
     {
         Teacher::findOrFail($request->id)->delete();
-        toastr()->error(('Deleted'));
+        toastr()->warning(('Deleted'));
         return redirect()->back();
     }
 }

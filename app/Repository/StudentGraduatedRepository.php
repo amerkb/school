@@ -37,7 +37,7 @@ class StudentGraduatedRepository implements StudentGraduatedRepositoryInterface
         }
 
         toastr()->success(('Success'));
-        return redirect()->back();
+        return redirect()->route("indexGra");
     }
 
     public function ReturnData($request)

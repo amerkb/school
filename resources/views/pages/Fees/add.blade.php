@@ -38,13 +38,13 @@
 
                         <div class="form-group col">
                             <label for="inputEmail4">Title</label>
-                            <input type="text" value="{{ old('title_en') }}" name="title_en" class="form-control">
+                            <input required type="text" value="{{ old('title_en') }}" name="title_en" class="form-control">
                         </div>
 
 
                         <div class="form-group col">
                             <label for="inputEmail4">The Amount</label>
-                            <input type="number" value="{{ old('amount') }}" name="amount" class="form-control">
+                            <input required type="number" value="{{ old('amount') }}" name="amount" class="form-control">
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
 
                         <div class="form-group col">
                             <label for="inputState">The Grade</label>
-                            <select class="custom-select mr-sm-2" name="Grade_id">
+                            <select required class="custom-select mr-sm-2" name="Grade_id">
                                 <option selected disabled>{{('Choose') }}...</option>
                                 @foreach ($Grades as $Grade)
                                     <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>

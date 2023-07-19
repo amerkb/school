@@ -71,7 +71,7 @@ class UserRepository implements UserRepositoryInterface
      public function DeleteOriented($request)
      {
          User::findOrFail($request->id)->delete();
-         toastr()->error(('Deleted'));
+         toastr()->warning(('Deleted'));
          return redirect()->back();
      }
 }

@@ -59,7 +59,7 @@
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
 
-                                                               href="{{ route('ts.delete', $ts->id) }}"><i
+                                                                       href="{{ route('ts.delete', $ts->id) }}"><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
                                                                 &nbsp; delete</a>
@@ -71,6 +71,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                        @include('pages.timetables.lecture.destroy')
 
                                         @endforeach
                                     </table>

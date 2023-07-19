@@ -38,18 +38,22 @@ class AttendanceRepository implements AttendanceRepositoryInterface
                     $attendence_status = false;
                 }
 
-                Attendance::create([
-                    'student_id'=> $studentid,
-                    'grade_id'=> $request->grade_id,
-                    'classroom_id'=> $request->classroom_id,
-                    'section_id'=> $request->section_id,
-                    'attendence_date'=> date('Y-m-d'),
-                    'attendence_status'=> $attendence_status
-                ]);
+                Attendance::updateOrCreate(
+                    ['student_id' =>$studentid, 'attendence_date' =>date('Y-m-d')],
+                    [
+                        'student_id'=> $studentid,
+                        'grade_id'=> $request->grade_id,
+                        'classroom_id'=> $request->classroom_id,
+                        'section_id'=> $request->section_id,
+                        'attendence_date'=> date('Y-m-d'),
+                        'attendence_status'=> $attendence_status
+                    ]
+
+                );
 
             }
 
-            toastr()->success(trans('messages.success'));
+            toastr()->success(trans('success'));
             return redirect()->back();
 
         }

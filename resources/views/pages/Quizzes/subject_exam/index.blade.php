@@ -71,8 +71,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
-                                        @endforeach
+                                         @endforeach
                                     </table>
                                 </div>
                             </div>

@@ -74,8 +74,9 @@
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                                   <a class="dropdown-item"
-
-                                                               href="{{route("se.delete",$se->id)}}"><i
+                                                                     data-toggle="modal"
+                                                                     data-target="#delete_se{{ $se->id }}">
+                                                                      <i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
                                                                 &nbsp; delete</a>
@@ -87,7 +88,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                        @include('pages.Quizzes.subject_exam.destroy')
                                         @endforeach
                                     </table>
                                 </div>

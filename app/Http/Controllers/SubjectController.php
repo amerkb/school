@@ -82,6 +82,10 @@ class SubjectController extends Controller
     {
         try{
             if ($request->role == "student") {
+                if ($request->namegategory == null){
+                    return $this->returnError(404,"please send name gategory");
+
+                }
                 $id_category = SubjectsCategorie::where("name", $request->namegategory)->pluck("id")[0];
                 $end_first_term = Setting::where("key", "end_first_term")->pluck("value")[0];
                 $end_first_term = Carbon::createFromFormat("Y-m-d", $end_first_term);
@@ -97,24 +101,27 @@ class SubjectController extends Controller
                 $year = Auth::guard($request->role)->user()->academic_year;
                 $ttr = TimeTableRecord::where([["year", $year], ["section_id", $section_id]
                     , ["semester", $semster]])->first();
+                    $subjectTransfermer = [];
+                    $subject = [];
+                if(!$ttr==null) {
+                    $lectures = $ttr->lecture()->select("subject_id")->distinct()->get();
+                    foreach ($lectures as $index => $lecture) {
+                        $subject[$index] = $lecture->subject;
+                    }
+                    $subject = collect($subject)->filter(function ($subject) use ($id_category) {
+                        return $subject->subject_category_id == $id_category;
+                    });
+                    $i = 0;
+                    foreach ($subject as $subjec) {
 
-                $lectures = $ttr->lecture()->select("subject_id")->distinct()->get();
-                $subject = [];
-                foreach ($lectures as $index => $lecture) {
-                    $subject[$index] = $lecture->subject;
-                }
-                $subject = collect($subject)->filter(function ($subject) use ($id_category) {
-                    return $subject->subject_category_id == $id_category;
-                });
-                $i = 0;
-                $subjectTransfermer = [];
-                foreach ($subject as $subjec) {
-
-                    $subjectTransfermer[$i] = fractal($subjec, new SubjectTransformer())->toArray();
-                    $subjectTransfermer[$i] = $subjectTransfermer[$i]["data"];
-                    $i++;
-                }
+                        $subjectTransfermer[$i] = fractal($subjec, new SubjectTransformer())->toArray();
+                        $subjectTransfermer[$i] = $subjectTransfermer[$i]["data"];
+                        $i++;
+                    }
                 return $this->returnData("subjects", $subjectTransfermer, "count_subjects", $subject->count());
+                }
+                return $this->returnData("subjects", $subjectTransfermer, "count_subjects",0);
+
             }}
      catch (\Exception $e) {
              return $e->getMessage();

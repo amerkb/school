@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('Name_Section');
-            $table->integer('Status');
+            $table->integer('Status')->default(1);
             $table->bigInteger('Grade_id')->unsigned();
             $table->foreign('Grade_id')->references('id')->on('Grades');
             $table->bigInteger('Class_id')->unsigned();

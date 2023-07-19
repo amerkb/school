@@ -76,14 +76,23 @@ class ClassroomController extends Controller
     public function destroy(Request $request)
     {
         try {
-        $Classrooms = Classroom::findOrFail($request->id)->delete();
-        toastr()->error(('Deleted'));
-        return redirect()->back();
 
-     } catch (\Exception $e) {
+
+        $old_status = Classroom::where("id",$request->id)->pluck("Status")[0];
+        $new_status=$old_status==0?1:0;
+        $class = Classroom::findOrFail($request->id)->update(["Status"=>$new_status]);
+        if ($new_status==1) {
+            toastr()->success(('Active'));
+        }
+        else{
+            toastr()->warning('No Active');
+        }
+        return redirect()->route('classindex');
+
+
+    } catch (\Exception $e) {
 return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-}
-    }
+    }}
 
     public function delete_all(Request $request)
     {

@@ -69,8 +69,7 @@
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
-
-                                                               href="{{ route('ttr.destroy', $ttr->id) }}"><i
+                                                               data-toggle="modal" data-target="#delete_ttr{{ $ttr->id }}"><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
                                                                &nbsp; delete</a>
@@ -82,7 +81,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                        @include('pages.timetables.destroy')
                                         @endforeach
                                     </table>
                                 </div>
@@ -92,6 +91,4 @@
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
 @endsection

@@ -69,7 +69,7 @@
                                                                         </td>
                                                                         <td>
                                                                             <label
-                                                                                class="badge badge-{{ $list_Sections->Status == 1 ? 'success' : 'danger' }}">{{ $list_Sections->Status == 1 ? 'نشط' : 'غير نشط' }}</label>
+                                                                                class="badge badge-{{ $list_Sections->Status == 1 ? 'success' : 'danger' }}">{{ $list_Sections->Status == 1 ? 'active' : 'un active ' }}</label>
                                                                         </td>
 
                                                                         <td>

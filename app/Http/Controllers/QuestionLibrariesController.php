@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionLbraryRequest;
 use App\Http\Traits\AttachFilesTrait;
+use App\Models\Book;
 use App\Models\Grade;
 use App\Models\Question_libraries;
 use App\Http\Controllers\Controller;
 use App\Models\Quizze;
 use App\Models\SubjectExam;
+use App\Traits\GeneralTrait;
+use App\Transformers\BookTransformer;
+use App\Transformers\QuestionLibraryTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionLibrariesController extends Controller
 { use AttachFilesTrait;
@@ -150,4 +155,29 @@ class QuestionLibrariesController extends Controller
     {
         return response()->download(public_path('attachments/question/'.$filename));
     }
+    use GeneralTrait;
+    public function get_question_library(Request $request)
+    {
+        try {
+
+            if ($request->role == "student") {
+
+                $class = Auth::guard($request->role)->user()->Classroom_id;
+                $questions=Question_libraries::where("Classroom_id",$class)->get();
+                $questionsTransfermer=[];
+                foreach ($questions as $index=> $question){
+                    $questionsTransfermer[$index] = fractal($question, new QuestionLibraryTransformer())->toArray();
+                    $questionsTransfermer[$index]= $questionsTransfermer[$index]["data"];
+                }
+                return $this ->returnData("questions" ,$questionsTransfermer,"count_questions",$questions->count());
+
+
+            }
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
 }

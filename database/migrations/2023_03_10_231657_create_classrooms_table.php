@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('Name_Class');
+            $table->integer('Status')->default(1);
             $table->bigInteger('Grade_id')->unsigned();
             $table->foreign('Grade_id')->references('id')->on('Grades');
             $table->timestamps();

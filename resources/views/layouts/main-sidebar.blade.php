@@ -310,7 +310,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) || IsOriented($type))
                 {{--          sections      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#sections" aria-expanded="false" aria-controls="collapseLayouts">
@@ -325,7 +325,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) || IsOriented($type))
                 {{--          student      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#student" aria-expanded="false" aria-controls="collapseLayouts">
@@ -341,7 +341,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
                 {{--          Promotion      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Promotion" aria-expanded="false" aria-controls="collapseLayouts">
@@ -357,7 +357,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
                 {{--          Graduate      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Graduate" aria-expanded="false" aria-controls="collapseLayouts">
@@ -373,7 +373,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
                 {{--          Teachers      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Teachers" aria-expanded="false" aria-controls="collapseLayouts">
@@ -384,12 +384,12 @@
 
                 <div class="collapse" id="Teachers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href=""> Add teacher</a>
+                        <a class="nav-link" href="{{ route('createteacher') }}"> Add teacher </a>
                         <a class="nav-link" href="{{ route('teacher') }}"> Teachers List</a>
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) || IsOriented($type))
                 {{--          Parents      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Parents" aria-expanded="false" aria-controls="collapseLayouts">
@@ -424,7 +424,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
                 {{--          Attendance      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Attendance" aria-expanded="false" aria-controls="collapseLayouts">
@@ -439,7 +439,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) || IsOriented($type))
                 {{--          Subjects      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Subjects" aria-expanded="false" aria-controls="collapseLayouts">
@@ -456,7 +456,7 @@
 
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) || IsOriented($type))
                 {{--          Quizzes      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Quizzes" aria-expanded="false" aria-controls="collapseLayouts">
@@ -473,7 +473,7 @@
 
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
                 {{--          Result      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Result" aria-expanded="false" aria-controls="collapseLayouts">
@@ -489,7 +489,7 @@
 
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
                 {{--          timetable      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#timetable" aria-expanded="false" aria-controls="collapseLayouts">
@@ -525,7 +525,7 @@
 
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type)|| IsOriented($type))
             {{--          Online      --}}
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                data-bs-target="#Online" aria-expanded="false" aria-controls="collapseLayouts">

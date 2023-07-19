@@ -135,6 +135,7 @@
                                                 type="checkbox"
                                                 class="form-check-input"
                                                 name="Status"
+                                                checked
                                                 id="exampleCheck1">
                                         {{-- @endif --}}
                                         <label

@@ -35,23 +35,24 @@
                         {{ 'Add Class' }}
                     </button>
 
-                    <button type="button" class="button x-small" id="btn_delete_all">
-                        {{ 'Delete Checkbox' }}
-                    </button>
+{{--                    <button type="button" class="button x-small" id="btn_delete_all">--}}
+{{--                        {{ 'Delete Checkbox' }}--}}
+{{--                    </button>--}}
 
 
                     <br><br>
 
                     <form action="{{ route('Filter_Classes') }}" method="">
-                        {{ csrf_field() }}
+
                         <select class="selectpicker" data-style="btn-info" name="Grade_id" required
                                 onchange="this.form.submit()">
-                            <option value="" selected disabled>{{ 'Search_By_Grade' }}</option>
+                            <option value="" selected disabled>{{ 'Search By Grade' }}</option>
                             @foreach ($Grades as $Grade)
                                 <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
                             @endforeach
                         </select>
                     </form>
+                        <br>
 
 
 
@@ -65,6 +66,7 @@
                                 <th>#</th>
                                 <th>{{ 'Name Class' }}</th>
                                 <th>{{ 'Name Grade' }}</th>
+                                <th>{{ 'Status' }}</th>
                                 <th>{{ 'Processes' }}</th>
                             </tr>
                             </thead>
@@ -86,13 +88,28 @@
                                     <td>{{ $My_Class->Name_Class }}</td>
                                     <td>{{ $My_Class->Grades->Name }}</td>
                                     <td>
+                                        @if ($My_Class->Status === 1)
+                                            <label
+                                                    class="badge badge-success">{{ 'Active' }}</label>
+                                        @else
+                                            <label
+                                                    class="badge badge-danger">{{ 'No Active' }}</label>
+                                        @endif
+
+                                    </td>
+                                    <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#edit{{ $My_Class->id }}"
                                                 title="{{('Edit') }}"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        <button type="button" class="{{$My_Class->Status==1?"btn btn-danger btn-sm":"btn btn-success btn-sm"}}" data-toggle="modal"
                                                 data-target="#delete{{ $My_Class->id }}"
-                                                title="{{('Delete') }}"><i
-                                                    class="fa fa-trash"></i></button>
+                                                title="">
+                                            @if ($My_Class->Status === 1)
+                                                No Active
+                                            @else
+                                                 Active
+                                            @endif
+                                            </button>
                                     </td>
                                 </tr>
 
@@ -128,7 +145,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <label for="Name_en"
-                                                               class="mr-sm-2">{{ 'Name Class' }}
+                                                               class="mr-sm-2">Name Class
                                                             :</label>
                                                         <input type="text" class="form-control"
                                                                value="{{ $My_Class->Name_Class }}"
@@ -175,7 +192,11 @@
                                 <div class="modal-header">
                                     <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                         id="exampleModalLabel">
-                                        {{ 'Delete Class' }}
+                                        @if ($My_Class->Status === 1)
+                                             Active
+                                        @else
+                                          No  Active
+                                        @endif
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
@@ -194,7 +215,12 @@
                                             <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">{{ 'Close' }}</button>
                                             <button type="submit"
-                                                    class="btn btn-danger">{{ 'Submit' }}</button>
+                                                    class="btn btn-danger">
+                                                @if ($My_Class->Status === 1)
+                                                  No Active
+                                                @else
+                                                     Active
+                                                @endif</button>
                                         </div>
                                     </form>
                                 </div>
@@ -241,7 +267,7 @@
 
                                             <div class="col">
                                                 <label for="Name"
-                                                       class="mr-sm-2">{{('Name_class_en') }}
+                                                       class="mr-sm-2">{{('Name class') }}
                                                     :</label>
                                                 <input class="form-control" type="text" name="Name_class_en" />
                                             </div>
@@ -249,7 +275,7 @@
 
                                             <div class="col">
                                                 <label for="Name_en"
-                                                       class="mr-sm-2">{{ ('Name_Grade') }}
+                                                       class="mr-sm-2">{{ ('Name Grade') }}
                                                     :</label>
 
                                                 <div class="box">

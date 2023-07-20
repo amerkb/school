@@ -12,6 +12,11 @@ class Teacher extends Authenticatable implements JWTSubject
     use HasFactory;
     protected $guarded=[];
     // علاقة بين المعلمين والتخصصات لجلب اسم التخصص
+    public function teacher_account()
+    {
+        return $this->hasMany('App\Models\StudentAccount', 'teachers_id');
+
+    }
     public function specializations()
     {
         return $this->belongsTo('App\Models\Specialization', 'Specialization_id');

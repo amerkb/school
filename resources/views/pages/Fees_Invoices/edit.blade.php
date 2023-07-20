@@ -2,7 +2,7 @@
 @section('css')
 {{--    /*@toastr_css */--}}
 @section('title')
-    تعديل رسوم دراسية
+      edit invoices
 @stop
 @endsection
 @section('page-header')
@@ -27,8 +27,7 @@
                         </div>
                     @endif
 
-                    <form action="{{route('Invoices_update','test')}}" method="post" autocomplete="off">
-                        @method('PUT')
+                    <form action="{{route('Invoices_update','test')}}" method="" autocomplete="off">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col">
@@ -64,9 +63,10 @@
                             <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="4">{{$fee_invoices->description}}</textarea>
                         </div>
                         <br>
-
-                        <button type="submit" class="btn btn-primary">تاكيد</button>
-
+                        <div class="text-center">
+                            <button id="ajax-btn" type="submit"
+                                    class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                        </div>
                     </form>
 
                 </div>

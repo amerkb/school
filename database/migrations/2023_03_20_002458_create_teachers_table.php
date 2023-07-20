@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('Specialization_id')->unsigned();
             $table->foreign('Specialization_id')->references('id')->on('specializations')->onDelete('cascade');
             $table->bigInteger('Gender_id')->unsigned();
+            $table->tinyInteger('status')->default(1);
             $table->foreign('Gender_id')->references('id')->on('genders')->onDelete('cascade');
             $table->date('Joining_Date');
             $table->text('Address');

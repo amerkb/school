@@ -43,13 +43,14 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
 
             foreach ($List_Fees as $List_Fee) {
                 // حفظ البيانات في جدول فواتير الرسوم الدراسية
+             $amount= Fee::where("id",$List_Fee['fee_id'])->pluck("amount")[0];
                 $Fees = new FeeInvoices();
                 $Fees->invoice_date = date('Y-m-d');
                 $Fees->student_id = $List_Fee['student_id'];
                 $Fees->Grade_id = $request->Grade_id;
                 $Fees->Classroom_id = $request->Classroom_id;;
                 $Fees->fee_id = $List_Fee['fee_id'];
-                $Fees->amount = $List_Fee['amount'];
+                $Fees->amount = $amount;
                 $Fees->description = $List_Fee['description'];
                 $Fees->save();
 
@@ -59,16 +60,16 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
                 $StudentAccount->type = 'invoice';
                 $StudentAccount->fee_invoice_id = $Fees->id;
                 $StudentAccount->student_id = $List_Fee['student_id'];
-                $StudentAccount->Debit = $List_Fee['amount'];
-                $StudentAccount->credit = 0.00;
+                $StudentAccount->Debit = $amount;
+                $StudentAccount->credit = 0;
                 $StudentAccount->description = $List_Fee['description'];
                 $StudentAccount->save();
             }
 
             DB::commit();
 
-            toastr()->success(trans('messages.success'));
-            return redirect()->back();
+            toastr()->success('success');
+            return redirect()->route("Invoices_index");
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -94,7 +95,7 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
             DB::commit();
 
             toastr()->success(('Update'));
-            return redirect()->back();
+            return redirect()->route("Invoices_index");
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

@@ -36,7 +36,7 @@ class UserRepository implements UserRepositoryInterface
             $Users->save();
             toastr()->success(trans('Added Successfully'));
             return redirect()->route('ori_index');
-           return $request;
+
         }catch(Exception $e) {
             return redirect()->back()->with(['Error' => $e->getMessage()]);
         }
@@ -70,8 +70,15 @@ class UserRepository implements UserRepositoryInterface
  
      public function DeleteOriented($request)
      {
-         User::findOrFail($request->id)->delete();
-         toastr()->warning(('Deleted'));
-         return redirect()->back();
+         $old_status = User::where("id",$request->id)->pluck("status")[0];
+         $new_status=$old_status==0?1:0;
+         $class = User::findOrFail($request->id)->update(["Status"=>$new_status]);
+         if ($new_status==1) {
+             toastr()->success(('Active'));
+         }
+         else{
+             toastr()->warning('No Active');
+         }
+         return redirect()->route('ori_index');
      }
 }

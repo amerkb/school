@@ -737,6 +737,428 @@
 </div>
 </div>
 @endif
+    @if(IsAccountant($type))
+
+        <div id="layoutSidenav_content">
+
+
+            <div class="content-wrapper" style="margin: 0px">
+                <div class="page-title" >
+                    <div class="row">
+                        <div class="container-fluid px-4">
+                            <h1 class="mt-4">Dashboard</h1>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- widgets -->
+                    <div class="row"  >
+                        <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                            <div class="card  card-statistics h-100">
+                                <div class="btn-primary card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left ">
+<span class="text-white">
+<i class="fas fa-money-bill highlight-icon" aria-hidden="true"></i>
+</span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <h5 class="card-text text-white">Invoices Number :</h5>
+                                            <h4 class="text-white">{{\App\Models\FeeInvoices::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                    <h6 class="text-white"><a href="{{route('Invoices_index')}}">View Details</a></h6>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                            <div class="card  card-statistics h-100">
+                                <div class="btn-danger card-body" style="background-color: green">
+                                    <div class="clearfix">
+                                        <div class="float-left ">
+<span class="text-white">
+<i class="fas fa-money-bill-alt highlight-icon" aria-hidden="true"></i>
+</span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <h5 class="card-text text-white">Receipt Number :</h5>
+                                            <h4 class="text-white">{{\App\Models\ReceiptStudent::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                    <h6 class="text-white"><a href="{{route('Receipt_index')}}" >View Details</a> </h6>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                            <div class="card  card-statistics h-100">
+                                <div class="btn-dark card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left ">
+<span class="text-white">
+<i class="fas fa-money-bill highlight-icon" aria-hidden="true"></i>
+</span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <h5 class="card-text text-white">Payment Number:</h5>
+                                            <h4 class="text-white">{{\App\Models\PaymentStudent::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                    <h6 class="text-white"> <a href="{{route('Payment_index')}}">View Details</a></h6>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                            <div class="card  card-statistics h-100">
+                                <div class="btn-danger card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left ">
+<span class="text-white">
+<i class="fas fa-money-bill highlight-icon" aria-hidden="true"></i>
+</span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <h5 class="card-text text-white">Exception Number:</h5>
+                                            <h4 class="text-white">{{\App\Models\ProcessingFee::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                    <h6 class="text-white"> <a href="{{route('Process_index')}}">View Details</a></h6>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                            <div class="card  card-statistics h-100">
+                                <div class="btn-info card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left ">
+<span class="text-white">
+<i class="fas fa-money-bill-alt highlight-icon" aria-hidden="true"></i>
+</span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <h5 class="card-text text-white">Fees Number:</h5>
+                                            <h4 class="text-white">{{\App\Models\Fee::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                    <h6 class="text-white"> <a href="{{route('indexfee')}}">View Details</a></h6>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
+                            <div class="card  card-statistics h-100">
+                                <div class="btn-warning card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left ">
+<span class="text-white">
+<i class="fas fa-money-bill-alt highlight-icon" aria-hidden="true"></i>
+</span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <h5 class="card-text text-white">Reparation Number:</h5>
+                                            <h4 class="text-white">{{\App\Models\FundAccount::whereNull("payment_id")->whereNull("receipt_id")->count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                    <h6 class="text-white"> <a href="{{route('reparations_Index')}}">View Details</a></h6>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div  style="height: 400px;" class="col-xl-12 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="tab nav-border" style="position: relative;">
+                                        <div class="d-block d-md-flex justify-content-between">
+                                            <div class="d-block w-100">
+                                                <h5 style="font-family: 'Cairo', sans-serif" class="card-title">The last operations on the system</h5>
+                                            </div>
+                                            <div class="d-block d-md-flex nav-tabs-custom">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active show" id="students-tab" data-toggle="tab"
+                                                           href="#students" role="tab" aria-controls="students"
+                                                           aria-selected="true"> fees</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="teachers-tab" data-toggle="tab" href="#teachers"
+                                                           role="tab" aria-controls="teachers" aria-selected="false">invoice
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="parents-tab" data-toggle="tab" href="#parents"
+                                                           role="tab" aria-controls="parents" aria-selected="false"> Receipt
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="parents-tab" data-toggle="tab" href="#exaption"
+                                                           role="tab" aria-controls="exaption" aria-selected="false"> Exception
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="parents-tab" data-toggle="tab" href="#Payment"
+                                                           role="tab" aria-controls="Payment" aria-selected="false"> Payment
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="parents-tab" data-toggle="tab" href="#Reparation"
+                                                           role="tab" aria-controls="Reparation" aria-selected="false"> Reparation
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content" id="myTabContent">
+
+                                            {{--students Table--}}
+                                            <div class="tab-pane fade active show" id="students" role="tabpanel" aria-labelledby="students-tab">
+                                                <div class="table-responsive mt-15">
+                                                    <table style="text-align: center" class="table center-aligned-table  mb-0">
+                                                        <thead>
+                                                        <tr  class="table-info text-danger">
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>The Amount</th>
+                                                            <th>The Grade</th>
+                                                            <th>The Class</th>
+                                                            <th>Academic year</th>
+                                                            <th>Notes</th>
+                                                            <th>created at </th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @forelse(\App\Models\Fee::latest()->take(10)->get() as $fee)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{ $fee->title }}</td>
+                                                                <td>{{ number_format($fee->amount) }}</td>
+                                                                <td>{{ $fee->grade->Name }}</td>
+                                                                <td>{{ $fee->classroom->Name_Class }}</td>
+                                                                <td>{{ $fee->year }}</td>
+                                                                <td>{{ $fee->description }}</td>
+                                                                <td class="text-success">{{$fee->created_at}}</td>
+
+                                                                @empty
+                                                                    <td class="alert-danger" colspan="8"> NO DATA</td>
+                                                            </tr>
+                                                        @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            {{--teachers Table--}}
+                                            <div class="tab-pane fade" id="teachers" role="tabpanel" aria-labelledby="teachers-tab">
+                                                <div class="table-responsive mt-15">
+                                                    <table style="text-align: center" class="table center-aligned-table  mb-0">
+                                                        <thead>
+                                                        <tr  class="table-info text-danger">
+                                                            <th>#</th>
+                                                            <th>الاسم</th>
+                                                            <th>نوع الرسوم</th>
+                                                            <th>المبلغ</th>
+                                                            <th>المرحلة الدراسية</th>
+                                                            <th>الصف الدراسي</th>
+                                                            <th>البيان</th>
+                                                            <th> created at</th>
+
+                                                        </tr>
+                                                        </thead>
+
+                                                        @forelse(\App\Models\FeeInvoices::latest()->take(10)->get() as $Fee_invoice)
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{$Fee_invoice->student->name}}</td>
+                                                                <td>{{$Fee_invoice->fees->title}}</td>
+                                                                <td>{{ number_format($Fee_invoice->amount) }}</td>
+                                                                <td>{{$Fee_invoice->grade->Name}}</td>
+                                                                <td>{{$Fee_invoice->classroom->Name_Class}}</td>
+                                                                <td>{{$Fee_invoice->description}}</td>
+                                                                <td class="text-success">{{$Fee_invoice->created_at}}</td>
+
+
+                                                                @empty
+                                                                    <td class="alert-danger" colspan="8">NO DATA </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        @endforelse
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            {{--parents Table--}}
+                                            <div class="tab-pane fade" id="parents" role="tabpanel" aria-labelledby="parents-tab">
+                                                <div class="table-responsive mt-15">
+                                                    <table style="text-align: center" class="table center-aligned-table  mb-0">
+                                                        <thead>
+                                                        <tr  class="table-info text-danger">
+                                                            <th>الاسم</th>
+                                                            <th>المبلغ</th>
+                                                            <th>البيان</th>
+                                                            <th> created at</th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @forelse(\App\Models\ReceiptStudent::latest()->take(10)->get() as $receipt_student)
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{$receipt_student->student->name}}</td>
+                                                            <td>{{ number_format($receipt_student->Debit) }}</td>
+                                                                <td class="text-success">{{$receipt_student->created_at}}</td>
+                                                                </td> @empty
+                                                                    <td class="alert-danger" colspan="8"> NO DATA</td>
+                                                            </tr>
+                                                        @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            {{--sections Table--}}
+                                            <div class="tab-pane fade" id="exaption" role="tabpanel" aria-labelledby="exaption-tab">
+                                                <div class="table-responsive mt-15">
+                                                    <table style="text-align: center" class="table center-aligned-table  mb-0">
+                                                        <thead>
+                                                        <tr  class="table-info text-danger">
+                                                            <th>#</th>
+                                                            <th>الاسم</th>
+                                                            <th>المبلغ</th>
+                                                            <th>البيان</th>
+                                                            <th>تاريخ الاضافة</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @forelse(\App\Models\ProcessingFee::latest()->take(10)->get() as $ProcessingFee)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{$ProcessingFee->student->name}}</td>
+                                                                <td>{{ number_format($ProcessingFee->amount) }}</td>
+                                                                <td>{{$ProcessingFee->description}}</td>
+                                                                <td class="text-success">{{$ProcessingFee->created_at}}</td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td class="alert-danger" colspan="9">لاتوجد بيانات</td>
+                                                            </tr>
+                                                        @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            {{--expetion Table--}}
+                                            <div class="tab-pane fade" id="Payment" role="tabpanel" aria-labelledby="Payment-tab">
+                                                <div class="table-responsive mt-15">
+                                                    <table style="text-align: center" class="table center-aligned-table  mb-0">
+                                                        <thead>
+                                                        <tr  class="table-info text-danger">
+                                                            <th>#</th>
+                                                            <th>الاسم</th>
+                                                            <th>النوع</th>
+                                                            <th>المبلغ</th>
+                                                            <th>البيان</th>
+                                                            <th>تاريخ الاضافة</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @forelse(\App\Models\PaymentStudent::latest()->take(10)->get() as $payment_student)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                @if($payment_student->student!=null)
+                                                                    <td>{{$payment_student->student->name}}</td>
+                                                                    <td>student</td>
+                                                                @elseif($payment_student->teacher!=null)
+                                                                    <td>{{$payment_student->teacher->Name}}</td>
+                                                                    <td>teacher</td>
+                                                                @elseif($payment_student->user!=null)
+                                                                    <td>{{$payment_student->user->name}}</td>
+                                                                    <td>{{$payment_student->user->type_user->type}}</td>
+                                                                @endif
+
+                                                                <td>{{ number_format($payment_student->amount) }}</td>
+                                                                <td>{{$payment_student->description}}</td>
+                                                                <td class="text-success">{{$payment_student->created_at}}</td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td class="alert-danger" colspan="9">لاتوجد بيانات</td>
+                                                            </tr>
+                                                        @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            {{--expetion Table--}}
+                                            <div class="tab-pane fade" id="Reparation" role="tabpanel" aria-labelledby="Reparation-tab">
+                                                <div class="table-responsive mt-15">
+                                                    <table style="text-align: center" class="table center-aligned-table  mb-0">
+                                                        <thead>
+                                                        <tr  class="table-info text-danger">
+                                                            <th>#</th>
+                                                            <th>{{ 'Amount' }}</th>
+                                                            <th>{{ 'Statement' }}</th>
+                                                            <th>{{ 'created ' }}</th>
+                                                            <th>{{ 'updated' }}</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @forelse(\App\Models\FundAccount::whereNull("payment_id")->whereNull("receipt_id")->latest()->take(10)->get() as $Reparatio)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{ number_format($Reparatio->credit) }}</td>
+                                                                <td>{{ $Reparatio->description }}</td>
+                                                                <td>{{ $Reparatio->created_at }}</td>
+                                                                <td>{{ $Reparatio->updated_at }}</td>  </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td class="alert-danger" colspan="9">لاتوجد بيانات</td>
+                                                            </tr>
+                                                        @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+            @endif
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>

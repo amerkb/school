@@ -2,7 +2,8 @@
 @section('css')
 
 @section('title')
-    معالجات الرسوم الدراسية
+     excluding list
+
 @stop
 @endsection
 @section('page-header')
@@ -35,7 +36,7 @@
                                             <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{$ProcessingFee->student->name}}</td>
-                                            <td>{{ number_format($ProcessingFee->amount, 2) }}</td>
+                                            <td>{{ number_format($ProcessingFee->amount) }}</td>
                                             <td>{{$ProcessingFee->description}}</td>
                                                 <td>
                                                     <a href="{{route('Process_edit',$ProcessingFee->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>

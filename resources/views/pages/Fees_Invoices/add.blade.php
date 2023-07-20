@@ -2,7 +2,7 @@
 @section('css')
 {{--    /*@toastr_css */ --}}
 @section('title')
-    اضافة فاتورة جديدة
+   add fees for {{ $student->name }}
 @stop
 @endsection
 @section('page-header')
@@ -39,7 +39,7 @@
                                         <div class="col">
                                             <label for="Name" class="mr-sm-2">Student Name</label>
                                             <select class="fancyselect" name="student_id" required>
-                                                <option value="{{ $student->id }}">{{ $student->name }}</option>
+                                                <option selected value="{{ $student->id }}">{{ $student->name }}</option>
                                             </select>
                                         </div>
 
@@ -47,26 +47,16 @@
                                             <label for="Name_en" class="mr-sm-2">Fee Type</label>
                                             <div class="box">
                                                 <select class="fancyselect" name="fee_id" required>
-                                                    <option value="">-- اختار من القائمة --</option>
+                                                    <option value="">-- choose --</option>
                                                     @foreach ($fees as $fee)
-                                                        <option value="{{ $fee->id }}">{{ $fee->title }}</option>
+                                                        <option value="{{ $fee->id }}">{{ $fee->title }}({{$fee->amount}})</option>
                                                     @endforeach
                                                 </select>
                                             </div>
 
                                         </div>
 
-                                        <div class="col">
-                                            <label for="Name_en" class="mr-sm-2">The Amount</label>
-                                            <div class="box">
-                                                <select class="fancyselect" name="amount" required>
-                                                    <option value="">-- اختار من القائمة --</option>
-                                                    @foreach ($fees as $fee)
-                                                        <option value="{{ $fee->amount }}">{{ $fee->amount }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
+
 
                                         <div class="col">
                                             <label for="description" class="mr-sm-2">Statement</label>
@@ -91,8 +81,10 @@
                             </div><br>
                             <input type="hidden" name="Grade_id" value="{{ $student->Grade_id }}">
                             <input type="hidden" name="Classroom_id" value="{{ $student->Classroom_id }}">
-
-                            <button type="submit" class="btn btn-primary">تاكيد البيانات</button>
+                            <div class="text-center">
+                                <button id="ajax-btn" type="submit"
+                                        class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -103,7 +95,6 @@
 <!-- row closed -->
 @endsection
 @section('js')
-{{--@toastr_js--}}
-{{--@toastr_render--}}
+
 
 @endsection

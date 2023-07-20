@@ -9,6 +9,11 @@ interface PaymentRepositoryInterface
     public function index();
 
     public function show($id);
+    public function showteacher($id);
+    public function showuser($id);
+    public function storeuser($request);
+
+    public function storeteacher($id);
 
     public function edit($id);
 

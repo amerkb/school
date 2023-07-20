@@ -3465,7 +3465,7 @@ tbody.collapse.show {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 1.25rem; }
+  padding: 2rem; }
 
 .card-title {
   margin-bottom: .75rem; }
@@ -3486,7 +3486,7 @@ tbody.collapse.show {
 .card-header {
   padding: .75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color:white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
 
 .card-header:first-child {
@@ -21934,21 +21934,21 @@ select.form-control-sm:not([size]):not([multiple]) {
   height: 35px; }
 
 .datepicker table tr td.today {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff; }
 .datepicker table tr td.today:hover {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff; }
 
 .datepicker table tr td.today.disabled {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff; }
 .datepicker table tr td.today.disabled:hover {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff; }
 
 .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active[disabled], .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active.disabled:hover[disabled] {
-  background: #84ba3f;
+  background: #28a745;
   color: #ffffff; }
 
 /*error   */

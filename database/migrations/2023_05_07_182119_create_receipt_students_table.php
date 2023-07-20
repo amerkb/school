@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('receipt_students', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->decimal('Debit',8,2)->nullable();
+            $table->foreignId('student_id')->nullable()->references('id')->on('students')->onDelete('cascade');
+            $table->bigInteger('Debit')->nullable();
             $table->string('description');
             $table->timestamps();
         });

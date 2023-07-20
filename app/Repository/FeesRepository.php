@@ -47,7 +47,7 @@ class FeesRepository implements FeesRepositoryInterface
             $fees->Fee_type  =$request->Fee_type;
             $fees->save();
             toastr()->success(('success'));
-            return redirect()->back();
+            return redirect()->route("indexfee");
 
         }
 

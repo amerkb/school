@@ -2,13 +2,13 @@
 @section('css')
 
 @section('title')
-    سند صرف
+   payment for {{$student->name}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    سند صرف {{$student->name}}
+    سند صرف
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>رصيد الطالب : </label>
-                                    <input  class="form-control" name="final_balance" value="{{ number_format($student->student_account->sum('Debit') - $student->student_account->sum('credit'), 2) }}" type="text" readonly>
+                                    <input  class="form-control" name="final_balance" value="{{ number_format($student->student_account->sum('Debit') - $student->student_account->sum('credit')) }}" type="text" readonly>
                                 </div>
                             </div>
                         </div>
@@ -54,8 +54,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Submit')}}</button>
-                    </form>
+                        <div class="text-center">
+                            <button id="ajax-btn" type="submit"
+                                    class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                        </div>    </form>
 
                 </div>
 

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'Joining_Date',
         'Address',
         'type_id',
+        'Status',
     ];
 
     /**

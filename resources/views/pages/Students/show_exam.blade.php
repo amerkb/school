@@ -17,7 +17,7 @@
 
 
         .animated-card {
-            transition: transform 0.3s 0.2s ease-in-out;
+            transition: transform 0.3s 0.1s ease-in-out;
         }
 
         .animated-card:hover {
@@ -27,12 +27,14 @@
     </style>
 <!-- row -->
     @if($quizzes->isEmpty())
-        <div class="card-body" style="display: flex;
+        <div class="card-body" style=" display: flex;
     justify-content: center;
     align-items: center;
     height: 90vh;
     font-size: 40px;
-    font-weight: bold;">
+    font-weight: bold;
+     padding: 2.25rem;
+}">
             NO RESULTS
         </div>
 

@@ -7,6 +7,8 @@ use App\Models\FundAccount;
 use App\Models\PaymentStudent;
 use App\Models\Student;
 use App\Models\StudentAccount;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -15,14 +17,27 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function index()
     {
-        $payment_students = PaymentStudent::all();
-        return view('pages.Payment.index',compact('payment_students'));
+        $data['payment_students'] = PaymentStudent::whereNotNull("student_id")->get();
+        $data['payment_teachers'] = PaymentStudent::whereNotNull("teachers_id")->get();
+        $data['payment_user'] = PaymentStudent::whereNotNull("user_id")->get();
+        return view('pages.Payment.index',$data);
     }
 
     public function show($id)
     {
         $student = Student::findorfail($id);
         return view('pages.Payment.add',compact('student'));
+    }
+
+    public function showteacher($id)
+    {
+        $Teacher = Teacher::findorfail($id);
+        return view('pages.Payment.addteacher',compact('Teacher'));
+    }
+    public function showuser($id)
+    {
+        $Teacher = User::findorfail($id);
+        return view('pages.Payment.adduser',compact('Teacher'));
     }
 
     public function edit($id)
@@ -50,7 +65,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $fund_accounts = new FundAccount();
             $fund_accounts->date = date('Y-m-d');
             $fund_accounts->payment_id = $payment_students->id;
-            $fund_accounts->Debit = 0.00;
+            $fund_accounts->Debit = 0;
             $fund_accounts->credit = $request->Debit;
             $fund_accounts->description = $request->description;
             $fund_accounts->save();
@@ -63,12 +78,56 @@ class PaymentRepository implements PaymentRepositoryInterface
             $students_accounts->student_id = $request->student_id;
             $students_accounts->payment_id = $payment_students->id;
             $students_accounts->Debit = $request->Debit;
-            $students_accounts->credit = 0.00;
+            $students_accounts->credit = 0;
             $students_accounts->description = $request->description;
             $students_accounts->save();
 
             DB::commit();
-            toastr()->success(trans('messages.success'));
+            toastr()->success('success');
+            return redirect()->route('Payment_index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    public function storeteacher($request)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            // حفظ البيانات في جدول سندات الصرف
+            $payment_students = new PaymentStudent();
+            $payment_students->date = date('Y-m-d');
+            $payment_students->teachers_id = $request->teacher_id;
+            $payment_students->amount = $request->Debit;
+            $payment_students->description = $request->description;
+            $payment_students->save();
+
+
+            // حفظ البيانات في جدول الصندوق
+            $fund_accounts = new FundAccount();
+            $fund_accounts->date = date('Y-m-d');
+            $fund_accounts->payment_id = $payment_students->id;
+            $fund_accounts->Debit = 0;
+            $fund_accounts->credit = $request->Debit;
+            $fund_accounts->description = $request->description;
+            $fund_accounts->save();
+
+
+            // حفظ البيانات في جدول حساب الطلاب
+            $students_accounts = new StudentAccount();
+            $students_accounts->date = date('Y-m-d');
+            $students_accounts->type = 'payment';
+            $students_accounts->teachers_id = $request->teacher_id;
+            $students_accounts->payment_id = $payment_students->id;
+            $students_accounts->Debit = $request->Debit;
+            $students_accounts->credit = 0;
+            $students_accounts->description = $request->description;
+            $students_accounts->save();
+
+            DB::commit();
+            toastr()->success('success');
             return redirect()->route('Payment_index');
         } catch (\Exception $e) {
             DB::rollback();
@@ -76,6 +135,50 @@ class PaymentRepository implements PaymentRepositoryInterface
         }
     }
 
+    public function storeuser($request)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            // حفظ البيانات في جدول سندات الصرف
+            $payment_students = new PaymentStudent();
+            $payment_students->date = date('Y-m-d');
+            $payment_students->user_id = $request->user_id;
+            $payment_students->amount = $request->Debit;
+            $payment_students->description = $request->description;
+            $payment_students->save();
+
+
+            // حفظ البيانات في جدول الصندوق
+            $fund_accounts = new FundAccount();
+            $fund_accounts->date = date('Y-m-d');
+            $fund_accounts->payment_id = $payment_students->id;
+            $fund_accounts->Debit = 0;
+            $fund_accounts->credit = $request->Debit;
+            $fund_accounts->description = $request->description;
+            $fund_accounts->save();
+
+
+            // حفظ البيانات في جدول حساب الطلاب
+            $students_accounts = new StudentAccount();
+            $students_accounts->date = date('Y-m-d');
+            $students_accounts->type = 'payment';
+            $students_accounts->user_id = $request->user_id;
+            $students_accounts->payment_id = $payment_students->id;
+            $students_accounts->Debit = $request->Debit;
+            $students_accounts->credit = 0;
+            $students_accounts->description = $request->description;
+            $students_accounts->save();
+
+            DB::commit();
+            toastr()->success('success');
+            return redirect()->route('Payment_index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
     public function update($request)
     {
         DB::beginTransaction();
@@ -85,7 +188,6 @@ class PaymentRepository implements PaymentRepositoryInterface
             // تعديل البيانات في جدول سندات الصرف
             $payment_students = PaymentStudent::findorfail($request->id);
             $payment_students->date = date('Y-m-d');
-            $payment_students->student_id = $request->student_id;
             $payment_students->amount = $request->Debit;
             $payment_students->description = $request->description;
             $payment_students->save();
@@ -112,7 +214,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $students_accounts->description = $request->description;
             $students_accounts->save();
             DB::commit();
-            toastr()->success(trans('messages.Update'));
+            toastr()->success('Update');
             return redirect()->route('Payment_index');
         } catch (\Exception $e) {
             DB::rollback();

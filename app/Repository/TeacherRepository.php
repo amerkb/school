@@ -67,8 +67,16 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function DeleteTeachers($request)
     {
-        Teacher::findOrFail($request->id)->delete();
-        toastr()->warning(('Deleted'));
-        return redirect()->back();
+        $old_status = Teacher::where("id",$request->id)->pluck("status")[0];
+        $new_status=$old_status==0?1:0;
+        $class = Teacher::findOrFail($request->id)->update(["Status"=>$new_status]);
+        if ($new_status==1) {
+            toastr()->success(('Active'));
+        }
+        else{
+            toastr()->warning('No Active');
+        }
+        return redirect()->route('teacher');
+
     }
 }

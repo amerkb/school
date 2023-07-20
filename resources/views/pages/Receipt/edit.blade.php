@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-  تعديل سند قبض
+   edit catch receipt
 @stop
 @endsection
 @section('page-header')
@@ -53,8 +53,10 @@
 
                             </div>
 
-                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Submit')}}</button>
-                        </form>
+                                <div class="text-center">
+                                    <button id="ajax-btn" type="submit"
+                                            class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                                </div>     </form>
 
                 </div>
 

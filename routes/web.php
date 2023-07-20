@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\QuestionLibrariesController;
+use App\Http\Controllers\ReparationController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\StudentAccountController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeesController;
@@ -89,6 +91,8 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 //    });
     $M = ["Manager"];
     $MO = ["Manager","Oriented"];
+    $MA = ["Manager","Accountant"];
+    $MAO = ["Manager","Accountant","Oriented"];
     ///////////// Grades /////////////
     Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
 
@@ -157,7 +161,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ///////////////////// Teacher ///////////////////////
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MAO)], function ($router) {
 
         Route::get('teacher', [TeacherController::class, 'index'])
             ->name('teacher');
@@ -197,7 +201,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ////////////////////// Students /////////////////
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MAO)], function ($router) {
 
 
         Route::get('create', [StudentController::class, 'create'])
@@ -283,7 +287,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ////////////////  Fees
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MA)], function ($router) {
 
 
         Route::get('indexfee', [FeesController::class, 'index'])
@@ -306,7 +310,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     //////////// Fees Invoices
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MA)], function ($router) {
 
 
         Route::get('Invoices_index', [FeesInvoicesController::class, 'index'])
@@ -318,7 +322,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
         Route::get('Invoices_show{id}', [FeesInvoicesController::class, 'show'])
             ->name('Invoices_show');
 
-        Route::get('Invoices_edit', [FeesInvoicesController::class, 'edit'])
+        Route::get('Invoices_edit/{id}', [FeesInvoicesController::class, 'edit'])
             ->name('Invoices_edit');
 
         Route::get('Invoices_update', [FeesInvoicesController::class, 'update'])
@@ -329,7 +333,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     /////////////////   Receipt
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MA)], function ($router) {
 
 
         Route::get('Receipt_index', [ReceiptStudentController::class, 'index'])
@@ -351,8 +355,34 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
             ->name('Receipt_destroy');
 
     });
+    /////////////////   reparations
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MA)], function ($router) {
+
+
+        Route::get('reparations_Index', [ReparationController::class, 'index'])
+            ->name('reparations_Index');
+
+        Route::get('reparations_store', [ReparationController::class, 'store'])
+            ->name('reparations_store');
+
+        Route::get('reparations_create', [ReparationController::class, 'create'])
+            ->name('reparations_create');
+
+        Route::get('reparations_edit/{id}', [ReparationController::class, 'edit'])
+            ->name('reparations_edit');
+
+        Route::get('reparations_update/{id}', [ReparationController::class, 'update'])
+            ->name('reparations_update');
+
+        Route::get('reparations_destroy/{id}', [ReparationController::class, 'destroy'])
+            ->name('reparations_destroy');
+
+        Route::get('inventory', [ReparationController::class, 'inventory'])
+            ->name('inventory');
+
+    });
     //////////////////   Processing Fees
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MA)], function ($router) {
 
 
 
@@ -365,7 +395,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
         Route::get('Process_show{id}', [ProcessingFeeController::class, 'show'])
             ->name('Process_show');
 
-        Route::get('Process_edit', [ProcessingFeeController::class, 'edit'])
+        Route::get('Process_edit/{id}', [ProcessingFeeController::class, 'edit'])
             ->name('Process_edit');
 
         Route::get('Process_update', [ProcessingFeeController::class, 'update'])
@@ -376,21 +406,41 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     ///////////////  Payment Students
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
-
-
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MA)], function ($router) {
 
         Route::get('Payment_index', [PaymentStudentController::class, 'index'])
             ->name('Payment_index');
 
-        Route::get('Payment_store', [PaymentStudentController::class, 'store'])
+        Route::get('account_statement/student/{id}', [StudentAccountController::class, 'account_statement'])
+            ->name('account_statement');
+
+        Route::get('account_statement/teacher/{id}', [StudentAccountController::class, 'account_statement_teacher'])
+            ->name('account_statement_teacher');
+
+        Route::get('account_statement/user/{id}', [StudentAccountController::class, 'account_statement_user'])
+            ->name('account_statement_user');
+
+        Route::get('Payment_store_student', [PaymentStudentController::class, 'store'])
             ->name('Payment_store');
+
+        Route::get('Payment_store_techer', [PaymentStudentController::class, 'storeteacher'])
+            ->name('Payment_store2');
+
+        Route::get('Payment_store_user', [PaymentStudentController::class, 'storeuser'])
+            ->name('Payment_store3');
 
         Route::get('Payment_show{id}', [PaymentStudentController::class, 'show'])
             ->name('Payment_show');
 
-        Route::get('Payment_edit', [PaymentStudentController::class, 'edit'])
+        Route::get('Payment_show/{id}', [PaymentStudentController::class, 'showteacher'])
+            ->name('Payment_show2');
+
+        Route::get('Payment_show/user/{id}', [PaymentStudentController::class, 'showuser'])
+            ->name('Payment_show3');
+
+        Route::get('Payment_edit/{id}', [PaymentStudentController::class, 'edit'])
             ->name('Payment_edit');
+
 
         Route::get('Payment_update', [PaymentStudentController::class, 'update'])
             ->name('Payment_update');
@@ -704,7 +754,7 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
 
     });
     /////////////   School Oriented
-    Route::group(["middleware" => 'Dashboard:' . implode(',', $M)], function ($router) {
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MAO)], function ($router) {
 
 
         Route::get('ori_index', [UserController::class, 'index'])
@@ -719,12 +769,8 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
             ->name('ori_store');
 
 
-        Route::get('ori_edit{id}', [UserController::class, 'edit'])
+        Route::get('ori_edit/{id}', [UserController::class, 'edit'])
             ->name('ori_edit');
-
-        Route::get('ori_edit', [UserController::class, 'edit'])
-            ->name('ori_edit');
-
 
         Route::get('ori_destroy', [UserController::class, 'destroy'])
             ->name('ori_destroy');

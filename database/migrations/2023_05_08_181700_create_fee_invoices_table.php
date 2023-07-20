@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('Grade_id')->references('id')->on('Grades')->onDelete('cascade');
             $table->foreignId('Classroom_id')->references('id')->on('Classrooms')->onDelete('cascade');
             $table->foreignId('fee_id')->references('id')->on('fees')->onDelete('cascade');
-            $table->decimal('amount',8,2);
+            $table->bigInteger('amount');
             $table->string('description')->nullable();
             $table->timestamps();
         });

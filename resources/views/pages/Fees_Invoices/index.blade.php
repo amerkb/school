@@ -2,7 +2,7 @@
 @section('css')
 {{--    /*@toastr_css*/--}}
 @section('title')
-    الفواتير الدراسية
+    invoices
 @stop
 @endsection
 @section('page-header')
@@ -39,7 +39,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{$Fee_invoice->student->name}}</td>
                                             <td>{{$Fee_invoice->fees->title}}</td>
-                                            <td>{{ number_format($Fee_invoice->amount, 2) }}</td>
+                                            <td>{{ number_format($Fee_invoice->amount) }}</td>
                                             <td>{{$Fee_invoice->grade->Name}}</td>
                                             <td>{{$Fee_invoice->classroom->Name_Class}}</td>
                                             <td>{{$Fee_invoice->description}}</td>

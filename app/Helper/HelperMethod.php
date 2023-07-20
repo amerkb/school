@@ -57,6 +57,14 @@ function IsOriented ($type){
     else{
         return false;
     }}
+function IsAccountant ($type){
+
+    if ($type=="Accountant"){
+        return true;
+    }
+    else{
+        return false;
+    }}
 
 
 

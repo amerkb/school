@@ -12,4 +12,12 @@ class PaymentStudent extends Model
     {
         return $this->belongsTo('App\Models\Student', 'student_id');
     }
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class,'teachers_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

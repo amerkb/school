@@ -2,13 +2,13 @@
 @section('css')
 
 @section('title')
-  تعديل سند صرف
+  Add  Reparation
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-
+سند قبض
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -28,16 +28,14 @@
                         </div>
                     @endif
 
-                            <form action="{{route('Payment_update','test')}}" method="" autocomplete="off">
-
+                        <form method=""  action="{{ route('reparations_store') }}" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>المبلغ : <span class="text-danger">*</span></label>
-                                        <input  class="form-control" name="Debit" value="{{$payment_student->amount}}" type="number" >
-                                        <input  type="hidden" name="id"  value="{{$payment_student->id}}" class="form-control">
-                                    </div>
+                                        <input  required class="form-control" name="Debit" type="number" >
+                                         </div>
                                 </div>
                             </div>
 
@@ -45,15 +43,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>البيان : <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$payment_student->description}}</textarea>
+                                        <textarea required class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                 </div>
-
                             </div>
-                                <div class="text-center">
-                                    <button id="ajax-btn" type="submit"
-                                            class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
-                                </div>  </form>
+                            <div class="text-center">
+                                <button id="ajax-btn" type="submit"
+                                        class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                            </div>  </form>
 
                 </div>
 
@@ -61,7 +58,6 @@
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
+
 
 @endsection

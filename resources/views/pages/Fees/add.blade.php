@@ -72,10 +72,10 @@
                             <select class="custom-select mr-sm-2" name="year">
                                 <option selected disabled>{{('Choose') }}...</option>
                                 @php
-                                    $current_year = date('Y');
+                                    $current_year = date("Y");
                                 @endphp
-                                @for ($year = $current_year; $year <= $current_year + 1; $year++)
-                                    <option value="{{ $year }}">{{ $year }}</option>
+                                @for($year=$current_year-1; $year<=$current_year +1 ;$year++)
+                                    <option value="{{ $year."-".$year +1}}">{{ $year."-".$year +1 }}</option>
                                 @endfor
                             </select>
                         </div>
@@ -85,6 +85,8 @@
                             <select class="custom-select mr-sm-2" name="Fee_type">
                                 <option value="1">Tuition fees</option>
                                 <option value="2">Bus fees</option>
+                                <option value="2">clothes fees</option>
+                                <option value="2">Book fees</option>
                             </select>
                         </div>
                     </div>
@@ -94,9 +96,10 @@
                         <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="4"></textarea>
                     </div>
                     <br>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
+                    <div class="text-center">
+                        <button id="ajax-btn" type="submit"
+                                class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                    </div>
                 </form>
 
             </div>

@@ -18,8 +18,10 @@
     @php
         $type=  \App\Models\Type_User::where( "id",auth()->user()->type_id)->pluck("type")[0];
     @endphp
+    @if(IsManager($type) ||IsOriented($type) )
     <a href="{{ route('create') }}" class="btn btn-success btn-sm" role="button"
        aria-pressed="true">{{ 'Add Student' }}</a><br><br>
+    @endif
     <div class="table-responsive">
         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                data-page-length="50" style="text-align: center">
@@ -53,6 +55,7 @@
                                 Pro
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                @if(IsManager($type) || IsOriented($type))
                                 <a class="dropdown-item"
                                    href="{{ route('show_Student', $student->id) }}"><i
                                             style="color: #ffc107"
@@ -70,7 +73,14 @@
                                    href="{{ route('edit_Student', $student->id) }}"><i
                                             style="color:green" class="fa fa-edit"></i>&nbsp;
                                     تعديل بيانات الطالب</a>
-                                   @if(IsManager($type))
+                                <a class="dropdown-item"
+                                   data-target="#Delete_Student{{ $student->id }}"
+                                   data-toggle="modal"
+                                   href="##Delete_Student{{ $student->id }}"><i
+                                            style=" color: red" class="fa fa-trash"></i>&nbsp;
+                                    حذف بيانات الطالب</a>
+                                @endif
+                                   @if(IsManager($type) || IsAccountant($type))
                                 <a class="dropdown-item"
                                    href="{{ route('Invoices_show', $student->id) }}"><i
                                             style="color: #0000cc"
@@ -90,13 +100,12 @@
                                    href="{{ route('Payment_show', $student->id) }}"><i
                                             style="color:goldenrod"
                                             class="fas fa-donate"></i>&nbsp; &nbsp;سند صرف</a>
+                                    <a class="dropdown-item"
+                                       href="{{ route('account_statement', $student->id) }}"><i
+                                                style="color:blue"
+                                                class="fas fa-file-invoice"></i>&nbsp; &nbsp; كشف حساب</a>
                                 @endif
-                                <a class="dropdown-item"
-                                   data-target="#Delete_Student{{ $student->id }}"
-                                   data-toggle="modal"
-                                   href="##Delete_Student{{ $student->id }}"><i
-                                            style="color: red" class="fa fa-trash"></i>&nbsp;
-                                    حذف بيانات الطالب</a>
+
                             </div>
                         </div>
                     </td>

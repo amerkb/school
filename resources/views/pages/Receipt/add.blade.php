@@ -2,13 +2,13 @@
 @section('css')
 
 @section('title')
-   سند قبض
+  Add  catch receipt for {{$student->name}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-سند قبض {{$student->name}}
+سند قبض
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -48,8 +48,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{('Submit')}}</button>
-                        </form>
+                            <div class="text-center">
+                                <button id="ajax-btn" type="submit"
+                                        class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                            </div>  </form>
 
                 </div>
 

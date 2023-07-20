@@ -1,8 +1,8 @@
-@extends('layouts.master')
+\@extends('layouts.master')
 @section('css')
 
 @section('title')
-    سندات القبض
+    Catch Receipts
 @stop
 @endsection
 @section('page-header')
@@ -35,7 +35,7 @@
                                             <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{$receipt_student->student->name}}</td>
-                                            <td>{{ number_format($receipt_student->Debit, 2) }}</td>
+                                            <td>{{ number_format($receipt_student->Debit) }}</td>
                                             <td>{{$receipt_student->description}}</td>
                                                 <td>
                                                     <a href="{{route('Receipt_edit',$receipt_student->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>

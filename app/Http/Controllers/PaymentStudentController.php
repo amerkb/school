@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentStudent;
 use App\Repository\PaymentRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -31,11 +32,27 @@ class PaymentStudentController extends Controller
     {
         return $this->Payment->store($request);
     }
+    public function storeteacher(Request $request)
+    {
+        return $this->Payment->storeteacher($request);
+    }
 
 
     public function show($id)
     {
         return $this->Payment->show($id);
+    }
+    public function showteacher($id)
+    {
+        return $this->Payment->showteacher($id);
+    }
+    public function showuser($id)
+    {
+        return $this->Payment->showuser($id);
+    }
+    public function storeuser(Request $request)
+    {
+        return $this->Payment->storeuser($request);
     }
 
 
@@ -43,6 +60,7 @@ class PaymentStudentController extends Controller
     {
         return $this->Payment->edit($id);
     }
+
 
 
     public function update(Request $request)

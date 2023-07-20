@@ -325,7 +325,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type) || IsOriented($type))
+                @if(IsManager($type) || IsOriented($type)|| IsAccountant($type))
                 {{--          student      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#student" aria-expanded="false" aria-controls="collapseLayouts">
@@ -336,7 +336,9 @@
 
                 <div class="collapse" id="student" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+                        @if(IsManager($type) )
                         <a class="nav-link" href="{{ route('create') }}"> Add Student</a>
+                        @endif
                         <a class="nav-link" href="{{ route('index') }}"> students List</a>
                     </nav>
                 </div>
@@ -373,7 +375,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type)|| IsOriented($type))
+                @if(IsManager($type)|| IsOriented($type) ||IsAccountant($type))
                 {{--          Teachers      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Teachers" aria-expanded="false" aria-controls="collapseLayouts">
@@ -384,7 +386,9 @@
 
                 <div class="collapse" id="Teachers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+                        @if(IsManager($type) )
                         <a class="nav-link" href="{{ route('createteacher') }}"> Add teacher </a>
+                        @endif
                         <a class="nav-link" href="{{ route('teacher') }}"> Teachers List</a>
                     </nav>
                 </div>
@@ -405,7 +409,7 @@
                     </nav>
                 </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) ||IsAccountant($type))
                 {{--          Accounts      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                    data-bs-target="#Accounts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -421,6 +425,8 @@
                         <a class="nav-link" href="{{ route('Receipt_index') }}">Receipt</a>
                         <a class="nav-link"  href="{{ route('Process_index') }}">Fee excluded</a>
                         <a class="nav-link" href="{{ route('Payment_index') }}">Bills of exchange</a>
+                        <a class="nav-link" href="{{ route('reparations_Index') }}">Reparations  </a>
+                        <a class="nav-link" href="{{ route('inventory') }}">Inventory  </a>
                     </nav>
                 </div>
                 @endif
@@ -542,7 +548,7 @@
 
             </div>
                 @endif
-                @if(IsManager($type))
+                @if(IsManager($type) ||IsAccountant($type))
         {{--          Users      --}}
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
            data-bs-target="#Users" aria-expanded="false" aria-controls="collapseLayouts">
@@ -553,25 +559,27 @@
 
         <div class="collapse" id="Users" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-                <a  class="nav-link" href="{{route(('ori_create'))}}">Add user</a>
-                <a  class="nav-link" href="{{route(('ori_index'))}}"> User List</a>
-            </nav>
+@if(IsManager($type) )
+<a  class="nav-link" href="{{route(('ori_create'))}}">Add user</a>
+                @endif
+<a  class="nav-link" href="{{route(('ori_index'))}}"> User List</a>
+</nav>
 
-        </div>
-                @endif
-                @if(IsManager($type))
-                {{--          Seeting      --}}
-                <a class="nav-link " href="{{route('Seting_index')}}"
-                   data-bs-target="#Seeting" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i>
-                    </div>
-                    Settings
-                </a>
-                @endif
-            </div>
-        </div>
+</div>
+@endif
+@if(IsManager($type))
+{{--          Seeting      --}}
+<a class="nav-link " href="{{route('Seting_index')}}"
+data-bs-target="#Seeting" aria-expanded="false" aria-controls="collapseLayouts">
+ <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i>
+ </div>
+ Settings
+</a>
+@endif
+</div>
+</div>
 {{--        <div class="sb-sidenav-footer">--}}
 {{--        </div>--}}
-    </nav>
+</nav>
 </div>
 

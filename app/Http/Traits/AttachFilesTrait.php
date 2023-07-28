@@ -12,6 +12,12 @@ trait AttachFilesTrait
         $request->file($name)->move(public_path('attachments/library'),$file_name);
 
     }
+    public function uploadlesson($request,$name)
+    {
+        $file_name = $request->file($name)->getClientOriginalName();
+        $request->file($name)->move(public_path('attachments/lesson'),$file_name);
+
+    }
     public function uploadbook($request,$name)
     {
         $file_name = $request->file($name)->getClientOriginalName();

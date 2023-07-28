@@ -10,6 +10,7 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlote;
 use App\Traits\GeneralTrait;
+use App\Transformers\ScheduleTransformer;
 use App\Transformers\TimeTableTransformer;
 use Carbon\Carbon;
 use App\Models\Grade;
@@ -549,5 +550,40 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
         return $this ->returnData("TimeTable" ,$ttrTransfermer,"count_TimeTable",$ttr->count());
 
     }
+    public function get_time_for_tracher(Request $request)
+    {
+        $end_first_term=  Setting::where("key","end_first_term")->pluck("value")[0];
+        $end_first_term = Carbon::createFromFormat("Y-m-d",$end_first_term);
+        $Current_year=Carbon::createFromFormat("Y-m-d",Carbon::now()->format("Y-m-d"));
+        $semster=0;
+        if ($Current_year->gt($end_first_term)){
+            $semster=2;
+        }
+        if ($Current_year->lte($end_first_term)){
+            $semster=1;
+        }
+        $id_teacher=Auth::guard($request->role)->id();
+        $year=Setting::where("key", "current_session")->pluck("value")[0];
+        $lectures= Lecture::join('time_slots as ts', 'lectures.ts_id', '=', 'ts.id')->select(
+            "ts.hour_from","ts.min_from","ts.meridian_from","ts.hour_to","ts.min_to","ts.meridian_to","lectures.*")->whereHas("ttr",function($q) use($year,$semster){
+            $q->where([["year",$year],["semester",$semster]]);
+        })->where("teacher_id",$id_teacher)
+            ->orderBy("day_id")
+            ->orderBy('ts.hour_from')
+            ->orderBy('ts.min_from')
+            ->orderBy('ts.meridian_from')
+            ->orderBy('ts.hour_to')
+            ->orderBy('ts.min_to')
+            ->orderBy('ts.meridian_to')
+            ->get();
+        $ttrTransfermer=[];
+        foreach ($lectures as $index=> $l){
+            $ttrTransfermer[$index] = fractal($l, new ScheduleTransformer())->toArray();
+            $ttrTransfermer[$index]= $ttrTransfermer[$index]["data"];
+        }
+        return $this ->returnData("lectures" ,$ttrTransfermer,"count_Lecture",$lectures->count());
+
+    }
+
 
 }

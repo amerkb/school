@@ -4,8 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentsRequest;
+use App\Models\Section;
+use App\Models\Setting;
+use App\Models\Student;
+use App\Models\TimeTableRecord;
 use App\Repository\StudentRepositoryInterface;
+use App\Traits\GeneralTrait;
+use App\Transformers\StudentTransformer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -76,4 +84,27 @@ class StudentController extends Controller
     {
         return $this->Student->Delete_attachment($request);
     }
+    use GeneralTrait;
+    public function get_student(Request $request)
+    {
+        try {
+
+            $id_teacher=Auth::guard($request->role)->id();
+            $year=Setting::where("key", "current_session")->pluck("value")[0];
+            $id_sections= TimeTableRecord::whereHas("lecture",function($q) use($id_teacher){
+                $q->where("teacher_id",$id_teacher);
+            })->where("year",$year)->pluck("section_id");
+            $students=Student::where("academic_year",$year)->whereIn('section_id',$id_sections)->get();
+            $lessonTransfermer=[];
+            foreach ($students as $index=> $student){
+                $lessonTransfermer[$index] = fractal($student, new StudentTransformer())->toArray();
+                $lessonTransfermer[$index]= $lessonTransfermer[$index]["data"];
+            }
+            return $this ->returnData("students" ,$lessonTransfermer,"count_students",$students->count());
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
 }

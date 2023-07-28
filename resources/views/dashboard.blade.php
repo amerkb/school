@@ -84,7 +84,7 @@
             </div>
             <!-- widgets -->
             <div class="row" >
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
                         <div class="btn-primary card-body">
                             <div class="clearfix">
@@ -105,7 +105,7 @@
 
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
                         <div class="btn-warning card-body">
                             <div class="clearfix">
@@ -126,7 +126,7 @@
 
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
                         <div class="btn-danger card-body" style="background-color: green">
                             <div class="clearfix">
@@ -147,7 +147,7 @@
 
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
                         <div class="btn-dark card-body">
                             <div class="clearfix">
@@ -168,13 +168,13 @@
 
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
                         <div class="btn-info card-body">
                             <div class="clearfix">
                                 <div class="float-left ">
                                     <span class="text-white">
-                                        <i class="fas fa-chalkboard highlight-icon" aria-hidden="true"></i>
+                                        <i class="fas fa-users highlight-icon" aria-hidden="true"></i>
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
@@ -189,8 +189,7 @@
 
                     </div>
                 </div>
-
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-30">
                     <div class="card  card-statistics h-100">
                         <div class="btn-danger card-body">
                             <div class="clearfix">
@@ -212,49 +211,6 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-                    <div class="card  card-statistics h-100">
-                        <div class="btn-warning card-body">
-                            <div class="clearfix">
-                                <div class="float-left ">
-                                    <span class="text-white">
-                                        <i class="fas fa-chalkboard highlight-icon" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                                <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Oriented Number:</h5>
-                                    <h4 class="text-white">{{\App\Models\Section::count()}}</h4>
-                                </div>
-                            </div>
-                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <h6 class="text-white"> <a href="{{route('section')}}">View Details</a></h6>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-                    <div class="card  card-statistics h-100">
-                        <div class="btn-secondary card-body">
-                            <div class="clearfix">
-                                <div class="float-left ">
-                                    <span class="text-white">
-                                        <i class="fas fa-chalkboard highlight-icon" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                                <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Fees Number:</h5>
-                                    <h4 class="text-white">{{\App\Models\Section::count()}}</h4>
-                                </div>
-                            </div>
-                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <h6 class="text-white"> <a href="{{route('section')}}">View Details</a></h6>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
 
             </div>
 

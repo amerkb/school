@@ -17,13 +17,13 @@ class SettingsTableSeeder extends Seeder
         DB::table('settings')->delete();
 
         $data = [
-            ['key' => 'current_session', 'value' => '2021-2022'],
-            ['key' => 'school_title', 'value' => 'MS'],
-            ['key' => 'school_name', 'value' => 'Mora Soft International Schools'],
+            ['key' => 'current_session', 'value' => '2023-2024'],
+            ['key' => 'school_title', 'value' => 'A'],
+            ['key' => 'school_name', 'value' => 'AMER'],
             ['key' => 'end_first_term', 'value' => '2023-9-29'],
             ['key' => 'end_second_term', 'value' => '01-03-2022'],
             ['key' => 'phone', 'value' => '0123456789'],
-            ['key' => 'address', 'value' => 'القاهرة'],
+            ['key' => 'address', 'value' => 'syria'],
             ['key' => 'school_email', 'value' => 'info@morasoft.com'],
             ['key' => 'logo', 'value' => '1.jpg'],
         ];

@@ -111,7 +111,27 @@ class ResultController extends Controller
         }
         return $this->returnData("results" ,$resultsTransfermer,"count_results",$results->count());
 
-//        return$q= Quizze::with("results")->get();
+    }
+
+    public function get_result_for_parent(Request $request)
+    {
+        $id_quizze=$request->id_quizze;
+        $id=Student::where("id",$request->IdStudent)->pluck("id")[0];
+        $quizze = Quizze::find($id_quizze);
+        $results = $quizze->results->filter(function ($result) use($id) {
+            return $result->student_id==$id;
+        });
+        $resultsTransfermer=[];
+
+        $i=0;
+        foreach ($results as  $result){
+
+            $resultsTransfermer[$i] = fractal($result, new ResultTransformer())->toArray();
+            $resultsTransfermer[$i]= $resultsTransfermer[$i]["data"];
+            $i++;
+        }
+        return $this->returnData("results" ,$resultsTransfermer,"count_results",$results->count());
+
     }
 
     public function show_result_dashboard($id_quizze, $id_student)

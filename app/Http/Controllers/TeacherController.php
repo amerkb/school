@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTeachers;
+use App\Http\Requests\TeacherRequest;
 use App\Models\Gender;
 use App\Models\MyParent;
 use App\Models\Section;
@@ -37,7 +38,7 @@ class TeacherController extends Controller
         return view('pages.Teachers.create', compact('specializations', 'genders'));
     }
 
-    public function store(Request $request)
+    public function store(TeacherRequest $request)
     {
         return $this->Teacher->StoreTeachers($request);
     }
@@ -50,7 +51,7 @@ class TeacherController extends Controller
         return view('pages.Teachers.Edit',compact('Teachers','specializations','genders'));
     }
 
-    public function update(Request $request) {
+    public function update(TeacherRequest $request) {
         return $this->Teacher->UpdateTeachers($request);
     }
 
@@ -73,10 +74,18 @@ class TeacherController extends Controller
                 return $this->returnData("teachers" ,$TeacherTransfermer,"count_teacher",$section->teachers->count());
             }
 
-            elseif ($request->role=="parent"){
-                $parent= MyParent::with("children")->find(Auth::guard($request->role)->id());
-                $student= Student::find($parent["children"][0]["id"]);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    public function get_teachers_for_parent(Request $request)
+    {
+        try {
+            if($request->role=="parent"){
+                $student= Student::find($request->IdStudent);
                 $section=Section::with("teachers")->find( $student->section_id);
+
                 $TeacherTransfermer=[];
                 foreach ($section->teachers as $index=> $teacher){
                     $TeacherTransfermer[$index] = fractal($teacher, new TeacherTransformer())->toArray();

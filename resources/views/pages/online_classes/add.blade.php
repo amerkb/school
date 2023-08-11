@@ -1,22 +1,19 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
-    اضافة حصة جديدة
+    Add Online Lecture
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    اضافة حصة جديدة
 @stop
 <!-- breadcrumb -->
 @endsection
 @section('content')
 <!-- row -->
-<div class="row">
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
+
             <div class="card-body">
 
                 @if ($errors->any())
@@ -88,18 +85,16 @@
                         </div>
 
                     </div>
-                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right"
-                        type="submit">{{('Submit') }}</button>
+
+                    <div class="text-center">
+                        <button id="ajax-btn" type="submit" style="margin-bottom: 30px;" class="btn btn-primary">Submit form <i class="fas fa-paper-plane"></i></button>
+                    </div>
                 </form>
 
             </div>
-        </div>
-    </div>
-</div>
+
 <!-- row closed -->
 @endsection
 @section('js')
-@toastr_js
-@toastr_render
 
 @endsection

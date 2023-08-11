@@ -137,9 +137,43 @@ class LessonController extends Controller
         }
     }
 
+    public function get_lesson_for_student( Request $request)
+    {
+
+        try {
+            $end_first_term = Setting::where("key", "end_first_term")->pluck("value")[0];
+            $end_first_term = Carbon::createFromFormat("Y-m-d", $end_first_term);
+            $Current_year = Carbon::createFromFormat("Y-m-d", Carbon::now()->format("Y-m-d"));
+            $semster = 0;
+            if ($Current_year->gt($end_first_term)) {
+                $semster = 2;
+            }
+            if ($Current_year->lte($end_first_term)) {
+                $semster = 1;
+            }
+            $section_id = Auth::guard($request->role)->user()->section_id;
+            $year = Auth::guard($request->role)->user()->academic_year;
+            $subject_id=Auth::guard($request->role)->user()->subject_id;
+            $lessons=Lesson::with("question")->where([
+                ["section_id",$section_id],["year",$year]
+                ,["semester",$semster], ["subject_id",$request->Idsubject]
+            ])->get();
+            $lessonTransfermer=[];
+            foreach ($lessons as $index=> $lesson){
+                $lessonTransfermer[$index] = fractal($lesson, new LessonTransformer())->toArray();
+                $lessonTransfermer[$index]= $lessonTransfermer[$index]["data"];
+            }
+            return $this ->returnData("lessons" ,$lessonTransfermer,"count_lessons",$lessons->count());
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
 
     public function create(LessonRequest $request)
-    {DB::beginTransaction();
+    {
+        return$request;
+        DB::beginTransaction();
         try {
 
             $end_first_term = Setting::where("key", "end_first_term")->pluck("value")[0];
@@ -171,7 +205,7 @@ class LessonController extends Controller
                 Question::create([
                     "title"=>$question["title"],
                     "answers"=>$question["first_answer"]."-".$question["second_answer"]."-".$question["thrid_answer"],
-                    "right_answer"=>$question["right_answe"],
+                    "right_answer"=>$question["right_answer"],
                     "lesson_id"=>$lesson->id,
                 ]);
             }

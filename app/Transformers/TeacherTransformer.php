@@ -42,7 +42,7 @@ class TeacherTransformer extends TransformerAbstract
             "teacher_Gender"=>$gender->Name,
             "teacher_Address"=>$teacher->Address,
             "teacher_Joining_Date"=>$teacher->Joining_Date,
-            "teacher_phone"=>null
+            "teacher_phone"=>$teacher->phone
 
 
         ];

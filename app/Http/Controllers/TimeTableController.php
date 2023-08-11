@@ -6,6 +6,7 @@ use App\Http\Requests\LectureRequest;
 use App\Models\Day;
 use App\Models\Lecture;
 use App\Models\Setting;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlote;
@@ -584,6 +585,29 @@ return redirect()->route("time_index")->withErrors(['error' => $e->getMessage()]
         return $this ->returnData("lectures" ,$ttrTransfermer,"count_Lecture",$lectures->count());
 
     }
+    public function get_time_for_parent(Request $request)
+    {
+        $end_first_term=  Setting::where("key","end_first_term")->pluck("value")[0];
+        $end_first_term = Carbon::createFromFormat("Y-m-d",$end_first_term);
+        $Current_year=Carbon::createFromFormat("Y-m-d",Carbon::now()->format("Y-m-d"));
+        $semster=0;
+        if ($Current_year->gt($end_first_term)){
+            $semster=2;
+        }
+        if ($Current_year->lte($end_first_term)){
+            $semster=1;
+        }
+         $section_id=  Student::where("id",$request->IdStudent)->pluck("section_id")[0];
+        $year=   Student::where("id",$request->IdStudent)->pluck("academic_year")[0];
+        $ttr= TimeTableRecord::with("lecture")->where([["year",$year],["section_id",$section_id]
+            ,["semester",$semster]])->get();
+        $ttrTransfermer=[];
+        foreach ($ttr as $index=> $tr){
+            $ttrTransfermer[$index] = fractal($tr, new TimeTableTransformer())->toArray();
+            $ttrTransfermer[$index]= $ttrTransfermer[$index]["data"];
+        }
+        return $this ->returnData("TimeTable" ,$ttrTransfermer,"count_TimeTable",$ttr->count());
 
+    }
 
 }

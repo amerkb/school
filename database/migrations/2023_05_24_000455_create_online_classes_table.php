@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('password')->comment('meeting password');
             $table->text('start_url');
             $table->text('join_url');
+            $table->tinyInteger("semester");
+            $table->string('year', 100);
             $table->timestamps();
         });
     }

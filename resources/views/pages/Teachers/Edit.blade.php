@@ -66,6 +66,13 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="col">
+                                    <label for="title">{{('Phone')}}</label>
+                                    <input type="text" name="phone" value="{{ $Teachers->phone }}" class="form-control">
+                                    @error('phone')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <br>
                             <div class="form-row">

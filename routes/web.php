@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BusController;
 use App\Http\Controllers\QuestionLibrariesController;
 use App\Http\Controllers\ReparationController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\StudentAccountController;
+use App\Http\Controllers\TripController;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeesController;
@@ -710,36 +712,6 @@ Route::group(["middleware" => "auth"], function ($router) use($ML) {
             ->name('ts.delete');
 
 
-        Route::get('time', [TimeTableController::class, 'index'])
-            ->name('time_index');
-        Route::get('time/showttr', [TimeTableController::class, 'show'])
-            ->name('ttr_show');
-        Route::post('time', [TimeTableController::class, 'create'])
-            ->name('time_create');
-        Route::get('time/show/{id}', [TimeTableController::class, 'view'])
-            ->name('ttr.show');
-        Route::get('time/manage/{id}', [TimeTableController::class, 'manage'])
-            ->name('ttr.manage');
-        Route::get('time/edit/{id}', [TimeTableController::class, 'edit'])
-            ->name('ttr.edit');
-        Route::get('time/destroy/{id}', [TimeTableController::class, 'destroy'])
-            ->name('ttr.destroy');
-        Route::post('time/update/{id}', [TimeTableController::class, 'update'])
-            ->name('ttr.update');
-//ts
-        Route::get('timeslot/view', [TimeTableController::class, 'ts_index'])
-            ->name('ts.index');
-        Route::get('timeslot/create', [TimeTableController::class, 'createts'])
-            ->name('ts.create');
-        Route::post('timeslot/store', [TimeTableController::class, 'ts_store'])
-            ->name('ts.store');
-        Route::get('timeslot/edit/{id}', [TimeTableController::class, 'ts_edit'])
-            ->name('ts.edit');
-        Route::post('timeslot/update/{id}', [TimeTableController::class, 'ts_update'])
-            ->name('ts.update');
-        Route::get('timeslot/delete/{id}', [TimeTableController::class, 'ts_delete'])
-            ->name('ts.delete');
-
 //lecture
         Route::get('lecture/create/{id}', [TimeTableController::class, 'l_create'])
             ->name('l.create');
@@ -796,25 +768,40 @@ Route::post('Result/show/store_update/{id}', [ResultController::class, 'ur_store
     ->name('ur.store.update');});
 
 
+    ///////////  bus Students
+
+    Route::group(["middleware" => 'Dashboard:' . implode(',', $MO)], function ($router) {
 
 
+        Route::get('Bus', [BusController::class, 'index'])
+            ->name('Bus_index');
+        Route::post('bus/save', [BusController::class, 'store'])
+            ->name('Bus_store');
+        Route::get('bus/create', [BusController::class, 'create'])
+            ->name('Bus_create');
+        Route::get('bus/edit/{id}', [BusController::class, 'edit'])
+            ->name('Bus_edit');
+        Route::post('bus/update/{id}', [BusController::class, 'update'])
+            ->name('Bus_update');
+        Route::get('bus/manage/{id}', [BusController::class, 'manage'])
+            ->name('Bus_manage');
+        Route::get('bus/destroy/{id}', [BusController::class, 'destroy'])
+            ->name('Bus_destroy');
 
 
+//trip
+        Route::get('trip/create/{id}', [TripController::class, 'create'])
+            ->name('trip_create');
+        Route::post('trip/store/{id}', [TripController::class, 'store'])
+            ->name('trip_store');
+        Route::get('trip/edit/{id_lecture}', [TripController::class, 'edit'])
+            ->name('trip_edit');
+        Route::post('trip/update/{id_lecture}', [TripController::class, 'update'])
+            ->name('trip_update');
+        Route::get('trip/delete/{id_lecture}', [TimeTableController::class, 'l_destroy'])
+            ->name('trip_delete');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    });
 
 
 

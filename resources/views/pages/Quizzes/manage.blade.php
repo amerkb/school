@@ -18,9 +18,9 @@
 
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-4"><h6 class="card-title"><strong>Name: </strong> {{ $Quizze->name }}</h6></div>
-                        <div class="col-md-4"><h6 class="card-title"><strong>Semester: </strong> {{ $Quizze->semester}}</h6></div>
-                        <div class="col-md-4"><h6 class="card-title"><strong>Type: </strong> {{$Quizze->type->name}} {{ '('.$Quizze->year.')' }}</h6></div>
+                        <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Name: </strong> {{ $Quizze->name }}</h6></div>
+                        <div class="col-md-4"style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Semester: </strong> {{ $Quizze->semester}}</h6></div>
+                        <div class="col-md-4"style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Type: </strong> {{$Quizze->type->name}} {{ '('.$Quizze->year.')' }}</h6></div>
                     </div>
                 </div>
                 <div class="card-body">

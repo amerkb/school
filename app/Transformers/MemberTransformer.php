@@ -47,7 +47,7 @@ class MemberTransformer extends TransformerAbstract
             "Member_name"=>$user->name==null?$user->Name:$user->name,
             "Member_type"=>str_replace("App\Models\\", "", $this->type),
             "join_date "=>Carbon::createFromFormat( 'Y-m-d H:i:s' , $this->joined )->format("Y-m-d H:i:s"),
-            "phone"=>null,
+            "phone"=>$user->phone,
         ];
     }
 }

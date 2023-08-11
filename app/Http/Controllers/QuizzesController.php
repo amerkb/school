@@ -219,7 +219,38 @@ class QuizzesController extends Controller
         catch (\Exception $e) {
             return $e->getMessage();
         }
+
     }
+
+    public function get_quizze_for_parent(Request $request)
+    {
+
+        try {
+            if($request->role=="parent"){
+                $class=  Student::where("id",$request->IdStudent)->pluck("Classroom_id")[0];
+                $year=  Student::where("id",$request->IdStudent)->pluck("academic_year")[0];
+
+                $quizzes= Quizze::with("se")
+                    ->whereHas("se", function($query) use($class) {
+                        $query->where("classroom_id", $class);
+                    })
+                    ->where("year", $year)->get();
+                $quizzesTransfermer=[];
+                foreach ($quizzes as $index=> $quizze){
+                    $quizzesTransfermer[$index] = fractal($quizze, new QuizzeTransformer())->toArray();
+                    $quizzesTransfermer[$index]= $quizzesTransfermer[$index]["data"];
+                }
+                return $this->returnData("quizzes" ,$quizzesTransfermer,"count_quizzes",$quizzes->count());
+            }
+
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
+
     public function show_exam_for_student(Request $request,$id)
     {
 

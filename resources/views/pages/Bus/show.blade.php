@@ -2,7 +2,7 @@
 @section('css')
 
     @section('title')
-        {{ 'View TimeTable' }}
+        {{ 'Manage Bus' }}
     @stop
 @endsection
 @section('page-header')
@@ -17,15 +17,10 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-4"style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Name: </strong> {{ $ttr->name }}</h6></div>
-                <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Grade: </strong> {{ $ttr->grades->Name }}</h6></div>
-                <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Class: </strong> {{ $ttr->classrooms->Name_Class }}</h6></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Section: </strong> {{ $ttr->sections->Name_Section  }}</h6></div>
-                <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Semester: </strong> {{ $ttr->semester}}</h6></div>
-                <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Year: </strong>Class TimeTable {{ '('.$ttr->year.')' }}</h6></div>
-            </div>
+                <div class="col-md-6" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Name: </strong> {{ $ttr->name }}</h6></div>
+                <div class="col-md-6" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Grade: </strong> {{ $ttr->grades->Name }}</h6></div>
+              </div>
+
         </div>
         <div class="card-body">
             <table class="table datatable-button-html5-columns">

@@ -44,9 +44,17 @@ class AuthController extends Controller
 //    }
 
     protected function createNewToken($token,$type){
-        return response()->json([
-            'access_token' => $token,
-            'user' => auth($type)->user()
-        ]);
+        if ($type=="parent") {
+            return response()->json([
+                'access_token' => $token,
+                'user' => auth($type)->user()->with('children')->get()
+            ]);
+        }
+        else{
+            return response()->json([
+                'access_token' => $token,
+                'user' => auth($type)->user()
+            ]);
+        }
     }
 }

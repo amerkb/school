@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OnlineRequest;
 use App\Http\Traits\MeetingZoomTrait;
 use App\Models\Grade;
 use App\Models\OnlineClass;
+use App\Models\Setting;
 use App\Models\User;
+use App\Traits\GeneralTrait;
+use App\Transformers\OnlineTransformer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use MacsiDigital\Zoom\Facades\Zoom;
 
 class OnlineClasseController extends Controller
@@ -33,14 +39,10 @@ class OnlineClasseController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(OnlineRequest $request)
     {
-<<<<<<< HEAD
-     //   try {
-=======
+        try {
 
-      //  try {
->>>>>>> 365821c1261e1ebd2ed0d2e40f15b73cc179e8d2
 
             $meeting = $this->createMeeting($request);
 
@@ -60,14 +62,14 @@ class OnlineClasseController extends Controller
             ]);
             toastr()->success(('Success'));
             return redirect()->route('Online_index');
-      //  } catch (\Exception $e) {
-       //     return redirect()->back()->with(['error' => $e->getMessage()]);
-      //  }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
 
     }
 
 
-    public function storeIndirect(Request $request)
+    public function storeIndirect(OnlineRequest $request)
     {
         try {
             OnlineClass::create([
@@ -82,7 +84,9 @@ class OnlineClasseController extends Controller
                 'duration' => $request->duration,
                 'password' => $request->password,
                 'start_url' => $request->start_url,
+                'year' => $request->Year,
                 'join_url' => $request->join_url,
+                'semester' => $request->semester,
             ]);
             toastr()->success(('Success'));
             return redirect()->route('Online_index');
@@ -92,11 +96,39 @@ class OnlineClasseController extends Controller
 
     }
 
+use GeneralTrait;
 
-
-    public function show($id)
+    public function get_online_for_student(Request $request)
     {
-        //
+        try {
+
+            if ($request->role == "student") {
+                $end_first_term = Setting::where("key", "end_first_term")->pluck("value")[0];
+                $end_first_term = Carbon::createFromFormat("Y-m-d", $end_first_term);
+                $Current_year = Carbon::createFromFormat("Y-m-d", Carbon::now()->format("Y-m-d"));
+                $semster = 0;
+                if ($Current_year->gt($end_first_term)) {
+                    $semster = 2;
+                }
+                if ($Current_year->lte($end_first_term)) {
+                    $semster = 1;
+                }
+                $section_id = Auth::guard($request->role)->user()->section_id;
+                $year = Auth::guard($request->role)->user()->academic_year;
+                $online=OnlineClass::where([["section_id",$section_id],["semester",$semster],["year",$year]])->get();
+                $questionsTransfermer=[];
+                foreach ($online as $index=> $question){
+                    $questionsTransfermer[$index] = fractal($question, new OnlineTransformer())->toArray();
+                    $questionsTransfermer[$index]= $questionsTransfermer[$index]["data"];
+                }
+                return $this ->returnData("online" ,$questionsTransfermer,"count_online",$online->count());
+
+
+            }
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
 

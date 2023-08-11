@@ -2,7 +2,7 @@
 @section('css')
 {{--    /*@toastr_css */ --}}
     @section('title')
-        {{ 'Manage TimeTable' }}
+        {{ 'Manage Bus' }}
     @stop
 @endsection
 @section('page-header')
@@ -18,26 +18,19 @@
 
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-4"style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Name: </strong> {{ $ttr->name }}</h6></div>
-                        <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Grade: </strong> {{ $ttr->grades->Name }}</h6></div>
-                        <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Class: </strong> {{ $ttr->classrooms->Name_Class }}</h6></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Section: </strong> {{ $ttr->sections->Name_Section  }}</h6></div>
-                        <div class="col-md-4" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Semester: </strong> {{ $ttr->semester}}</h6></div>
-                        <div class="col-md-4"style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Year: </strong>Class TimeTable {{ '('.$ttr->year.')' }}</h6></div>
+                        <div class="col-md-6" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Name: </strong> {{ $bus->name }}</h6></div>
+                        <div class="col-md-6" style="display:flex; justify-content: space-evenly;align-items: center"><h6 class="card-title"><strong>Number: </strong> {{ $bus->number }}</h6></div>
                     </div>
                 </div>
                 <div class="card-body">
 
                                 <div class="row">
                                     <div style="margin-bottom: 26px" class="col-md-4 d-flex justify-content-center align-items-center">
-                                        <a style="padding: 6px"  href="{{ route('l.create',$ttr->id) }}" class=" btn btn-success btn-sm" role="button"
-                                                              aria-pressed="true"> Add Lecture </a></div>
+                                        <a style="padding: 6px"  href="{{ route('trip_create',$bus->id) }}" class=" btn btn-success btn-sm" role="button"
+                                                              aria-pressed="true"> Add   Trip </a></div>
                                     <div class="col-md-4 d-flex justify-content-center align-items-center"> <a style="background-color: black; padding: 6px" target="_blank" href="{{ route('ts.index') }}" class="btn  btn-sm" role="button"
                                                               aria-pressed="true"> <span style="color:white">View  TimeSlot</span> </a></div>
-                                    <div class="col-md-4 d-flex justify-content-center align-items-center"> <a style="padding: 6px"  target="_blank" href="{{ route('ttr.show',$ttr->id) }}" class="btn btn-danger btn-sm" role="button"
+                                    <div class="col-md-4 d-flex justify-content-center align-items-center"> <a style="padding: 6px"  target="_blank" href="{{ route('ttr.show',$bus->id) }}" class="btn btn-danger btn-sm" role="button"
                                                               aria-pressed="true"> view TimeTable </a></div>
                                 </div>
                                 <div  class="table-responsive" style="padding-bottom: 100px">
@@ -46,22 +39,30 @@
                                         <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>subject</th>
-                                            <th>teacher</th>
+                                            <th>name</th>
+                                            <th> places </th>
                                             <th> day </th>
                                             <th> time slot</th>
+                                            <th> driver</th>
+                                            <th>type</th>
+                                            <th>year</th>
+                                            <th>semester</th>
                                             <th>Action</th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($lectures as $lecture )
+                                        @foreach ($trip as $trip )
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $lecture->subject->name}}</td>
-                                                <td>{{$lecture->teacher->Name }}</td>
-                                                <td>{{$lecture->day->name }}</td>
-                                                <td>{{ $lecture->ts->full }}</td>
+                                                <td>{{ $trip->name}}</td>
+                                                <td>{{ $trip->places}}</td>
+                                                <td>{{$trip->day->name }}</td>
+                                                <td>{{ $trip->ts->full }}</td>
+                                                <td>{{ $trip->driver->name }}</td>
+                                                <td>{{ $trip->type }}</td>
+                                                <td>{{ $trip->year }}</td>
+                                                <td>{{ $trip->semester }}</td>
                                                 <td>
                                                     <div class="dropdown show">
                                                         <a class="btn btn-success btn-sm dropdown-toggle" href="#"
@@ -73,12 +74,12 @@
 
                                                             {{--Edit--}}
                                                             <a class="dropdown-item"
-                                                               href="{{ route('l.edit', $lecture->id) }}"><i
+                                                               href="{{ route('l.edit', $trip->id) }}"><i
                                                                         style="color: #83ae26" class="fa fa-edit"></i>&nbsp;
                                                                 &nbsp; Edit</a>
                                                             {{--destroy--}}
                                                             <a class="dropdown-item"
-                                                               data-toggle="modal" data-target="#delete_l{{ $lecture->id }}"
+                                                               data-toggle="modal" data-target="#delete_l{{ $trip->id }}"
                                                                ><i
                                                                         style="color: red"
                                                                         class="fa fa-trash"></i>&nbsp;
@@ -91,7 +92,7 @@
                                                 </td>
                                             </tr>
 
-                                        @include('pages.timetables.lecture.destroy')
+{{--                                        @include('pages.timetables.lecture.destroy')--}}
                                         @endforeach
                                     </table>
                                 </div>

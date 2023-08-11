@@ -1,30 +1,27 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+
 @section('title')
-    حصص اونلاين
+   List online Class
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-@section('PageTitle')
-    حصص اونلاين
-@stop
+
 <!-- breadcrumb -->
 @endsection
 @section('content')
 <!-- row -->
-<div class="row">
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div class="col-xl-12 mb-30">
-                    <div class="card card-statistics h-100">
+
                         <div class="card-body">
-                            <a href="{{ route('Online_create') }}" class="btn btn-success" role="button"
-                                aria-pressed="true">اضافة حصة اونلاين جديدة</a>
-                            <a class="btn btn-warning" href="{{ route('Online_indirectCreate') }}">اضافة حصة اوفلاين
-                                جديدة</a>
+{{--                            <a href="{{ route('Online_create') }}" class="btn btn-success" role="button"--}}
+{{--                                aria-pressed="true">اضافة حصة اونلاين جديدة</a>--}}
+                            <a class="btn btn-warning" href="{{ route('Online_indirectCreate') }}">Add online Course
+                                </a>
+                                <br>
+                            <br>
+                            <br>
+                            <br>
                             <div class="table-responsive">
                                 <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                     data-page-length="50" style="text-align: center">
@@ -34,7 +31,6 @@
                                             <th>المرحلة</th>
                                             <th>الصف</th>
                                             <th>القسم</th>
-                                            <th>المعلم</th>
                                             <th>عنوان الحصة</th>
                                             <th>تاريخ البداية</th>
                                             <th>وقت الحصة</th>
@@ -49,7 +45,6 @@
                                                 <td>{{ $online_classe->grade->Name }}</td>
                                                 <td>{{ $online_classe->classroom->Name_Class }}</td>
                                                 <td>{{ $online_classe->section->Name_Section }}</td>
-                                                <td>{{ $online_classe->created_by }}</td>
                                                 <td>{{ $online_classe->topic }}</td>
                                                 <td>{{ $online_classe->start_at }}</td>
                                                 <td>{{ $online_classe->duration }}</td>
@@ -67,15 +62,9 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- row closed -->
 @endsection
 @section('js')
-@toastr_js
-@toastr_render
+
 @endsection

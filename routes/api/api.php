@@ -8,6 +8,7 @@ use App\Http\Controllers\QuizzesController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\TeacherController;
 
+use App\Http\Controllers\TimeTableController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
@@ -33,15 +34,40 @@ Route::group(['prefix' => 'chat', 'middleware' => 'user:'.implode(',', $pts)], f
 });
 #################################End Chat####################################
 
-#################################Start Attendance##################################
+
 Route::group([ 'middleware' => 'user:'.implode(',', $ps)], function ($router) {
+
+
+    #################################Start Timetable###################################
+    Route::get('/GetTimeStudent', [TimeTableController::class, 'get_time_for_student']);
+    Route::get('/GetTimeForParent', [TimeTableController::class, 'get_time_for_parent']);
+    #################################End Timetable####################################
+
+    #################################Start Attendance##################################
     Route::get('/GetAttendance', [AttendanceController::class, 'get_attendance_for_student']);
+    Route::get('/GetAttendanceForParent', [AttendanceController::class, 'get_attendance_for_parent']);
+
+    #################################End Attendance####################################
+
+    #################################Start Teacher##################################
     Route::get('/GetTeacher', [TeacherController::class, 'get_teachers_for_student']);
+    Route::get('/GetTeacherForParent', [TeacherController::class, 'get_teachers_for_parent']);
+    #################################End Teacher##################################
+
+    #################################Start Quizze####################################
     Route::get('/GetQuizze', [QuizzesController::class, 'get_quizze_for_student']);
+    Route::get('/GetQuizzeForParent', [QuizzesController::class, 'get_quizze_for_parent']);
+
+    #################################End Quizze##################################
+
+    #################################Start Result##################################
     Route::get('/GetResult', [ResultController::class, 'get_result_for_student']);
+    Route::get('/GetResultForParent', [ResultController::class, 'get_result_for_parent']);
+
+    #################################End Result####################################
 });
 
-#################################End Attendance####################################
+
 #################################Start event ####################################
 
 Route::group([ 'middleware' => 'user:'.implode(',', $pts)], function ($router) {

@@ -24,6 +24,7 @@ class TeacherFactory extends Factory
             "Gender_id"=> $this->faker->numberBetween(1,2),
             "Joining_Date"=>$this->faker->date(),
             "Address"=>$this->faker->address(),
+            "phone"=>$this->faker->phoneNumber(),
         ];
     }
 }

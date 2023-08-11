@@ -3,7 +3,9 @@
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\OnlineClasseController;
 use App\Http\Controllers\QuestionLibrariesController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeTableController;
@@ -20,9 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([ 'middleware' => 'user:student'], function ($router) {
 
-    #################################Start Timetable###################################
-    Route::get('/GetTimeStudent', [TimeTableController::class, 'get_time_for_student']);
-    #################################End Timetable####################################
 
     #################################Start Get Subject By Category###################################
     Route::get('/GetSubjectByCategory', [SubjectController::class, 'get_subject_for_student']);
@@ -39,6 +38,14 @@ Route::group([ 'middleware' => 'user:student'], function ($router) {
     #################################Start Get Question library ###################################
     Route::get('/GetQuestionLibrary', [QuestionLibrariesController::class, 'get_question_library']);
     #################################End Get Question library ###################################
+
+    #################################Start Get lesson ###################################
+    Route::get('/GetLessonForStudent', [LessonController::class, 'get_lesson_for_student']);
+    #################################End Get lesson ###################################
+
+    #################################Start Get lesson ###################################
+    Route::get('/GetOnline', [OnlineClasseController::class, 'get_online_for_student']);
+    #################################End Get lesson ###################################
 
 
 });

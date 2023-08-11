@@ -195,16 +195,16 @@
                             <div class="clearfix">
                                 <div class="float-left ">
                                     <span class="text-white">
-                                        <i class="fas fa-chalkboard highlight-icon" aria-hidden="true"></i>
+                                        <i class="fas fa-university highlight-icon" aria-hidden="true"></i>
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <h5 class="card-text text-white">Manager Number:</h5>
+                                    <h5 class="card-text text-white">Class Number:</h5>
                                     <h4 class="text-white">{{\App\Models\Section::count()}}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <h6 class="text-white"> <a href="{{route('section')}}">View Details</a></h6>
+                            <h6 class="text-white"> <a href="{{route('classindex')}}">View Details</a></h6>
                             </p>
                         </div>
 

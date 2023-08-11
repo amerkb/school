@@ -325,6 +325,24 @@
                     </nav>
                 </div>
                 @endif
+                @if(IsManager($type)|| IsOriented($type))
+                    {{--          Bus      --}}
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#Bus" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-bus"></i></div>
+                        Bus
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+
+                    <div class="collapse" id="Bus" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ route('Bus_create') }}">  Add Bus</a>
+                            <a class="nav-link" href="{{ route('Bus_index') }}">  Bus List</a>
+                            <a class="nav-link" href="{{ route('ts.index') }}">  View timeSlots</a>
+                        </nav>
+
+                    </div>
+                @endif
                 @if(IsManager($type) || IsOriented($type)|| IsAccountant($type))
                 {{--          student      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -393,6 +411,7 @@
                     </nav>
                 </div>
                 @endif
+
                 @if(IsManager($type) || IsOriented($type))
                 {{--          Parents      --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -542,8 +561,8 @@
 
             <div class="collapse" id="Online" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link"  href="{{ route('Online_index') }}">الاتصال مباشر مع زوم</a>
-                    <a class="nav-link"  href="themify-icons.html">الاتصال الغير مباشر مع زوم</a>
+                    <a class="nav-link"  href="{{ route('Online_indirectCreate') }}"> Add  online lecture </a>
+                    <a class="nav-link"  href="{{ route('Online_index') }}"> List online lecture </a>
                 </nav>
 
             </div>
